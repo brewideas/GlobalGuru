@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<android.support.v7.widget.CardView
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/card_view"
+    android:layout_width="match_parent"
+    android:padding="10dp"
+    android:layout_height="80dp"
+    card_view:cardCornerRadius="4dp"
+    android:layout_margin="5dp">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:weightSum="4">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:text="Name"
+            android:paddingTop="15dp"
+            android:id="@+id/nbSName"
+            android:layout_weight="1"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:text="Marks"
+            android:layout_toRightOf="@+id/nbSName"
+            android:paddingTop="15dp"
+            android:layout_weight="1"
+            android:id="@+id/nbSRollN"
+
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:text="Class"
+            android:gravity="center"
+            android:layout_toRightOf="@+id/nbSRollN"
+            android:paddingTop="15dp"
+            android:layout_weight="1"
+            android:id="@+id/nbSClass"
+
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:text="Response"
+            android:gravity="center"
+            android:layout_toRightOf="@+id/nbSClass"
+            android:paddingTop="15dp"
+            android:layout_weight="1"
+            android:id="@+id/nbSResponse"
+
+            />
+
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>
+
+

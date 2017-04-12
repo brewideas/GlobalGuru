@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="in.co.thingsdata.gurukul.ui.NoticeBoard.NoticeBoardStatics">
+
+    <include layout="@layout/toolbar"/>
+
+    <include layout="@layout/nb_statics" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        >
+
+    <LinearLayout
+        android:id="@+id/headerOfStats"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+       >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_weight="1"
+            >
+
+        <TextView
+            android:id="@+id/yesTv"
+            android:layout_width="match_parent"
+            android:layout_height="46dp"
+            android:padding="8dp"
+            android:text="Yes"
+            android:textSize="28sp"
+            android:layout_weight="1"
+           ></TextView>
+
+            <TextView
+                android:id="@+id/yesCalTv"
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:padding="8dp"
+                android:layout_below="@id/yesTv"
+                android:text="1000"
+                android:textSize="28sp"
+                android:layout_weight="1"
+                ></TextView>
+
+
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_weight="1"
+            >
+        <TextView
+            android:id="@+id/noTv"
+            android:layout_width="match_parent"
+            android:layout_height="46dp"
+            android:padding="8dp"
+            android:text="No"
+            android:textSize="28sp"
+            android:layout_weight="1"
+            ></TextView>
+
+            <TextView
+                android:id="@+id/noCalTv"
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:padding="8dp"
+                android:text="1000"
+                android:layout_below="@+id/noTv"
+                android:layout_alignLeft="@+id/noTv"
+                android:textSize="28sp"
+                android:layout_weight="1"
+                ></TextView>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_weight="1"
+            >
+        <TextView
+            android:id="@+id/pendingTv"
+            android:layout_width="match_parent"
+            android:layout_height="46dp"
+            android:padding="8dp"
+            android:text="Pending"
+            android:textSize="28sp"
+            android:layout_weight="1"
+            ></TextView>
+
+            <TextView
+                android:id="@+id/pendingCalTv"
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:padding="8dp"
+                android:text="1000"
+                android:layout_below="@+id/pendingTv"
+                android:layout_alignLeft="@+id/pendingTv"
+                android:textSize="28sp"
+                android:layout_weight="1"
+                ></TextView>
+
+        </RelativeLayout>
+      </LinearLayout>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/statsRecyclerView"
+            android:layout_below="@+id/headerOfStats"
+            android:background="@color/lineColor"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+
+            />
+    </RelativeLayout>
+</android.support.design.widget.CoordinatorLayout>

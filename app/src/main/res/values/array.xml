@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="TypeOfExam">
+        <item>Yearly</item>
+        <item>1st Semester</item>
+        <item>2nd Semester</item>
+        <item>Monthly</item>
+    </string-array>
+
+    <string-array name="YearOfExam">
+        <item>2017</item>
+        <item>2018</item>
+        <item>2019</item>
+        <item>2020</item>
+    </string-array>
+
+
+</resources>

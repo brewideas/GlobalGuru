@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/infoCard"
+    android:id="@+id/inputInfo"
+    android:background="@color/colorComponentBG"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <TextView
+        android:id="@+id/enteredNametv"
+        android:padding="5dp"
+        android:text="enter name"
+        android:textSize="@dimen/textsize_heading_reportcard"
+        android:layout_width="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:textColor="@color/colorWhite"
+        android:layout_height="wrap_content" />
+
+
+    <TextView
+        android:id="@+id/ClassSection"
+        android:text="12th  C"
+        android:textSize="@dimen/textsize_heading_reportcard"
+        android:padding="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_alignLeft="@+id/enteredNametv"
+        android:layout_below="@+id/enteredNametv"
+        android:textColor="@color/colorWhite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/rolNumbertv"
+        android:padding="5dp"
+        android:text="RollNum :"
+
+        android:layout_toRightOf = "@+id/ClassSection"
+        android:layout_alignBottom="@+id/ClassSection"
+        android:textSize="@dimen/textsize_heading_reportcard"
+        android:layout_width="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:textColor="@color/colorWhite"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/enteredRolNum"
+        android:padding="5dp"
+        android:text="RollNum :"
+
+        android:layout_toRightOf = "@+id/rolNumbertv"
+        android:layout_alignBottom="@+id/ClassSection"
+        android:textSize="@dimen/textsize_heading_reportcard"
+        android:layout_width="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:textColor="@color/colorWhite"
+        android:layout_height="wrap_content" />
+
+
+
+</RelativeLayout>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#8FBC8F</color>
+    <color name="colorPrimaryDark">#6B8E23</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="colorComponentBG">#83dbd6</color>
+    <color name="colorWhite">#ffffff</color>
+    <color name="titleBar">#6B8E23</color>
+    <color name="lineColor">#dddbdc</color>
+    <color name="card">#FFFFFF</color>
+    <color name="primary">#EA2C2E</color>
+    <color name="cardHint">#90FFFFFF</color>
+    <color name="selectionControl">#EA2C2E</color>
+</resources>

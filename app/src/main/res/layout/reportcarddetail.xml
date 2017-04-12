@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<android.support.v7.widget.CardView
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/card_view"
+    android:layout_width="match_parent"
+    android:padding="10dp"
+
+    android:clickable="true"
+    android:layout_height="80dp"
+    card_view:cardCornerRadius="4dp"
+    android:layout_margin="5dp">
+
+
+<RelativeLayout
+      android:layout_width="match_parent"
+
+    android:layout_height="match_parent">
+
+
+
+    <TextView
+        android:layout_width="85dp"
+        android:layout_height="55dp"
+        android:text="test1"
+        android:paddingLeft="25dp"
+        android:paddingTop="15dp"
+
+        android:id="@+id/subject"
+
+        />
+
+    <TextView
+        android:layout_width="85dp"
+        android:layout_height="55dp"
+        android:text="test2"
+        android:layout_toRightOf="@+id/subject"
+        android:paddingLeft="25dp"
+        android:paddingTop="15dp"
+
+        android:id="@+id/marksObtained"
+
+        />
+
+    <TextView
+        android:layout_width="85dp"
+        android:layout_height="55dp"
+        android:text="tes3"
+        android:layout_toRightOf="@+id/marksObtained"
+        android:paddingLeft="25dp"
+        android:paddingTop="15dp"
+
+        android:id="@+id/total"
+
+        />
+
+    <TextView
+        android:layout_width="85dp"
+        android:layout_height="55dp"
+        android:text="test"
+        android:layout_toRightOf="@+id/total"
+        android:paddingLeft="25dp"
+        android:paddingTop="15dp"
+
+        android:id="@+id/percentage"
+
+        />
+
+</RelativeLayout>
+</android.support.v7.widget.CardView>
+
+

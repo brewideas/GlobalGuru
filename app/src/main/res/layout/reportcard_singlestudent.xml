@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    android:background="@color/colorWhite"
+    tools:context=".MyActivity">
+
+  <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/infoCard"
+        card_view:cardBackgroundColor="@color/colorComponentBG"
+        card_view:cardCornerRadius="4dp"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+       >
+
+      <include layout="@layout/rc_header_sv" />
+
+    </android.support.v7.widget.CardView>
+
+    <RelativeLayout
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/infoCard"
+        android:id="@+id/inputInfo"
+        android:padding ="8dp"
+        android:background="@color/colorWhite"
+        android:layout_width="match_parent"
+        >
+
+        <AutoCompleteTextView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/autocomplete_year"
+            android:layout_width="75dp"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:text="2017"
+            android:visibility="gone"
+            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinerrow2"
+            android:paddingTop="10dp"
+           >
+
+            <Spinner
+                android:id="@+id/spinner_year"
+                android:layout_width="122dp"
+                android:layout_weight="1"
+                android:hint="Year"
+                android:textColor="@color/colorWhite"
+                android:textColorHint="@color/colorWhite"
+                android:layout_height="wrap_content"
+                />
+
+            <Spinner
+                android:id="@+id/spinner_type"
+                android:layout_width="123dp"
+                android:layout_weight="1"
+                android:layout_margin="5dp"
+                android:hint="Type exam"
+                android:textColor="@color/colorWhite"
+                android:textColorHint="@color/colorWhite"
+                android:layout_height="wrap_content"
+                />
+
+            <ImageButton
+                android:layout_width="50dp"
+                android:id="@+id/executeResultQuery"
+                android:layout_weight="1"
+                android:layout_gravity="end"
+                android:onClick="executeResultQuery"
+                android:background="@drawable/execute"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_toRightOf="@+id/spinner_type"
+                />
+
+        </LinearLayout>
+        <AutoCompleteTextView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/autocomplete_type"
+            android:layout_width="105dp"
+            android:layout_toRightOf="@+id/autocomplete_year"
+            android:layout_marginLeft="40dp"
+            android:visibility="gone"
+            android:text="Yearly"
+            android:layout_height="wrap_content" />
+
+
+
+    </RelativeLayout>
+
+
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/headerOfList"
+        card_view:cardBackgroundColor="@color/lineColor"
+        android:layout_below="@+id/inputInfo"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        card_view:cardCornerRadius="4dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="8dp"
+        >
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="85dp"
+                android:layout_height="55dp"
+                android:text="Subject"
+                android:paddingLeft="15dp"
+                android:paddingTop="15dp"
+                android:id="@+id/subject"
+                android:textStyle="bold"
+
+                />
+
+            <TextView
+                android:layout_width="85dp"
+                android:layout_height="55dp"
+                android:text="Marks Obtained"
+                android:layout_toRightOf="@+id/subject"
+                android:paddingLeft="15dp"
+                android:paddingTop="15dp"
+                android:textStyle="bold"
+                android:id="@+id/marksObtained"
+
+                />
+
+            <TextView
+                android:layout_width="85dp"
+                android:layout_height="55dp"
+                android:text="Total"
+                android:layout_toRightOf="@+id/marksObtained"
+                android:paddingLeft="15dp"
+                android:paddingTop="15dp"
+                android:textStyle="bold"
+                android:id="@+id/total"
+
+                />
+
+            <TextView
+                android:layout_width="105dp"
+                android:layout_height="55dp"
+                android:text="Percentage"
+                android:layout_toRightOf="@+id/total"
+                android:paddingLeft="12dp"
+                android:paddingTop="15dp"
+                android:textStyle="bold"
+                android:id="@+id/percentage"
+
+                />
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/singleStudentMarks"
+        android:layout_below="@+id/headerOfList"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@color/lineColor"
+        android:layout_width="match_parent"
+        android:layout_height="260dp"
+        />
+
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/footerOfList"
+        card_view:cardBackgroundColor="@color/lineColor"
+        android:layout_below="@+id/singleStudentMarks"
+        android:layout_width="match_parent"
+
+        android:layout_height="50dp"
+        card_view:cardCornerRadius="4dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_alignParentBottom="true"
+        >
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="85dp"
+                android:layout_height="55dp"
+                android:text="Total"
+                android:paddingLeft="15dp"
+                android:paddingTop="15dp"
+                android:id="@+id/totalLabel"
+                android:textStyle="bold"
+
+                />
+
+            <TextView
+                android:layout_width="85dp"
+                android:layout_height="55dp"
+                android:text="1000"
+                android:layout_toRightOf="@+id/totalLabel"
+                android:paddingLeft="15dp"
+                android:paddingTop="15dp"
+                android:textStyle="bold"
+                android:id="@+id/totalMarksObtained"
+
+                />
+
+            <TextView
+                android:layout_width="85dp"
+                android:layout_height="55dp"
+                android:text="2000"
+                android:layout_toRightOf="@+id/totalMarksObtained"
+                android:paddingLeft="15dp"
+                android:paddingTop="15dp"
+                android:textStyle="bold"
+                android:id="@+id/totalSumOfMarks"
+
+                />
+
+            <TextView
+                android:layout_width="105dp"
+                android:layout_height="55dp"
+                android:text="50%"
+                android:layout_toRightOf="@+id/totalSumOfMarks"
+                android:paddingLeft="12dp"
+                android:paddingTop="15dp"
+                android:textStyle="bold"
+                android:id="@+id/percentageOfMarks"
+
+                />
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+
+</RelativeLayout>

@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Gurukul</string>
+    <string name="subject">Subject</string>
+    <string name="name">Name :</string>
+    <string name="nmeOfStudent">Student:</string>
+    <string name="typeOfexam">Type :</string>
+    <string name="rollNumber">R-No :</string>
+    <string name="classOfStudent">Class :</string>
+    <string name="sectionOfStudent">Section :</string>
+    <string name="reportCard">Report Card</string>
+    <string name="title_activity_repotcard_teacher_view">RepotcardTeacherView</string>
+    <string name="title_activity_report_card_teacher_view">ReportCardTeacherView</string>
+    <string name="title_activity_report_card_launch">reportCardLaunch</string>
+    <string name="title_activity_rc_create">rc_create</string>
+    <string name="subject_id">subId</string>
+    <string name="intent_extra_posInList">pos</string>
+    <string name="intent_extra_id_notification_selected">idOfNotification</string>
+    <string name="intent_extra_rolnum">rolnum</string>
+    <string name="title_activity_create_notification">CreateNotification</string>
+    <string name="title_activity_select_class">selectClass</string>
+    <string name="title_activity_notice_board_statics">NoticeBoardStatics</string>
+    <string name="title_activity_notes_list">Notification</string>
+    <string name="title_activity_show_notification">ShowNotificationActivity</string>
+    <string name="title_activity_createnotification">CreatenotificationActivity</string>
+    <string name="title_activity_notification_stats">NotificationStatsActivity</string>
+    <string name="title_activity_stats">StatsActivity</string>
+</resources>
