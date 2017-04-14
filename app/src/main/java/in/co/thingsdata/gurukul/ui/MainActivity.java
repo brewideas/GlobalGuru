@@ -12,7 +12,6 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
-import in.co.thingsdata.gurukul.R;
 import in.co.thingsdata.gurukul.data.common.ClassData;
 import in.co.thingsdata.gurukul.data.common.CommonDetails;
 import in.co.thingsdata.gurukul.services.helper.CommonRequest;
@@ -27,10 +26,23 @@ public class MainActivity extends AppCompatActivity implements GetClassListReque
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        email = (EditText) findViewById(R.id.loginid);
-        password = (EditText) findViewById(R.id.password);
-        signup = (TextView) findViewById(R.id.signup);
+//        setContentView(R.layout.activity_main);
+//        email = (EditText) findViewById(R.id.loginid);
+//        password = (EditText) findViewById(R.id.password);
+//        signup = (TextView) findViewById(R.id.signup);
+
+        handler = new Handler();
+        final Runnable r = new Runnable() {
+            public void run() {
+                Intent it = new Intent(MainActivity.this, Dashboard.class);
+                initializeUserData();
+                startActivity(it);
+
+            }
+        };
+
+        handler.postDelayed(r, 2000);
+
 
     }
 
