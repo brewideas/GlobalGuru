@@ -8,72 +8,6 @@
     tools:context=".ui.AppStart.Dashboard"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="@color/colorComponentBG">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_top_margin">
-            <TextView
-                android:id="@+id/TextViewDashboardUserName"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Student Name"
-                android:gravity="start"
-                android:textColor="@color/colorWhite"
-                android:layout_weight="1"
-                android:layout_marginStart="@dimen/component_left_margin"
-                android:textSize="22sp" />
-
-            <TextView
-                android:id="@+id/TextViewUserId"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="201301"
-                android:gravity="end"
-                android:textColor="@color/colorWhite"
-                android:layout_weight="1"
-                android:layout_marginEnd="@dimen/component_right_margin"
-                android:textSize="22sp" />
-        </LinearLayout>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginLeft="@dimen/component_left_margin"
-            android:layout_marginRight="@dimen/component_right_margin"
-            android:layout_marginTop="@dimen/component_top_margin"
-            android:background="@color/lineColor" />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/component_top_margin">
-            <TextView
-                android:id="@+id/TextViewDashboardType"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Class 12B"
-                android:gravity="start"
-                android:textColor="@color/colorWhite"
-                android:layout_weight="1"
-                android:layout_marginStart="@dimen/component_left_margin"
-                android:textSize="22sp" />
-
-            <TextView
-                android:id="@+id/TextViewParentName"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Father Name"
-                android:gravity="end"
-                android:layout_weight="1"
-                android:textColor="@color/colorWhite"
-                android:layout_marginEnd="@dimen/component_right_margin"
-                android:textSize="22sp" />
-        </LinearLayout>
-    </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -133,10 +67,15 @@
                 </LinearLayout>
             </LinearLayout> -->
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:id="@+id/rowOne"
                 android:layout_marginTop="@dimen/activity_vertical_margin">
 
                 <LinearLayout
@@ -180,6 +119,64 @@
                         android:textSize="18sp" />
                 </LinearLayout>
             </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:id="@+id/rowTwo"
+                    android:layout_below="@+id/rowOne"
+                    android:layout_marginTop="@dimen/activity_vertical_margin">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_weight="1" >
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/attendance"
+                            android:onClick="launchMyProfile"
+                            android:id="@+id/Profile" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="My Profile"
+                            android:gravity="center"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="5dp"
+                            android:textSize="18sp" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_weight="1" >
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:onClick="launchSchool"
+                            android:src="@drawable/logopager"
+                            android:background="@null"
+                            android:id="@+id/schoolInfo" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="School"
+                            android:gravity="center"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="5dp"
+                            android:textSize="18sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+
+
+
+
+
+            </RelativeLayout>
 
             <!-- <LinearLayout
                 android:layout_width="match_parent"

@@ -23,6 +23,9 @@ public class MainActivity extends AppCompatActivity implements GetClassListReque
     private Handler handler;
     TextView signup;
 
+    public static final String OPEN_GALLERY_FOR = "Open_gallery _for_which_act";
+    public static final String STUDENT_PROFILE_CROPED_NAME = "profileImg";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements GetClassListReque
         handler = new Handler();
         final Runnable r = new Runnable() {
             public void run() {
-                Intent it = new Intent(MainActivity.this, BeforeLoginScreen.class);
+                Intent it = new Intent(MainActivity.this, Dashboard.class);
                 initializeUserData();
                 startActivity(it);
 

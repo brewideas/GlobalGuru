@@ -12,18 +12,94 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:fitsSystemWindows="true"
-        android:background="@drawable/login_reg_bg">
+        >
+
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:layout_marginTop="30dp">
+            android:layout_marginTop="10dp"
+            >
+
+            <RelativeLayout
+                android:layout_width="250dp"
+                android:layout_height="200dp"
+                android:layout_below="@+id/etCampaignName"
+                android:layout_gravity="center"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="20dp"
+                android:clickable="true"
+                android:onClick="uploadToCreateProfile"
+                android:background="@color/titleBar"
+                android:id="@+id/profile"
+                android:visibility="gone"
+                >
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/profileBtn"
+                    android:src="@drawable/upload"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="16dp"
+                    android:onClick="uploadToCreateProfile"
+                    android:background="@null"
+                    />
+                </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/etCampaignName"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:clickable="true"
+                android:onClick="uploadToCreateProfile"
+                android:background="@color/error_stroke_color"
+                android:id="@+id/uploadImageRl"
+                >
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageButton"
+                    android:src="@drawable/upload"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="16dp"
+                    android:onClick="uploadToCreateProfile"
+                    android:background="@null"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tVAddCampign"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/titleBar"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="25dp"
+                    android:text= "Upload Image"
+                    android:onClick="uploadToCreateProfile"
+                    android:layout_below="@+id/imageButton" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tVAddCampign"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="16dp"
+                    android:text = "Accepted filetype PNG,JPG"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="20dp" android:onClick="uploadToCreateProfile"
+                    />
+
+            </RelativeLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/activity_top_margin">
+                android:layout_marginTop="25dp">
 
                 <TextView
                     android:text="User Type"
@@ -32,7 +108,7 @@
                     android:id="@+id/textView"
                     tools:text="User Type"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textColor="@color/colorWhite"
+                    android:textColor="@color/titleBar"
                     android:layout_marginRight="14dp"
                     android:layout_marginLeft="@dimen/component_left_margin"/>
 
@@ -41,17 +117,19 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="PARENT"
+                    android:buttonTint="@color/colorPrimary"
                     android:onClick="parentSelected"
                     android:layout_marginRight="@dimen/component_left_margin"
-                    android:textColor="@color/colorWhite"/>
+                    android:textColor="@color/titleBar"/>
 
                 <RadioButton
                     android:id="@+id/rd_btn_teacher"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="TEACHER"
+                    android:buttonTint="@color/colorPrimary"
                     android:onClick="teacherSelected"
-                    android:textColor="@color/colorWhite"/>
+                    android:textColor="@color/titleBar"/>
             </LinearLayout>
 
             <LinearLayout
@@ -67,7 +145,7 @@
                     android:id="@+id/textView4"
                     tools:text="Unique Id"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textColor="@color/colorWhite"
+                    android:textColor="@color/titleBar"
                     android:layout_marginRight="14dp"
                     android:layout_marginLeft="@dimen/component_left_margin"/>
 
@@ -77,8 +155,9 @@
                     android:inputType="textPersonName"
                     android:id="@+id/unique_id"
                     android:layout_weight="1"
-                    android:textColor="@android:color/white"
+                    android:textColor="@color/titleBar"
                     android:hint="Your Unique Id"
+
                     android:textColorHint="#A9A9A9"/>
 
             </LinearLayout>
@@ -96,7 +175,7 @@
                     android:id="@+id/textView8"
                     tools:text="Login Id"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textColor="@color/colorWhite"
+                    android:textColor="@color/titleBar"
                     android:layout_marginRight="14dp"
                     android:layout_marginLeft="@dimen/component_left_margin"/>
 
@@ -106,7 +185,7 @@
                     android:inputType="textPersonName"
                     android:id="@+id/login_id"
                     android:layout_weight="1"
-                    android:textColor="@android:color/white"
+                    android:textColor="@color/titleBar"
                     android:hint="Mobile Number"
                     android:textColorHint="#A9A9A9"/>
 
@@ -125,7 +204,7 @@
                     android:id="@+id/textView1"
                     tools:text="Password"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textColor="@color/colorWhite"
+                    android:textColor="@color/titleBar"
                     android:layout_marginRight="14dp"
                     android:layout_marginLeft="@dimen/component_left_margin"/>
 
@@ -135,7 +214,7 @@
                     android:inputType="textPersonName"
                     android:id="@+id/password"
                     android:layout_weight="1"
-                    android:textColor="@android:color/white"
+                    android:textColor="@color/titleBar"
                     android:hint="Password"
                     android:textColorHint="#A9A9A9"/>
 

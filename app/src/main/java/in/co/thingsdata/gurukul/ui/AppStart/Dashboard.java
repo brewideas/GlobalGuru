@@ -32,5 +32,17 @@ public class Dashboard extends AppCompatActivity {
 
 
     }
+
+    public void launchSchool(View view) {
+        Intent launchFeature = new Intent(this, BeforeLoginScreen.class);
+        startActivity(launchFeature);
+    }
+
+    public void launchMyProfile(View view) {
+        Intent launchFeature = new Intent(this, MyProfile.class);
+        startActivity(launchFeature);
+
+
+    }
 }
 

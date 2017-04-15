@@ -3,6 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="in.co.thingsdata.gurukul">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -56,7 +60,9 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.AppStart.LoginActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="Gurukul"
+            android:theme="@style/AppTheme.NoActionBar"
+            />
         <activity android:name=".ui.AppStart.SignUp" />
         <activity
             android:name=".NoticeficationPanel.StatsActivity"
@@ -65,6 +71,14 @@
         <activity
             android:name=".ui.AppStart.BeforeLoginScreen"
             android:label="@string/title_activity_before_login_screen"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.AppStart.MyProfile"
+            android:label="@string/title_activity_my_profile"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.common.ImageCropped"
+            android:label="@string/title_activity_image_cropped"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
