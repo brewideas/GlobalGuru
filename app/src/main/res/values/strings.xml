@@ -24,4 +24,8 @@
     <string name="title_activity_createnotification">CreatenotificationActivity</string>
     <string name="title_activity_notification_stats">NotificationStatsActivity</string>
     <string name="title_activity_stats">StatsActivity</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_before_login_screen">Gurukul</string>
 </resources>

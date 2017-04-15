@@ -11,4 +11,5 @@
     <color name="primary">#EA2C2E</color>
     <color name="cardHint">#90FFFFFF</color>
     <color name="selectionControl">#EA2C2E</color>
+    <color name="yellow">#FFFF00</color>
 </resources>

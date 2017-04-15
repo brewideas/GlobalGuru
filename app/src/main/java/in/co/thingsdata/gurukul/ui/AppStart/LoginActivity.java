@@ -1,4 +1,4 @@
-package in.co.thingsdata.gurukul.ui;
+package in.co.thingsdata.gurukul.ui.AppStart;
 
 import android.content.Intent;
 import android.graphics.Color;

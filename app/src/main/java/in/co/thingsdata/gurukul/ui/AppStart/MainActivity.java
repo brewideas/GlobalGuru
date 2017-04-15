@@ -1,4 +1,4 @@
-package in.co.thingsdata.gurukul.ui;
+package in.co.thingsdata.gurukul.ui.AppStart;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements GetClassListReque
         handler = new Handler();
         final Runnable r = new Runnable() {
             public void run() {
-                Intent it = new Intent(MainActivity.this, Dashboard.class);
+                Intent it = new Intent(MainActivity.this, BeforeLoginScreen.class);
                 initializeUserData();
                 startActivity(it);
 

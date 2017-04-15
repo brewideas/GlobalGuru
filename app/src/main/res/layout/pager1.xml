@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="3dp"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/director"
+            android:id="@+id/principlePic"
+            android:layout_marginTop="20dp"
+            android:layout_centerHorizontal="true"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/principlePic"
+            android:padding="10dp"
+            android:layout_marginTop="20dp"
+            android:textSize="20dp"
+            android:text="Paras Public School provides a platform for the all round development of a child and environment in which every student discovers and realizes his full potential to face the challenges of life with ethics and human values."
+            />
+    </RelativeLayout>
+</ScrollView>

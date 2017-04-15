@@ -11,14 +11,15 @@
         android:theme="@style/AppTheme"
         tools:replace="=android:icon">
         <activity
-            android:name=".ui.MainActivity"
+            android:name=".ui.AppStart.MainActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
-              <action android:name="android.intent.action.MAIN" />
-              <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.Dashboard" />
+        <activity android:name=".ui.AppStart.Dashboard" />
         <activity
             android:name=".ui.ReportCardUi.ReportCardSingleStudent"
             android:label="@string/reportCard" />
@@ -54,14 +55,16 @@
             android:label="New Notification"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ui.LoginActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
-        <activity android:name=".ui.SignUp" />
+            android:name=".ui.AppStart.LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ui.AppStart.SignUp" />
         <activity
             android:name=".NoticeficationPanel.StatsActivity"
             android:label="@string/title_activity_stats"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.AppStart.BeforeLoginScreen"
+            android:label="@string/title_activity_before_login_screen"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

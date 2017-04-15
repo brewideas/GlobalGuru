@@ -1,0 +1,32 @@
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    tools:context="in.co.thingsdata.gurukul.ui.common.OnBoarding">
+
+        <RelativeLayout
+          android:layout_width="wrap_content"
+           android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/viewPagerCountDots"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:gravity="center|right"
+            android:orientation="horizontal" />
+
+        <android.support.v4.view.ViewPager
+
+            android:id="@+id/viewpager"
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/colorAccent"
+
+            />
+        </RelativeLayout>
+
+
+</FrameLayout>
