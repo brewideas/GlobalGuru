@@ -127,11 +127,15 @@ public class OnBoarding extends Fragment implements ViewPager.OnPageChangeListen
 
     @Override
     public void onPageSelected(int position) {
-        for (int i = 0; i < dotsCount; i++) {
-            dots[i].setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.nonselecteditem_dot, null));
-        }
+        try {
+            for (int i = 0; i < dotsCount; i++) {
+                dots[i].setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.nonselecteditem_dot, null));
+            }
 
-        dots[position].setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.selecteditem_dot, null));
+            dots[position].setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.selecteditem_dot, null));
+        }catch(IllegalStateException e){
+
+        }
     }
 
     @Override
@@ -177,24 +181,17 @@ public class OnBoarding extends Fragment implements ViewPager.OnPageChangeListen
         mUpdate = new Runnable() {
             boolean revers= false;
             public void run() {
+                if (mViewPager != null) {
+                  if (currentPage == NUM_PAGES) {
+                        revers = false;
+                        currentPage = 0;
+                    }
 
-//                if (currentPage == NUM_PAGES - 2 && !revers) {
-////                    currentPage = 0;
-//                    revers = true;
-//                } else if (currentPage == 0){
-//                    revers = false;
-//
-//                }
-
-                if (currentPage == NUM_PAGES){
-                    revers = false;
-                    currentPage = 0;
-                }
-
-                if (!revers) {
-                    mViewPager.setCurrentItem(currentPage++, true);
-                }else {
-                    mViewPager.setCurrentItem(currentPage--, true);
+                    if (!revers) {
+                        mViewPager.setCurrentItem(currentPage++, true);
+                    } else {
+                        mViewPager.setCurrentItem(currentPage--, true);
+                    }
                 }
             }
         };
