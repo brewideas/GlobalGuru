@@ -79,12 +79,12 @@
             android:layout_marginTop="@dimen/activity_top_margin">
 
             <TextView
-                android:text="Password"
+                android:text="Class"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/className"
                 android:textSize="20sp"
-                tools:text="Class"
+
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/cardview_dark_background"
                 android:layout_marginRight="14dp"
@@ -96,7 +96,7 @@
                 android:id="@+id/profileClass"
                 android:layout_weight="1"
                 android:textSize="20sp"
-                android:layout_marginLeft="80dp"
+                android:layout_marginLeft="75dp"
 
                 android:text="12"/>
         </LinearLayout>
@@ -129,7 +129,7 @@
                 android:id="@+id/profileRolNum"
                 android:layout_weight="1"
                 android:textSize="20sp"
-                android:layout_marginLeft="30dp"
+                android:layout_marginLeft="15dp"
                 android:text="88"
                 />
 
