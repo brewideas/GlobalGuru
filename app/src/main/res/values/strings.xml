@@ -30,4 +30,5 @@
     <string name="title_activity_before_login_screen">Gurukul</string>
     <string name="title_activity_my_profile">MyProfile</string>
     <string name="title_activity_image_cropped">ImageCropped</string>
+    <string name="title_activity_school_gallery">schoolGallery</string>
 </resources>

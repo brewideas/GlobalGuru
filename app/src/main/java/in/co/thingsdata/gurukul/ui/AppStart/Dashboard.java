@@ -44,5 +44,11 @@ public class Dashboard extends AppCompatActivity {
 
 
     }
+
+    public void launchGallery(View view) {
+        Intent launchFeature = new Intent(this, schoolGallery.class);
+        startActivity(launchFeature);
+
+    }
 }
 

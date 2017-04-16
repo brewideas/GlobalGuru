@@ -1,6 +1,5 @@
 package in.co.thingsdata.gurukul.ui.dataUi;
 
-import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -8,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -29,6 +29,7 @@ public class CommonAdapter extends RecyclerView.Adapter<CommonAdapter.ReportCard
     public static final int CREATE_REPORT_CARD = 2;
     public static final int NB_STATICS = 3;
     public static final int NB_LIST = 4;
+    public static final int SCHOOL_GALLERY = 5;
     private OnItemClickListener mOnItemClickListener;
 
     public interface OnItemClickListener {
@@ -56,6 +57,9 @@ public class CommonAdapter extends RecyclerView.Adapter<CommonAdapter.ReportCard
         }else if(mScrnNumber == NB_LIST){
             itemView = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.nb_list_adapter, parent, false);
+        }else if(mScrnNumber == SCHOOL_GALLERY){
+            itemView = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.school_gallery_adapter, parent, false);
         }
 
         return new ReportCardViewHolder(itemView);
@@ -95,12 +99,12 @@ int row_index = -1;
             }
         });
 
-        if(row_index==position){
-            holder.row_view.setBackgroundColor(Color.parseColor("#567845"));
-        } else
-        {
-            holder.row_view.setBackgroundColor(Color.parseColor("#ffffff"));
-        }
+//        if(row_index==position){
+//            holder.row_view.setBackgroundColor(Color.parseColor("#567845"));
+//        } else
+//        {
+//            holder.row_view.setBackgroundColor(Color.parseColor("#ffffff"));
+//        }
 
 
         if(mScrnNumber == SINGLE_STUDENT_REPORTCARD_DETAIL) {
@@ -129,6 +133,13 @@ int row_index = -1;
             NoticeBoardModel data = (NoticeBoardModel) mListOfData.get(position);
             holder.nbTitle.setText(data.getListTitle());
             holder.nbDiscriptioin.setText(data.getListDiscription());
+
+        }else if(mScrnNumber == SCHOOL_GALLERY){
+            schoolGalleryModel data = (schoolGalleryModel)mListOfData.get(position);
+           // holder.sg_title.setText(data.getImage_title());
+            holder.sg_img.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            holder.sg_img.setImageResource((data.getImage_ID()));
+
 
         }
 
@@ -198,6 +209,9 @@ int row_index = -1;
         public TextView name,rollnumber;
         public TextView nbName,nbRollNum,nbClass,nbResponse;
         public TextView nbTitle,nbDiscriptioin;
+        private TextView sg_title;
+        private ImageView sg_img;
+
         public View row_view;
 
         public ReportCardViewHolder(View view) {
@@ -227,6 +241,9 @@ int row_index = -1;
             }else if(mScrnNumber == NB_LIST){
                 nbTitle = (TextView) view.findViewById(R.id.nbLTitle);
                 nbDiscriptioin =  (TextView) view.findViewById(R.id.nbLDes);
+            }else if(mScrnNumber == SCHOOL_GALLERY){
+                sg_title = (TextView)view.findViewById(R.id.title);
+                sg_img = (ImageView) view.findViewById(R.id.img);
             }
 
         }
