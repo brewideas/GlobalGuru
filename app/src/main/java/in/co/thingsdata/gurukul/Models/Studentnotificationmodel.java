@@ -37,15 +37,28 @@ public class Studentnotificationmodel {
     }
 
     public String getStartDate() {
-        return startDate;
+        String returnDate = "NoDate";
+        try {
+            returnDate = startDate.substring(0,10);
+        }catch(Exception e){
+
+        }
+       return returnDate;
     }
 
     public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
 
-    public String getExpireDate() {
-        return expireDate;
+    public String getExpireDate()
+    {
+        String returnDate = "NoDate";
+        try {
+            returnDate = expireDate.substring(0,10);
+        }catch(Exception e){
+
+        }
+        return returnDate;
     }
 
     public void setExpireDate(String expireDate) {
