@@ -48,7 +48,7 @@
             android:label="@string/title_activity_notes_list" />
         <activity
             android:name=".NoticeficationPanel.ShowNotificationActivity"
-            android:label="@string/title_activity_show_notification" />
+            android:label="Notification" />
         <activity
             android:name=".NoticeficationPanel.CreatenotificationActivity"
             android:label="New Notification" />
@@ -58,7 +58,7 @@
         <activity android:name=".ui.AppStart.SignUp" />
         <activity
             android:name=".NoticeficationPanel.StatsActivity"
-            android:label="@string/title_activity_stats" />
+            android:label="Notification" />
         <activity
             android:name=".ui.AppStart.BeforeLoginScreen"
             android:label="@string/title_activity_before_login_screen" />
