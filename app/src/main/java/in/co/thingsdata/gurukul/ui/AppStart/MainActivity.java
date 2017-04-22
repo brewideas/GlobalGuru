@@ -33,6 +33,8 @@ public class MainActivity extends AppCompatActivity implements GetClassListReque
         UserData.setContext(getApplicationContext());
         if (UserData.isUserAlreadyLoggedIn()){
             UserData.init();
+            GetClassListRequest req = new GetClassListRequest(this, this);
+            req.executeRequest();
         }
 //        setContentView(R.layout.activity_main);
 //        email = (EditText) findViewById(R.id.loginid);

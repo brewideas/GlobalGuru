@@ -15,17 +15,18 @@ public class CreateNotificationData {
     private String mExpiryDate;
     private String mClassName;
     private String mSection;
+    private boolean mIsSMS;
 
     public CreateNotificationData (String access_token, String createDate, String expiryDate,
                                    String desc, String title, String className, String section,
-                                   CommonDetails.NotificationTypeEnum type,boolean isSMS){
+                                   CommonDetails.NotificationTypeEnum type, boolean isSMS){
         mTitle = title;
         mNotificationType = type;
         mAccessToken = access_token;
         mDescription = desc;
         mCreateDate = createDate;
         mExpiryDate = expiryDate;
-        mClassName = className; mSection = section;
+        mClassName = className; mSection = section; mIsSMS = isSMS;
     }
 
     public String getTitle(){return mTitle;}
