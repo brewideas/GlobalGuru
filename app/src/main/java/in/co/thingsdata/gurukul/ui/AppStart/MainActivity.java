@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import in.co.thingsdata.gurukul.data.common.ClassData;
 import in.co.thingsdata.gurukul.data.common.CommonDetails;
+import in.co.thingsdata.gurukul.data.common.UserData;
 import in.co.thingsdata.gurukul.services.helper.CommonRequest;
 import in.co.thingsdata.gurukul.services.request.GetClassListRequest;
 
@@ -29,6 +30,10 @@ public class MainActivity extends AppCompatActivity implements GetClassListReque
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        UserData.setContext(getApplicationContext());
+        if (UserData.isUserAlreadyLoggedIn()){
+            UserData.init();
+        }
 //        setContentView(R.layout.activity_main);
 //        email = (EditText) findViewById(R.id.loginid);
 //        password = (EditText) findViewById(R.id.password);

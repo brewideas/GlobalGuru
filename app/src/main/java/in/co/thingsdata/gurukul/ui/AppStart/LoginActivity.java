@@ -83,15 +83,6 @@ public class LoginActivity extends AppCompatActivity implements GetClassListRequ
     public void forgetPassword(View v) {
     }
 
-    public void initializeUserData() {
-        if (!UserData.isUserAlreadyLoggedIn()) {
-            GetClassListRequest req = new GetClassListRequest(this, this);
-            req.executeRequest();
-        }
-        else {
-          //TODO: Read user data from shared preference
-        }
-    }
 
     @Override
     public void onGetClassListResponse(CommonRequest.ResponseCode res, ArrayList<ClassData> classes) {
@@ -105,7 +96,7 @@ public class LoginActivity extends AppCompatActivity implements GetClassListRequ
         }
         else{
             mDialog.dismiss();
-            Toast.makeText(this, "Some problem while accessing server for user data, please connect later.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Some problem while accessing server for user data, please try later.", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -113,7 +104,8 @@ public class LoginActivity extends AppCompatActivity implements GetClassListRequ
     public void onLoginResponse(CommonRequest.ResponseCode res, LoginData data) {
         if (res == CommonRequest.ResponseCode.COMMON_RES_SUCCESS){
             UserData.setAccessToken(data.getAccessToken());
-            initializeUserData();//9891829557
+            GetClassListRequest req = new GetClassListRequest(this, this);
+            req.executeRequest();
         }
         else
         {
@@ -135,6 +127,7 @@ public class LoginActivity extends AppCompatActivity implements GetClassListRequ
             UserData.setUserId(data.getUserId());
             UserData.setUniqueId(data.getReferenceCode());
 
+
             UserData.setUserDataReady(true);
             Intent it = new Intent(this, Dashboard.class);
             startActivity(it);
@@ -143,7 +136,7 @@ public class LoginActivity extends AppCompatActivity implements GetClassListRequ
         }
         else
         {
-            Toast.makeText(this, "Some problem while accessing server for user data, please connect later.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Some problem while accessing server for user data, please try later.", Toast.LENGTH_SHORT).show();
             mDialog.dismiss();
         }
     }
