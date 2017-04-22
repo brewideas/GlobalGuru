@@ -127,6 +127,7 @@ public class LoginActivity extends AppCompatActivity implements GetClassListRequ
             UserData.setUserId(data.getUserId());
             UserData.setUniqueId(data.getReferenceCode());
 
+
             UserData.setUserDataReady(true);
             Intent it = new Intent(this, Dashboard.class);
             startActivity(it);
