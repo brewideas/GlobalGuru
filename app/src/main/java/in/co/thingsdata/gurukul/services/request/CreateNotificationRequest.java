@@ -80,6 +80,7 @@ public class CreateNotificationRequest extends CommonRequest {
             if (!mData.getClassName().isEmpty()){
                 JSONObject target = new JSONObject();
                 target.put("targetUserType", "QUERY_SPECIFIC_PRE_FETCH");
+
                 JSONArray queryId = new JSONArray();
                 queryId.put("CLASS_SECTION_DATA");
                 target.put("uniqueQueryIds", queryId);
