@@ -58,7 +58,7 @@ public class CreateNotificationRequest extends CommonRequest {
             param.put(JSON_FIELD_NOTIFICATION_CONTENT_TITLE, data.getTitle());
             param.put(JSON_FIELD_NOTIFICATION_CONTENT_MESSAGE, data.getTitle());
             param.put(JSON_FIELD_NOTIFICATION_CONTENT_DATA, data.getDescription());
-            param.put(JSON_FIELD_NOTIFICATION_TARGET_USER, NOTIFICATION_TARGET_ALL_STRING);
+            //param.put(JSON_FIELD_NOTIFICATION_TARGET_USER, NOTIFICATION_TARGET_ALL_STRING);
             if (data.getNotificationType() ==  NOTIFICATION_TYPE_VOTE){
                 param.put(JSON_FIELD_NOTIFICATION_RESPONSE_BACK_FLAG, "true");
                 param.put(JSON_FIELD_NOTIFICATION_TYPE, NOTIFICATION_TYPE_JSON_STRING_QUESTION);
@@ -77,7 +77,7 @@ public class CreateNotificationRequest extends CommonRequest {
                 param.put(JSON_FIELD_NOTIFICATION_TYPE, NOTIFICATION_TYPE_JSON_STRING_TEXT);
             }
 
-            if (!mData.getClassName().isEmpty()){
+            if (mData.getClassName() != null){
                 JSONObject target = new JSONObject();
                 target.put("targetUserType", "QUERY_SPECIFIC_PRE_FETCH");
 
@@ -86,13 +86,29 @@ public class CreateNotificationRequest extends CommonRequest {
                 target.put("uniqueQueryIds", queryId);
 
                 JSONArray values = new JSONArray();
-                queryId.put("STUDENT");
+                values.put("STUDENT");
                 target.put("values", values);
 
                 JSONObject targetParam = new JSONObject();
                 targetParam.put ("CLASS_CODE", mData.getClassName());
                 targetParam.put ("SECTION", mData.getSection());
                 target.put("params", targetParam);
+
+                param.put(JSON_FIELD_NOTIFICATION_TARGET_USER_DATA, target);
+            }
+            else
+            {
+                param.put(JSON_FIELD_NOTIFICATION_TARGET_USER_DATA, NOTIFICATION_TARGET_ALL_STRING);
+            }
+
+            if (mData.IsSMS()){
+                param.put("typeId", "SMS");
+                param.put("sendInstant", true);
+            }
+            else
+            {
+                param.put("typeId", "PULL");
+                param.put("sendInstant", false);
             }
         } catch (JSONException e) {
             e.printStackTrace();

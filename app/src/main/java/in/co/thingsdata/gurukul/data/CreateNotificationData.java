@@ -37,4 +37,5 @@ public class CreateNotificationData {
     public String getExpiryDate(){return mExpiryDate;}
     public String getClassName(){return mClassName;}
     public String getSection(){return mSection;}
+    public boolean IsSMS(){return mIsSMS;}
 }
