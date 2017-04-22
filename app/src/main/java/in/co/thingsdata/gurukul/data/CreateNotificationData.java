@@ -18,7 +18,7 @@ public class CreateNotificationData {
 
     public CreateNotificationData (String access_token, String createDate, String expiryDate,
                                    String desc, String title, String className, String section,
-                                   CommonDetails.NotificationTypeEnum type){
+                                   CommonDetails.NotificationTypeEnum type,boolean isSMS){
         mTitle = title;
         mNotificationType = type;
         mAccessToken = access_token;

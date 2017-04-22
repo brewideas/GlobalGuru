@@ -158,7 +158,7 @@ public class CreatenotificationActivity extends AppCompatActivity implements Cre
                     mDetails.getText().toString(),
                     title.getText().toString(),
                     selClassesList.get(0), selClassesSectionList.get(0),
-                    type);
+                    type,isSMS);
         }catch (NullPointerException e){
              nd = new CreateNotificationData(
                     UserData.getAccessToken(),
@@ -167,7 +167,7 @@ public class CreatenotificationActivity extends AppCompatActivity implements Cre
                     mDetails.getText().toString(),
                     title.getText().toString(),
                     null, null,
-                    type);
+                    type,isSMS      );
         }
         CreateNotificationRequest request = new CreateNotificationRequest(this, nd, this);
         request.executeRequest();
