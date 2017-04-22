@@ -43,6 +43,7 @@ public final class UserData {
     private static String mUniqueId;
 
     public static boolean isUserDataReady(){return mIsDataReady;}
+    public static boolean isUserAlreadyLoggedIn(){return false;} //TODO: Update
     public static String getAccessToken(){return mAccessToken;}
     public static int getRollNumber(){return mRollNumber;}
     public static String getUserId(){return mUserId;}
