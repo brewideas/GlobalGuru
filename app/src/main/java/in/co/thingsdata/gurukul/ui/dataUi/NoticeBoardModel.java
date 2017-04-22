@@ -7,7 +7,7 @@ import java.io.Serializable;
  */
 public class NoticeBoardModel extends DataOfUi implements Serializable  {
 
-    private String mClassname;
+    private String mClassname,mClassSection;
     private boolean isSelected;
     String statsName = null;
     String statsRolNum = null;
@@ -16,8 +16,9 @@ public class NoticeBoardModel extends DataOfUi implements Serializable  {
 
     String listTitle = null, listDiscription = null;
 
-    public NoticeBoardModel(String argClassName, boolean isSelected){
+    public NoticeBoardModel(String argClassName,String argClassSection ,boolean isSelected){
         mClassname = argClassName;
+        mClassSection = argClassSection;
         this.isSelected = isSelected;
     }
 
@@ -43,6 +44,10 @@ public class NoticeBoardModel extends DataOfUi implements Serializable  {
 
     public String getClassName() {
         return mClassname;
+    }
+
+    public String getClassSection(){
+        return mClassSection;
     }
 
     public void setClassName(String name) {

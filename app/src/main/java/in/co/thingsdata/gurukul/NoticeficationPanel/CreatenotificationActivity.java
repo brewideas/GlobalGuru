@@ -12,6 +12,7 @@ import android.widget.RadioButton;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
@@ -37,11 +38,23 @@ public class CreatenotificationActivity extends AppCompatActivity implements Cre
     public static final int READ_TIMEOUT = 15000000;
     DatePickerDialog.OnDateSetListener date;
     RadioButton normal, optional;
-
+    ArrayList<String> selClassesList;
+    ArrayList<String> selClassesSectionList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_createnotification);
+
+        try {
+            String keyClassName = "selClass";
+            String keyClassSection = "selSection";
+            Bundle b = this.getIntent().getExtras();
+            selClassesList = b.getStringArrayList(keyClassName);
+            selClassesSectionList = b.getStringArrayList(keyClassSection);
+        }catch(NullPointerException e){
+            selClassesList = null;
+            selClassesSectionList = null;
+        }
         mDetails= (EditText)findViewById(R.id.detail);
         title = (EditText) findViewById(R.id.addtitle);
         startdate = (EditText) findViewById(R.id.daate);
@@ -128,6 +141,7 @@ public class CreatenotificationActivity extends AppCompatActivity implements Cre
     }
 
     private void CreateNotification (View v){
+
         Calendar c = Calendar.getInstance();
         SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss.SSS");
         String currTime = df.format(c.getTime());
@@ -135,14 +149,26 @@ public class CreatenotificationActivity extends AppCompatActivity implements Cre
         String expiryDate = enddate.getText().toString() + "T" + currTime;
         CommonDetails.NotificationTypeEnum type = normal.isChecked()?NOTIFICATION_TYPE_NORMAL:NOTIFICATION_TYPE_VOTE;
 
-        CreateNotificationData nd = new CreateNotificationData(
-                UserData.getAccessToken(),
-                createDate,
-                expiryDate,
-                mDetails.getText().toString(),
-                title.getText().toString(),
-                "12", "B",
-                type);
+        CreateNotificationData nd = null;
+        try {
+            nd = new CreateNotificationData(
+                    UserData.getAccessToken(),
+                    createDate,
+                    expiryDate,
+                    mDetails.getText().toString(),
+                    title.getText().toString(),
+                    selClassesList.get(0), selClassesSectionList.get(0),
+                    type);
+        }catch (NullPointerException e){
+             nd = new CreateNotificationData(
+                    UserData.getAccessToken(),
+                    createDate,
+                    expiryDate,
+                    mDetails.getText().toString(),
+                    title.getText().toString(),
+                    null, null,
+                    type);
+        }
         CreateNotificationRequest request = new CreateNotificationRequest(this, nd, this);
         request.executeRequest();
     }

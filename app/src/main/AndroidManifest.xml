@@ -39,6 +39,7 @@
             android:label="@string/reportCard" />
         <activity
             android:name=".ui.NoticeBoard.selectClass"
+            android:noHistory="true"
             android:label="@string/title_activity_select_class" />
         <activity
             android:name=".ui.NoticeBoard.NoticeBoardStatics"

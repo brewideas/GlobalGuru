@@ -12,7 +12,6 @@ import android.widget.TextView;
 import java.util.List;
 
 import in.co.thingsdata.gurukul.Models.Statsmodel;
-import in.co.thingsdata.gurukul.Models.Studentnotificationmodel;
 import in.co.thingsdata.gurukul.R;
 
 
@@ -44,7 +43,7 @@ public class StatNotificationAdapter extends BaseAdapter {
     public long getItemId(int position) {
         return mModuleArrayList.get(position).getUser1d().hashCode();
     }
-
+//getaccesstoken
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {

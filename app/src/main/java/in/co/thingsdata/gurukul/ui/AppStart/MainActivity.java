@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements GetClassListReque
         handler = new Handler();
         final Runnable r = new Runnable() {
             public void run() {
-                Intent it = new Intent(MainActivity.this, Dashboard.class);
+                Intent it = new Intent(MainActivity.this,Dashboard.class);//Dashboard.class);
                 startActivity(it);
 
             }

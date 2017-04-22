@@ -4,15 +4,12 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -29,6 +26,7 @@ import in.co.thingsdata.gurukul.Adapters.NotificationAdapter;
 import in.co.thingsdata.gurukul.Models.Studentnotificationmodel;
 import in.co.thingsdata.gurukul.R;
 import in.co.thingsdata.gurukul.data.common.UserData;
+import in.co.thingsdata.gurukul.ui.NoticeBoard.selectClass;
 
 
 public class ShowNotificationActivity extends AppCompatActivity {
@@ -48,7 +46,7 @@ public class ShowNotificationActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent i=new Intent(ShowNotificationActivity.this,CreatenotificationActivity.class);
+                Intent i=new Intent(ShowNotificationActivity.this,selectClass.class);
                 startActivity(i);
 
             }

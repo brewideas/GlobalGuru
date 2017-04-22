@@ -106,7 +106,7 @@ public class LoginActivity extends AppCompatActivity implements GetClassListRequ
     public void onLoginResponse(CommonRequest.ResponseCode res, LoginData data) {
         if (res == CommonRequest.ResponseCode.COMMON_RES_SUCCESS){
             UserData.setAccessToken(data.getAccessToken());
-            initializeUserData();
+            initializeUserData();//9891829557
         }
         else
         {

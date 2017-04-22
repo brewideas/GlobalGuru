@@ -1,5 +1,6 @@
 package in.co.thingsdata.gurukul.ui.NoticeBoard;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import in.co.thingsdata.gurukul.NoticeficationPanel.CreatenotificationActivity;
 import in.co.thingsdata.gurukul.R;
 import in.co.thingsdata.gurukul.data.common.ClassData;
 import in.co.thingsdata.gurukul.data.common.CommonDetails;
@@ -26,7 +28,7 @@ public class selectClass extends AppCompatActivity {
 
     private List<NoticeBoardModel> classList;
 
-    private Button btnSelection;
+    private Button btnSelection,btnSelAll;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,10 +36,11 @@ public class selectClass extends AppCompatActivity {
         setContentView(R.layout.nb_select_class);
 
         btnSelection = (Button) findViewById(R.id.btnShow);
+        btnSelAll = (Button) findViewById(R.id.btnSelectall);
         classList = new ArrayList<NoticeBoardModel>();
         ArrayList<ClassData> clsData = CommonDetails.getAllClassesInSchool();
         for(ClassData obj: clsData){
-            NoticeBoardModel st = new NoticeBoardModel(obj.getClassRoomId(), false);
+            NoticeBoardModel st = new NoticeBoardModel(obj.getName(),obj.getSection(), false);
             classList.add(st);
         }
 
@@ -59,27 +62,56 @@ public class selectClass extends AppCompatActivity {
        // Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
 
+        btnSelAll.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(selectClass.this, CreatenotificationActivity.class);
+                startActivity(i);
+            }
+        });
+
         btnSelection.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 String data = "";
+                ArrayList<String> classesSel = new ArrayList<String>();
+                ArrayList<String> classesSection = new ArrayList<String>();
+
                 List<NoticeBoardModel> clsList = ((NoticeBoardDataAdapter) mAdapter)
                         .getClassList();
 
                 for (int i = 0; i < clsList.size(); i++) {
                     NoticeBoardModel singleClass = clsList.get(i);
                     if (singleClass.isSelected() == true) {
-
-                        data = data + "\n" + singleClass.getClassName().toString();
+                        String cls = singleClass.getClassName().toString();
+                        String sec = singleClass.getClassSection().toString();
+                        data = data + "\n" + cls;
                         NoticeBoardStaticData.setSelectedClassList(singleClass);
+                        classesSel.add(cls);
+                        classesSection.add(sec);
                     }
 
                 }
 
-                Toast.makeText(selectClass.this,
-                        "Selected Class: \n" + data, Toast.LENGTH_LONG)
-                        .show();
+                if(classesSel.size() <=0){
+                    Toast.makeText(selectClass.this,
+                            "Please select atLeast 1 class", Toast.LENGTH_SHORT)
+                            .show();
+                }else {
+
+                    Toast.makeText(selectClass.this,
+                            "Selected Class: \n" + data, Toast.LENGTH_SHORT)
+                            .show();
+
+                    Bundle bnd = new Bundle();
+                    bnd.putStringArrayList("selClass", classesSel);
+                    bnd.putStringArrayList("selSection", classesSection);
+                    Intent i = new Intent(selectClass.this, CreatenotificationActivity.class);
+                    i.putExtras(bnd);
+                    startActivity(i);
+                }
             }
         });
 
