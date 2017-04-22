@@ -13,15 +13,18 @@ import java.util.ArrayList;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import in.co.thingsdata.gurukul.R;
+import in.co.thingsdata.gurukul.data.GetUserDetailsData;
 import in.co.thingsdata.gurukul.data.LoginData;
 import in.co.thingsdata.gurukul.data.common.ClassData;
 import in.co.thingsdata.gurukul.data.common.CommonDetails;
 import in.co.thingsdata.gurukul.data.common.UserData;
 import in.co.thingsdata.gurukul.services.helper.CommonRequest;
 import in.co.thingsdata.gurukul.services.request.GetClassListRequest;
+import in.co.thingsdata.gurukul.services.request.GetUserDetailRequest;
 import in.co.thingsdata.gurukul.services.request.LoginRequest;
 
-public class LoginActivity extends AppCompatActivity implements GetClassListRequest.GetClassListCallback, LoginRequest.LoginResponseCallback {
+public class LoginActivity extends AppCompatActivity implements GetClassListRequest.GetClassListCallback,
+        LoginRequest.LoginResponseCallback, GetUserDetailRequest.GetUserDetailResponse {
     EditText mLoginId;
     EditText mPassword;
     private Handler mHandler;
@@ -81,8 +84,13 @@ public class LoginActivity extends AppCompatActivity implements GetClassListRequ
     }
 
     public void initializeUserData() {
-        GetClassListRequest req = new GetClassListRequest(this, this);
-        req.executeRequest();
+        if (!UserData.isUserAlreadyLoggedIn()) {
+            GetClassListRequest req = new GetClassListRequest(this, this);
+            req.executeRequest();
+        }
+        else {
+          //TODO: Read user data from shared preference
+        }
     }
 
     @Override
@@ -91,14 +99,13 @@ public class LoginActivity extends AppCompatActivity implements GetClassListRequ
             for (int i = 0; i < classes.size(); i++) {
                 CommonDetails.addClass(classes.get(i));
             }
-            Intent it = new Intent(LoginActivity.this, Dashboard.class);
-            startActivity(it);
-            mDialog.dismiss();
-            finish();
+            GetUserDetailsData data = new GetUserDetailsData(UserData.getAccessToken());
+            GetUserDetailRequest req = new GetUserDetailRequest(this, data, this);
+            req.executeRequest();
         }
         else{
             mDialog.dismiss();
-            Toast.makeText(this, "Request failed. Please try later", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Some problem while accessing server for user data, please connect later.", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -111,6 +118,32 @@ public class LoginActivity extends AppCompatActivity implements GetClassListRequ
         else
         {
             Toast.makeText(this, "Login Failed, Invalid username or password.", Toast.LENGTH_SHORT).show();
+            mDialog.dismiss();
+        }
+    }
+
+    @Override
+    public void onGetUserDetailResponse(CommonRequest.ResponseCode res, GetUserDetailsData data) {
+        if (res == CommonRequest.ResponseCode.COMMON_RES_SUCCESS){
+            UserData.setClassRoomId(data.getClassRoomId());
+            UserData.setUserType(data.getUserType());
+            UserData.setMobileNumber(data.getMobileNumber());
+            UserData.setSchoolCode(data.getSchoolCode());
+            UserData.setEmailId(data.getEmail());
+            UserData.setLoginId(data.getMobileNumber());
+            UserData.setMobileNumber(data.getMobileNumber());
+            UserData.setUserId(data.getUserId());
+            UserData.setUniqueId(data.getReferenceCode());
+
+            UserData.setUserDataReady(true);
+            Intent it = new Intent(this, Dashboard.class);
+            startActivity(it);
+            mDialog.dismiss();
+            finish();
+        }
+        else
+        {
+            Toast.makeText(this, "Some problem while accessing server for user data, please connect later.", Toast.LENGTH_SHORT).show();
             mDialog.dismiss();
         }
     }

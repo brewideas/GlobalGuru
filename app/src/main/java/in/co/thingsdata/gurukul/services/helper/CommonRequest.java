@@ -34,6 +34,8 @@ public abstract class CommonRequest {
     private static final String GET_SUBJECT_LIST_URL = DOMAIN + "Subject list"; //TODO: Get proper URL
     private static final String CREATE_NOTIFICATION_URL = DOMAIN + "notification-service" + "/api/notification/data";
 
+    private static final String GET_USER_DETAIL_URL = DOMAIN + "school-data-service/api/school/search/detail/user";
+
     public enum RequestType  {
         COMMON_REQUEST_LOGIN,
         COMMON_REQUEST_GET_CLASS_LIST,
@@ -42,6 +44,7 @@ public abstract class CommonRequest {
         COMMON_REQUEST_SIGNUP,
         COMMON_REQUEST_GET_STUDENT_DETAIL,
         COMMON_REQUEST_GET_TEACHER_DETAIL,
+        COMMON_REQUEST_GET_USER_DETAIL,
 
         COMMON_REQUEST_GET_ATTENDANCE,
         COMMON_REQUEST_SUBMIT_ATTENDANCE,
@@ -153,6 +156,9 @@ public abstract class CommonRequest {
                 break;
             case COMMON_REQUEST_CREATE_NOTIFICATION:
                 url = CREATE_NOTIFICATION_URL;
+                break;
+            case COMMON_REQUEST_GET_USER_DETAIL:
+                url = GET_USER_DETAIL_URL;
                 break;
             default:
                 url = null;
