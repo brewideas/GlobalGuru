@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -25,6 +26,7 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 import in.co.thingsdata.gurukul.Adapters.NotificationAdapter;
 import in.co.thingsdata.gurukul.Models.Studentnotificationmodel;
 import in.co.thingsdata.gurukul.R;
+import in.co.thingsdata.gurukul.data.common.CommonDetails;
 import in.co.thingsdata.gurukul.data.common.UserData;
 import in.co.thingsdata.gurukul.ui.NoticeBoard.selectClass;
 
@@ -34,23 +36,41 @@ public class ShowNotificationActivity extends AppCompatActivity {
     ArrayList<Studentnotificationmodel> notifcationlist = new ArrayList<>();
     private String Data_URL = "http://ec2-35-154-121-61.ap-south-1.compute.amazonaws.com:8080/notification-service/api/notification/data/search";
     ListView list;
-
+TextView userName,userClass,userRolNumber;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_notification);
-        Notification("2");
+
+        userName = (TextView)findViewById(R.id.username);
+        userName.setText(UserData.getFirstName());
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-                Intent i=new Intent(ShowNotificationActivity.this,selectClass.class);
-                startActivity(i);
+        if(UserData.getUserType()== CommonDetails.USER_TYPE_STUDENT){
+            fab.setVisibility(View.GONE);
+        }else {
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
 
-            }
-        });
+                    Intent i = new Intent(ShowNotificationActivity.this, selectClass.class);
+                    startActivity(i);
+
+                }
+            });
+        }
+
+
+        if(UserData.getUserType()== CommonDetails.USER_TYPE_STUDENT){
+
+        }else{
+
+        }
+
+        Notification("2");
+
+
     }
 
     private void Notification(String filter) {
@@ -205,4 +225,6 @@ public class ShowNotificationActivity extends AppCompatActivity {
 
 
     }
+
+
 }
