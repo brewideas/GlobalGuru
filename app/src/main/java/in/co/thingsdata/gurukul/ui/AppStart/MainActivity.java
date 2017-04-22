@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity implements GetClassListReque
         final Runnable r = new Runnable() {
             public void run() {
                 Intent it = new Intent(MainActivity.this, Dashboard.class);
-                initializeUserData();
                 startActivity(it);
 
             }
@@ -66,7 +65,6 @@ public class MainActivity extends AppCompatActivity implements GetClassListReque
             final Runnable r = new Runnable() {
                 public void run() {
                     Intent it = new Intent(MainActivity.this, Dashboard.class);
-                    initializeUserData();
                     startActivity(it);
 
                 }
@@ -75,12 +73,6 @@ public class MainActivity extends AppCompatActivity implements GetClassListReque
             handler.postDelayed(r, 2000);
 
         }
-    }
-
-
-    public void initializeUserData() {
-        GetClassListRequest req = new GetClassListRequest(this, this);
-        req.executeRequest();
     }
 
     @Override

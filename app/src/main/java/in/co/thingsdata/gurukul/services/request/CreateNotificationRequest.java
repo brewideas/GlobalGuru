@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.android.volley.VolleyError;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -29,6 +30,7 @@ import static in.co.thingsdata.gurukul.services.helper.JSONParsingEnum.JSON_FIEL
 import static in.co.thingsdata.gurukul.services.helper.JSONParsingEnum.JSON_FIELD_NOTIFICATION_QUESTION_TEXT;
 import static in.co.thingsdata.gurukul.services.helper.JSONParsingEnum.JSON_FIELD_NOTIFICATION_RESPONSE_BACK_FLAG;
 import static in.co.thingsdata.gurukul.services.helper.JSONParsingEnum.JSON_FIELD_NOTIFICATION_TARGET_USER;
+import static in.co.thingsdata.gurukul.services.helper.JSONParsingEnum.JSON_FIELD_NOTIFICATION_TARGET_USER_DATA;
 import static in.co.thingsdata.gurukul.services.helper.JSONParsingEnum.JSON_FIELD_NOTIFICATION_TYPE;
 
 /**
@@ -73,6 +75,24 @@ public class CreateNotificationRequest extends CommonRequest {
             else{
                 param.put(JSON_FIELD_NOTIFICATION_RESPONSE_BACK_FLAG, "false");
                 param.put(JSON_FIELD_NOTIFICATION_TYPE, NOTIFICATION_TYPE_JSON_STRING_TEXT);
+            }
+
+            if (!mData.getClassName().isEmpty()){
+                JSONObject target = new JSONObject();
+                target.put("targetUserType", "QUERY_SPECIFIC_PRE_FETCH");
+
+                JSONArray queryId = new JSONArray();
+                queryId.put("CLASS_SECTION_DATA");
+                target.put("uniqueQueryIds", queryId);
+
+                JSONArray values = new JSONArray();
+                queryId.put("STUDENT");
+                target.put("values", values);
+
+                JSONObject targetParam = new JSONObject();
+                targetParam.put ("CLASS_CODE", mData.getClassName());
+                targetParam.put ("SECTION", mData.getSection());
+                target.put("params", targetParam);
             }
         } catch (JSONException e) {
             e.printStackTrace();

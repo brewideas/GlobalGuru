@@ -76,7 +76,7 @@ public class JSONParsingEnum {
     public static final String JSON_FIELD_NOTIFICATION_RESPONSE_BACK_FLAG = "respondToBack";
     public static final String JSON_FIELD_NOTIFICATION_QUESTION_TEXT = "questText";
     public static final String JSON_FIELD_NOTIFICATION_TARGET_USER = "notifyTargetUser";
-    public static final String JSON_FIELD_NOTIFICATION_TARGET_USER_DATA = "notifyUserSpecificData";
+    public static final String JSON_FIELD_NOTIFICATION_TARGET_USER_DATA = "targetUserData";
 
     public static final String JSON_FIELD_SIGN_UP_USER_TYPE = "signupAs";
     public static final String JSON_FIELD_SIGN_UP_REF_CODE = "refCode";

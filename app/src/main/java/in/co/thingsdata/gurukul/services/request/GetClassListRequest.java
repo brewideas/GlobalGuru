@@ -9,13 +9,16 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import in.co.thingsdata.gurukul.data.common.ClassData;
+import in.co.thingsdata.gurukul.data.common.CommonDetails;
 import in.co.thingsdata.gurukul.data.common.Subject;
 import in.co.thingsdata.gurukul.data.common.UserData;
 import in.co.thingsdata.gurukul.services.helper.CommonRequest;
 
 import static in.co.thingsdata.gurukul.services.helper.CommonRequest.RequestType.COMMON_REQUEST_GET_CLASS_LIST;
+import static in.co.thingsdata.gurukul.services.helper.JSONParsingEnum.JSON_FIELD_ACCESS_TOKEN;
 import static in.co.thingsdata.gurukul.services.helper.JSONParsingEnum.JSON_FIELD_CLASS_NAME;
 import static in.co.thingsdata.gurukul.services.helper.JSONParsingEnum.JSON_FIELD_CLASS_ROOM_ID;
 import static in.co.thingsdata.gurukul.services.helper.JSONParsingEnum.JSON_FIELD_DATA;
@@ -43,6 +46,10 @@ public class GetClassListRequest extends CommonRequest {
         String url = getURL();
         url+= JSON_FIELD_SCHOOL + "=" + UserData.getSchoolCode();
         setURL(url);
+
+        HashMap<String,String> param = new HashMap<>();
+        param.put("Authorization", "bearer " + UserData.getAccessToken());
+        setPostHeader(param);
     }
 
     @Override
@@ -81,6 +88,6 @@ public class GetClassListRequest extends CommonRequest {
 
     @Override
     public void onErrorHandler(VolleyError error) {
-
+        mAppCallback.onGetClassListResponse(ResponseCode.COMMON_RES_FAILED_TO_CONNECT, null);
     }
 }

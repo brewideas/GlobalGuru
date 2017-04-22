@@ -16,6 +16,7 @@ import in.co.thingsdata.gurukul.R;
 import in.co.thingsdata.gurukul.data.LoginData;
 import in.co.thingsdata.gurukul.data.common.ClassData;
 import in.co.thingsdata.gurukul.data.common.CommonDetails;
+import in.co.thingsdata.gurukul.data.common.UserData;
 import in.co.thingsdata.gurukul.services.helper.CommonRequest;
 import in.co.thingsdata.gurukul.services.request.GetClassListRequest;
 import in.co.thingsdata.gurukul.services.request.LoginRequest;
@@ -104,6 +105,7 @@ public class LoginActivity extends AppCompatActivity implements GetClassListRequ
     @Override
     public void onLoginResponse(CommonRequest.ResponseCode res, LoginData data) {
         if (res == CommonRequest.ResponseCode.COMMON_RES_SUCCESS){
+            UserData.setAccessToken(data.getAccessToken());
             initializeUserData();
         }
         else

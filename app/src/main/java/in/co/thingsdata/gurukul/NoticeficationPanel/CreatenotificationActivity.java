@@ -141,6 +141,7 @@ public class CreatenotificationActivity extends AppCompatActivity implements Cre
                 expiryDate,
                 mDetails.getText().toString(),
                 title.getText().toString(),
+                "12", "B",
                 type);
         CreateNotificationRequest request = new CreateNotificationRequest(this, nd, this);
         request.executeRequest();
