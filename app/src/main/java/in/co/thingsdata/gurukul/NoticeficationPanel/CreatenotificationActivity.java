@@ -66,7 +66,7 @@ public class CreatenotificationActivity extends AppCompatActivity implements Cre
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CreateNotification(v);
+                CreateNotification(v,false);
             }
         });
         date = new DatePickerDialog.OnDateSetListener() {
@@ -140,7 +140,7 @@ public class CreatenotificationActivity extends AppCompatActivity implements Cre
         enddate.setText(sdf.format(myCalendar.getTime()));
     }
 
-    private void CreateNotification (View v){
+    private void CreateNotification (View v,boolean isSMS){
 
         Calendar c = Calendar.getInstance();
         SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss.SSS");
@@ -182,6 +182,11 @@ public class CreatenotificationActivity extends AppCompatActivity implements Cre
         {
             Toast.makeText(this, "Failed to create notification", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public void sendViaSMS(View view) {
+
+        CreateNotification(view,true);
     }
 
   /*  private class AsyncLogin1 extends AsyncTask<String, Integer, String> {
