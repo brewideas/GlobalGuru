@@ -28,7 +28,8 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_before_login_screen">Gurukul</string>
-    <string name="title_activity_my_profile">MyProfile</string>
-    <string name="title_activity_image_cropped">ImageCropped</string>
-    <string name="title_activity_school_gallery">schoolGallery</string>
+    <string name="title_activity_my_profile">My Profile</string>
+    <string name="title_activity_image_cropped">Crop Image</string>
+    <string name="title_activity_school_gallery">School Gallery</string>
+    <string name="title_activity_forgot_password">Forgot Password</string>
 </resources>

@@ -39,8 +39,8 @@
             android:label="@string/reportCard" />
         <activity
             android:name=".ui.NoticeBoard.selectClass"
-            android:noHistory="true"
-            android:label="@string/title_activity_select_class" />
+            android:label="@string/title_activity_select_class"
+            android:noHistory="true" />
         <activity
             android:name=".ui.NoticeBoard.NoticeBoardStatics"
             android:label="@string/title_activity_notice_board_statics" />
@@ -71,7 +71,10 @@
             android:label="@string/title_activity_image_cropped" />
         <activity
             android:name=".ui.AppStart.schoolGallery"
-            android:label="Gallery"
+            android:label="Gallery" />
+        <activity
+            android:name=".ui.AppStart.forgotPassword"
+            android:label="@string/title_activity_forgot_password"
             ></activity>
     </application>
 

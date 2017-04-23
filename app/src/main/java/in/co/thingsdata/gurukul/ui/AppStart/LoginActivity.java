@@ -1,10 +1,12 @@
 package in.co.thingsdata.gurukul.ui.AppStart;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -80,7 +82,36 @@ public class LoginActivity extends AppCompatActivity implements GetClassListRequ
         startActivity(it);
     }
 
+
+
     public void forgetPassword(View v) {
+
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+
+        final EditText edittext = new EditText(LoginActivity.this);
+        alert.setMessage("Enter Your Mobile Number");
+        alert.setTitle("Forgot Password");
+
+        alert.setView(edittext);
+
+        alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                String mobileNum = edittext.getText().toString();
+                //send mobileNum
+
+                Intent i = new Intent(LoginActivity.this,forgotPassword.class);
+                startActivity(i);
+
+            }
+        });
+        alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                // what ever you want to do with No option.
+            }
+        });
+
+        alert.show();
+
     }
 
 
@@ -122,7 +153,7 @@ public class LoginActivity extends AppCompatActivity implements GetClassListRequ
 
     @Override
     public void onGetUserDetailResponse(CommonRequest.ResponseCode res, GetUserDetailsData data) {
-        if (res == CommonRequest.ResponseCode.COMMON_RES_SUCCESS){
+        if (res == CommonRequest.ResponseCode.COMMON_RES_SUCCESS) {
             UserData.setClassRoomId(data.getClassRoomId());
             UserData.setUserType(data.getUserType());
             UserData.setMobileNumber(data.getMobileNumber());

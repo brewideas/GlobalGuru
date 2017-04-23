@@ -76,18 +76,42 @@
                 android:text="SIGN IN"
                 android:textSize="16dp" />
 
+         <RelativeLayout
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content">
 
             <android.support.v7.widget.AppCompatButton
                 android:id="@+id/link_signup"
-                android:layout_width="fill_parent"
+                android:layout_width="100dp"
                 android:layout_height="50dp"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_alignParentLeft="true"
                 android:textColor="@color/card"
+                android:padding="10dp"
                 android:background="@drawable/dont_have_c"
-                android:text="Dont't have an account yet? Sign Up"
+                android:text="Sign Up"
                 android:gravity="center"
                 android:textSize="16dip"
                 android:onClick="openSignUp"/>
+
+             <android.support.v7.widget.AppCompatButton
+                 android:id="@+id/link_forgotpasword"
+                 android:layout_width="wrap_content"
+                 android:layout_height="50dp"
+                 android:padding="10dp"
+                 android:layout_marginTop="10dp"
+                 android:layout_marginRight="10dp"
+                 android:layout_alignParentRight="true"
+                 android:textColor="@color/card"
+                 android:background="@drawable/dont_have_c"
+                 android:text="Forgot Password"
+                 android:gravity="center"
+                 android:textSize="16dip"
+                 android:onClick="forgetPassword"/>
+
+
+         </RelativeLayout>
         </LinearLayout>
     </ScrollView>
 
