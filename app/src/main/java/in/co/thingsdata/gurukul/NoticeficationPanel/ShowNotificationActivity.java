@@ -51,8 +51,8 @@ public class ShowNotificationActivity extends AppCompatActivity {
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 
-        if((UserData.getUserType().equals(CommonDetails.USER_TYPE_STUDENT))
-                || (UserData.getUserType().equals(CommonDetails.USER_TYPE_PARENT))){
+        if(//(UserData.getUserType().equals(CommonDetails.USER_TYPE_STUDENT)) ||
+                 (UserData.getUserType().equals(CommonDetails.USER_TYPE_PARENT))){
             fab.setVisibility(View.GONE);
         }else {
             fab.setOnClickListener(new View.OnClickListener() {
