@@ -30,7 +30,8 @@ import static in.co.thingsdata.gurukul.data.common.CommonDetails.NotificationTyp
 
 
 public class CreatenotificationActivity extends AppCompatActivity implements CreateNotificationRequest.CreateNotificationCallback {
-    EditText title, startdate, enddate, mDetails;
+    EditText title,  enddate, mDetails;
+    //EditText startdate;
     Button submit;
     Calendar myCalendar;
     String radio;
@@ -57,7 +58,7 @@ public class CreatenotificationActivity extends AppCompatActivity implements Cre
         }
         mDetails= (EditText)findViewById(R.id.detail);
         title = (EditText) findViewById(R.id.addtitle);
-        startdate = (EditText) findViewById(R.id.daate);
+        //startdate = (EditText) findViewById(R.id.daate);
         enddate = (EditText) findViewById(exdate);
         normal = (RadioButton) findViewById(R.id.radioButtonnormal);
         optional = (RadioButton) findViewById(R.id.radioButtonwithoption);
@@ -79,26 +80,28 @@ public class CreatenotificationActivity extends AppCompatActivity implements Cre
                 myCalendar.set(Calendar.MONTH, monthOfYear);
                 myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
 
+                updateLabel1();
 
             }
 
         };
-        startdate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                updateLabel();
-                new DatePickerDialog(CreatenotificationActivity.this, date, myCalendar
-                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
-            }
-        });
+//        startdate.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                new DatePickerDialog(CreatenotificationActivity.this, date, myCalendar
+//                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+//                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+//                updateLabel();
+//            }
+//        });
         enddate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                updateLabel1();
+
                 new DatePickerDialog(CreatenotificationActivity.this, date, myCalendar
                         .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                         myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+
             }
         });
         normal.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -129,7 +132,7 @@ public class CreatenotificationActivity extends AppCompatActivity implements Cre
         String myFormat = "yyyy-MM-dd"; //In which you need put here//MM/dd/yy
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
-        startdate.setText(sdf.format(myCalendar.getTime()));
+    //    startdate.setText(sdf.format(myCalendar.getTime()));
     }
 
     private void updateLabel1() {
@@ -143,19 +146,21 @@ public class CreatenotificationActivity extends AppCompatActivity implements Cre
     private void CreateNotification (View v,boolean isSMS){
 
         Calendar c = Calendar.getInstance();
-        SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss.SSS");
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         String currTime = df.format(c.getTime());
-        String createDate = startdate.getText().toString() + "T" + currTime;
+//        String createDate = startdate.getText().toString();// + "T" + currTime;
         String expiryDate = enddate.getText().toString() + "T" + currTime;
-        CommonDetails.NotificationTypeEnum type = normal.isChecked()?NOTIFICATION_TYPE_NORMAL:NOTIFICATION_TYPE_VOTE;
+        String createDate =currTime + "T" + currTime;;
+                CommonDetails.NotificationTypeEnum type = normal.isChecked()?NOTIFICATION_TYPE_NORMAL:NOTIFICATION_TYPE_VOTE;
 
         CreateNotificationData nd = null;
+        String des = mDetails.getText().toString();
         try {
             nd = new CreateNotificationData(
                     UserData.getAccessToken(),
                     createDate,
                     expiryDate,
-                    mDetails.getText().toString(),
+                    des,
                     title.getText().toString(),
                     selClassesList.get(0), selClassesSectionList.get(0),
                     type,isSMS);
@@ -164,7 +169,7 @@ public class CreatenotificationActivity extends AppCompatActivity implements Cre
                     UserData.getAccessToken(),
                     createDate,
                     expiryDate,
-                    mDetails.getText().toString(),
+                    des,
                     title.getText().toString(),
                     null, null,
                     type,isSMS      );

@@ -40,7 +40,7 @@ public class ShowNotificationActivity extends AppCompatActivity {
     ArrayList<Studentnotificationmodel> notifcationlist = new ArrayList<>();
     private String Data_URL = "http://ec2-35-154-121-61.ap-south-1.compute.amazonaws.com:8080/notification-service/api/notification/data/search";
     ListView list;
-TextView userName,userClass,userRolNumber;
+    TextView userName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,7 +51,8 @@ TextView userName,userClass,userRolNumber;
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 
-        if(UserData.getUserType()== CommonDetails.USER_TYPE_STUDENT){
+        if(UserData.getUserType()== CommonDetails.USER_TYPE_STUDENT
+               || (UserData.getUserType()== CommonDetails.USER_TYPE_PARENT)){
             fab.setVisibility(View.GONE);
         }else {
             fab.setOnClickListener(new View.OnClickListener() {
@@ -64,17 +65,7 @@ TextView userName,userClass,userRolNumber;
                 }
             });
         }
-
-
-        if(UserData.getUserType()== CommonDetails.USER_TYPE_STUDENT){
-
-        }else{
-
-        }
-
         Notification("2");
-
-
     }
 
     private void Notification(String filter) {
