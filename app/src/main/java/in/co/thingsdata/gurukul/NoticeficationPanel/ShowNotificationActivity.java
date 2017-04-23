@@ -20,7 +20,11 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import in.co.thingsdata.gurukul.Adapters.NotificationAdapter;
@@ -88,6 +92,45 @@ TextView userName,userClass,userRolNumber;
                 progressDialog.show();
             }
 
+            private boolean isExpire(String date){
+                if(date.isEmpty() || date.trim().equals("")){
+                    return false;
+                }else{
+                    SimpleDateFormat sdf =  new SimpleDateFormat("yyyy-MM-dd"); // Jan-20-2015 1:30:55 PM
+                    Date d=null;
+                    Date d1=null;
+                    String today=   getToday("yyyy-MM-dd");
+                    try {
+                        //System.out.println("expdate>> "+date);
+                        //System.out.println("today>> "+today+"\n\n");
+                        d = sdf.parse(date);
+                        d1 = sdf.parse(today);
+                        if(d1.compareTo(d) <0){// not expired
+                            return false;
+                        }else if(d.compareTo(d1)==0){// both date are same
+                            if(d.getTime() < d1.getTime()){// not expired
+                                return false;
+                            }else if(d.getTime() == d1.getTime()){//expired
+                                return true;
+                            }else{//expired
+                                return true;
+                            }
+                        }else{//expired
+                            return true;
+                        }
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                        return false;
+                    }
+                }
+            }
+
+
+            public  String getToday(String format){
+                Date date = new Date();
+                return new SimpleDateFormat(format).format(date);
+            }
+
             @Override
             protected void onPostExecute(String s) {
 
@@ -123,12 +166,16 @@ TextView userName,userClass,userRolNumber;
                             notificationdata.setUniqueId(uniqueId);
                             notificationdata.setNotifyTargetUser(notifyTargetUser);
                             notificationdata.setFilter(filter);
-                            notifcationlist.add(notificationdata);
+
+                            if(!isExpire(expireDate)) {
+                                notifcationlist.add(notificationdata);
+                            }
 
                         }
 
 
                         list = (ListView) findViewById(R.id.notificationlistView);
+                        Collections.reverse(notifcationlist);
                         NotificationAdapter adap= new NotificationAdapter(ShowNotificationActivity.this,notifcationlist);
                         list.setAdapter(adap);
 
@@ -139,7 +186,7 @@ TextView userName,userClass,userRolNumber;
                                    if(UserData.getUserType().equals("PRINCIPAL")){
                                        new SweetAlertDialog(ShowNotificationActivity.this, SweetAlertDialog.SUCCESS_TYPE)
                                                .setTitleText(notifcationlist.get(position).getContentTitle())
-                                               .setContentText(notifcationlist.get(position).getContentMsg())
+                                               .setContentText(notifcationlist.get(position).getContentData())
 
                                                .setConfirmText("Statistics")
                                                .showCancelButton(true)
@@ -157,8 +204,8 @@ TextView userName,userClass,userRolNumber;
                                                .show();
                                    }else{
                                    new SweetAlertDialog(ShowNotificationActivity.this, SweetAlertDialog.SUCCESS_TYPE)
-                                           .setTitleText(notifcationlist.get(position).getContentTitle())
-                                           .setContentText(notifcationlist.get(position).getContentMsg())
+                                           .setTitleText("This will change your earlier vote \n"+notifcationlist.get(position).getContentTitle())
+                                           .setContentText(notifcationlist.get(position).getContentData())
                                            .setCancelText("No")
                                            .setConfirmText("Sure")
                                            .showCancelButton(true)
@@ -178,7 +225,7 @@ TextView userName,userClass,userRolNumber;
                                }else{
                                    new SweetAlertDialog(ShowNotificationActivity.this, SweetAlertDialog.SUCCESS_TYPE)
                                            .setTitleText(notifcationlist.get(position).getContentTitle())
-                                           .setContentText(notifcationlist.get(position).getContentMsg())
+                                           .setContentText(notifcationlist.get(position).getContentData())
                                            .show();
 
                                }

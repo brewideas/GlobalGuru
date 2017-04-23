@@ -7,9 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
-
 
 import java.util.List;
 
@@ -59,7 +57,7 @@ public class NotificationAdapter extends BaseAdapter {
         startdate= (TextView) convertView.findViewById(R.id.startdate);
         enddate= (TextView) convertView.findViewById(R.id.expirydate);
         title.setText(getItem(position).getContentTitle());
-        discreption.setText(getItem(position).getContentMsg());
+        discreption.setText(getItem(position).getContentData());
         startdate.setText(getItem(position).getStartDate());
         enddate.setText(getItem(position).getExpireDate());
 
