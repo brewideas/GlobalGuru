@@ -90,9 +90,12 @@ public class LoginActivity extends AppCompatActivity implements GetClassListRequ
             for (int i = 0; i < classes.size(); i++) {
                 CommonDetails.addClass(classes.get(i));
             }
-            GetUserDetailsData data = new GetUserDetailsData(UserData.getAccessToken());
-            GetUserDetailRequest req = new GetUserDetailRequest(this, data, this);
-            req.executeRequest();
+
+            UserData.setUserDataReady(true);
+            Intent it = new Intent(this, Dashboard.class);
+            startActivity(it);
+            mDialog.dismiss();
+            finish();
         }
         else{
             mDialog.dismiss();
@@ -104,8 +107,11 @@ public class LoginActivity extends AppCompatActivity implements GetClassListRequ
     public void onLoginResponse(CommonRequest.ResponseCode res, LoginData data) {
         if (res == CommonRequest.ResponseCode.COMMON_RES_SUCCESS){
             UserData.setAccessToken(data.getAccessToken());
-            GetClassListRequest req = new GetClassListRequest(this, this);
+
+            GetUserDetailsData d_data = new GetUserDetailsData(UserData.getAccessToken());
+            GetUserDetailRequest req = new GetUserDetailRequest(this, d_data, this);
             req.executeRequest();
+
         }
         else
         {
@@ -128,11 +134,8 @@ public class LoginActivity extends AppCompatActivity implements GetClassListRequ
             UserData.setUniqueId(data.getReferenceCode());
 
 
-            UserData.setUserDataReady(true);
-            Intent it = new Intent(this, Dashboard.class);
-            startActivity(it);
-            mDialog.dismiss();
-            finish();
+            GetClassListRequest req = new GetClassListRequest(this, this);
+            req.executeRequest();
         }
         else
         {
