@@ -96,24 +96,27 @@ public class ShowNotificationActivity extends AppCompatActivity {
                         //System.out.println("today>> "+today+"\n\n");
                         d = sdf.parse(date);
                         d1 = sdf.parse(today);
-                        if(d1.compareTo(d) <0){// not expired
+                        if(d1.compareTo(d) <=0){// not expired
                             return false;
-                        }else if(d.compareTo(d1)==0){// both date are same
-                            if(d.getTime() < d1.getTime()){// not expired
-                                return false;
-                            }else if(d.getTime() == d1.getTime()){//expired
-                                return true;
-                            }else{//expired
-                                return true;
-                            }
-                        }else{//expired
+                       }
+// else if(d.compareTo(d1)==0){// both date are same
+//                            if(d.getTime() < d1.getTime()){// not expired
+//                                return false;
+//                            }else if(d.getTime() == d1.getTime()){//expired
+//                                return true;
+//                            }else{//expired
+//                                return true;
+//                            }
+//                        }
+                    else{//expired
                             return true;
                         }
                     } catch (ParseException e) {
                         e.printStackTrace();
-                        return false;
+                        return false;//though exception but better to show notification rather ignore
                     }
                 }
+
             }
 
 

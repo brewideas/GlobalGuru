@@ -148,11 +148,12 @@ public class CreatenotificationActivity extends AppCompatActivity implements Cre
         Calendar c = Calendar.getInstance();
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         SimpleDateFormat df2 = new SimpleDateFormat("HH:mm:ss.SSS");
+
         String addTime = df2.format(c.getTime());
         String currDate = df.format(c.getTime());
 //        String createDate = startdate.getText().toString();// + "T" + currTime;
-        String expiryDate = enddate.getText().toString() + "T" + addTime;
-        String createDate =currDate + "T" + addTime;;
+        String expiryDate = enddate.getText().toString() + "T" + "23:59:04.830";
+        String createDate =currDate + "T" + addTime;
                 CommonDetails.NotificationTypeEnum type = normal.isChecked()?NOTIFICATION_TYPE_NORMAL:NOTIFICATION_TYPE_VOTE;
 
         CreateNotificationData nd = null;
