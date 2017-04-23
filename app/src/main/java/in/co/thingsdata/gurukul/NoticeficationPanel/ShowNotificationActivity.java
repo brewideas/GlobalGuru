@@ -51,8 +51,8 @@ public class ShowNotificationActivity extends AppCompatActivity {
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 
-        if(UserData.getUserType()== CommonDetails.USER_TYPE_STUDENT
-               || (UserData.getUserType()== CommonDetails.USER_TYPE_PARENT)){
+        if((UserData.getUserType().equals(CommonDetails.USER_TYPE_STUDENT))
+                || (UserData.getUserType().equals(CommonDetails.USER_TYPE_PARENT))){
             fab.setVisibility(View.GONE);
         }else {
             fab.setOnClickListener(new View.OnClickListener() {
@@ -193,7 +193,8 @@ public class ShowNotificationActivity extends AppCompatActivity {
                                                    }
                                                })
                                                .show();
-                                   }else{
+                                   }else if((UserData.getUserType().equals(CommonDetails.USER_TYPE_STUDENT))
+                                           || (UserData.getUserType().equals(CommonDetails.USER_TYPE_PARENT))){
                                    new SweetAlertDialog(ShowNotificationActivity.this, SweetAlertDialog.SUCCESS_TYPE)
                                            .setTitleText("This will change your earlier vote \n"+notifcationlist.get(position).getContentTitle())
                                            .setContentText(notifcationlist.get(position).getContentData())
