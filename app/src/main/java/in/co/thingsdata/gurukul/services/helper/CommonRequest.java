@@ -75,7 +75,7 @@ public abstract class CommonRequest {
         COMMON_RES_PROFILE_DATA_NO_CONTENT,
         COMMON_RES_FAILED_TO_UPLOAD,
 
-        COMMON_REQUEST_END // WARNING: Add all request types above this line only
+        COMMON_RES_PROFILE_AUTHENTICATION_FAILED, COMMON_REQUEST_END // WARNING: Add all request types above this line only
     }
 
     public enum CommonRequestMethod {

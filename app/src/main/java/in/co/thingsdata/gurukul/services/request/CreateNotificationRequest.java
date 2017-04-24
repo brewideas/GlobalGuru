@@ -58,7 +58,6 @@ public class CreateNotificationRequest extends CommonRequest {
             param.put(JSON_FIELD_NOTIFICATION_CONTENT_TITLE, data.getTitle());
             param.put(JSON_FIELD_NOTIFICATION_CONTENT_MESSAGE, data.getTitle());
             param.put(JSON_FIELD_NOTIFICATION_CONTENT_DATA, data.getDescription());
-            //param.put(JSON_FIELD_NOTIFICATION_TARGET_USER, NOTIFICATION_TARGET_ALL_STRING);
             if (data.getNotificationType() ==  NOTIFICATION_TYPE_VOTE){
                 param.put(JSON_FIELD_NOTIFICATION_RESPONSE_BACK_FLAG, "true");
                 param.put(JSON_FIELD_NOTIFICATION_TYPE, NOTIFICATION_TYPE_JSON_STRING_QUESTION);

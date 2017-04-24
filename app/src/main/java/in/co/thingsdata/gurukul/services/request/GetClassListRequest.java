@@ -18,6 +18,7 @@ import in.co.thingsdata.gurukul.data.common.UserData;
 import in.co.thingsdata.gurukul.services.helper.CommonRequest;
 
 import static in.co.thingsdata.gurukul.services.helper.CommonRequest.RequestType.COMMON_REQUEST_GET_CLASS_LIST;
+import static in.co.thingsdata.gurukul.services.helper.CommonRequest.ResponseCode.COMMON_RES_PROFILE_AUTHENTICATION_FAILED;
 import static in.co.thingsdata.gurukul.services.helper.JSONParsingEnum.JSON_FIELD_ACCESS_TOKEN;
 import static in.co.thingsdata.gurukul.services.helper.JSONParsingEnum.JSON_FIELD_CLASS_NAME;
 import static in.co.thingsdata.gurukul.services.helper.JSONParsingEnum.JSON_FIELD_CLASS_ROOM_ID;
@@ -88,6 +89,11 @@ public class GetClassListRequest extends CommonRequest {
 
     @Override
     public void onErrorHandler(VolleyError error) {
-        mAppCallback.onGetClassListResponse(ResponseCode.COMMON_RES_FAILED_TO_CONNECT, null);
+        if (error.networkResponse.statusCode > 400 && error.networkResponse.statusCode < 500) {
+            mAppCallback.onGetClassListResponse(COMMON_RES_PROFILE_AUTHENTICATION_FAILED, null);
+        }
+        else {
+            mAppCallback.onGetClassListResponse(ResponseCode.COMMON_RES_FAILED_TO_CONNECT, null);
+        }
     }
 }

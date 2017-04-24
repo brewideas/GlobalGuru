@@ -183,4 +183,11 @@ public final class UserData {
         readAllDataFromSharedPreference();
         setUserDataReady(true);
     }
+
+    public static void clearAll() {
+        SharedPreferences sharedPref = mContext.getSharedPreferences(KEY, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.clear();
+        editor.commit();
+    }
 }

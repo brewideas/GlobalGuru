@@ -36,27 +36,6 @@ public class MainActivity extends AppCompatActivity implements GetClassListReque
             GetClassListRequest req = new GetClassListRequest(this, this);
             req.executeRequest();
         }
-//        setContentView(R.layout.activity_main);
-//        email = (EditText) findViewById(R.id.loginid);
-//        password = (EditText) findViewById(R.id.password);
-//        signup = (TextView) findViewById(R.id.signup);
-
-        handler = new Handler();
-        final Runnable r = new Runnable() {
-            public void run() {
-                if (UserData.isUserAlreadyLoggedIn()) {
-                    Intent it = new Intent(MainActivity.this, Dashboard.class);//Dashboard.class);
-                    startActivity(it);
-                }else {
-                    Intent it = new Intent(MainActivity.this, LoginActivity.class);//Dashboard.class);
-                    startActivity(it);
-                }
-
-            }
-        };
-
-        handler.postDelayed(r, 2000);
-
 
     }
 
@@ -94,5 +73,23 @@ public class MainActivity extends AppCompatActivity implements GetClassListReque
                 CommonDetails.addClass(classes.get(i));
             }
         }
+        else {
+            if (res == CommonRequest.ResponseCode.COMMON_RES_PROFILE_AUTHENTICATION_FAILED)
+            UserData.clearAll();
+        }
+        handler = new Handler();
+        final Runnable r = new Runnable() {
+            public void run() {
+                if (UserData.isUserAlreadyLoggedIn()) {
+                    Intent it = new Intent(MainActivity.this, Dashboard.class);//Dashboard.class);
+                    startActivity(it);
+                }else {
+                    Intent it = new Intent(MainActivity.this, LoginActivity.class);//Dashboard.class);
+                    startActivity(it);
+                }
+
+            }
+        };
+        handler.postDelayed(r, 500);
     }
 }
