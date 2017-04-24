@@ -60,7 +60,7 @@ public abstract class CommonRequest {
         COMMON_REQUEST_REPLY_NOTIFICATION,
         COMMON_REQUEST_GET_NOTIFICATION_STATS,
 
-        COMMON_REQUEST_GET_PROFILE, COMMON_REQUEST_GET_USER_PROFILE_LIST, COMMON_REQUEST_END // WARNING: Add all request types above this line only
+        COMMON_REQUEST_GET_PROFILE, COMMON_REQUEST_GET_USER_PROFILE_LIST, COMMON_REQUEST_GET_AD, COMMON_REQUEST_END // WARNING: Add all request types above this line only
     }
 
     public enum ResponseCode  {
@@ -75,7 +75,7 @@ public abstract class CommonRequest {
         COMMON_RES_PROFILE_DATA_NO_CONTENT,
         COMMON_RES_FAILED_TO_UPLOAD,
 
-        COMMON_RES_PROFILE_AUTHENTICATION_FAILED, COMMON_REQUEST_END // WARNING: Add all request types above this line only
+        COMMON_RES_PROFILE_AUTHENTICATION_FAILED, COMMON_RES_NO_SUCH_REQUEST, COMMON_REQUEST_END // WARNING: Add all request types above this line only
     }
 
     public enum CommonRequestMethod {

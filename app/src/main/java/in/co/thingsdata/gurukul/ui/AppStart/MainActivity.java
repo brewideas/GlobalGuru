@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -76,6 +77,7 @@ public class MainActivity extends AppCompatActivity implements GetClassListReque
         else {
             if (res == CommonRequest.ResponseCode.COMMON_RES_PROFILE_AUTHENTICATION_FAILED)
             UserData.clearAll();
+            Toast.makeText(this, "Session expired, please login again", Toast.LENGTH_LONG).show();
         }
         handler = new Handler();
         final Runnable r = new Runnable() {
