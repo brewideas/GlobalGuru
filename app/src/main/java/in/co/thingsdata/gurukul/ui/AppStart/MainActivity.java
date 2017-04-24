@@ -37,6 +37,17 @@ public class MainActivity extends AppCompatActivity implements GetClassListReque
             GetClassListRequest req = new GetClassListRequest(this, this);
             req.executeRequest();
         }
+        else
+        {
+            handler = new Handler();
+            final Runnable r = new Runnable() {
+                public void run() {
+                    Intent it = new Intent(MainActivity.this, LoginActivity.class);//Dashboard.class);
+                    startActivity(it);
+                }
+            };
+            handler.postDelayed(r, 1000);
+        }
 
     }
 
@@ -76,7 +87,7 @@ public class MainActivity extends AppCompatActivity implements GetClassListReque
         }
         else {
             if (res == CommonRequest.ResponseCode.COMMON_RES_PROFILE_AUTHENTICATION_FAILED)
-            UserData.clearAll();
+                UserData.clearAll();
             Toast.makeText(this, "Session expired, please login again", Toast.LENGTH_LONG).show();
         }
         handler = new Handler();
