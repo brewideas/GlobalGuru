@@ -21,8 +21,9 @@
             android:paddingRight="24dp">
 
 
-            <ImageView android:src="@drawable/logo"
+            <ImageView android:src="@drawable/logosmall"
                 android:layout_width="wrap_content"
+                android:background="@color/error_stroke_color"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="24dp"
                 android:layout_gravity="center_horizontal"
@@ -66,8 +67,8 @@
                 android:id="@+id/btn_login"
                 android:layout_width="fill_parent"
                 android:layout_height="50dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginBottom="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="12dp"
                 android:padding="12dp"
                 android:gravity="center"
                 android:onClick="login"
@@ -78,15 +79,31 @@
 
          <RelativeLayout
              android:layout_width="wrap_content"
-             android:layout_height="wrap_content">
+              android:layout_height="wrap_content">
 
-            <android.support.v7.widget.AppCompatButton
+             <android.support.v7.widget.AppCompatButton
+                 android:id="@+id/link_forgotpasword"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:padding="8dp"
+                 android:layout_centerHorizontal="true"
+                 android:layout_marginTop="10dp"
+                 android:layout_marginRight="10dp"
+                 android:textColor="@color/colorPrimaryDark"
+                 android:background="@android:color/transparent"
+                 android:text="Forgot Password"
+                 android:gravity="center"
+                 android:textSize="16dip"
+                 android:onClick="forgetPassword"/>
+
+             <android.support.v7.widget.AppCompatButton
                 android:id="@+id/link_signup"
-                android:layout_width="100dp"
+                android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="10dp"
+                 android:layout_marginTop="12dp"
+
                 android:layout_alignParentLeft="true"
+                 android:layout_below="@+id/link_forgotpasword"
                 android:textColor="@color/card"
                 android:padding="10dp"
                 android:background="@drawable/dont_have_c"
@@ -95,20 +112,7 @@
                 android:textSize="16dip"
                 android:onClick="openSignUp"/>
 
-             <android.support.v7.widget.AppCompatButton
-                 android:id="@+id/link_forgotpasword"
-                 android:layout_width="wrap_content"
-                 android:layout_height="50dp"
-                 android:padding="10dp"
-                 android:layout_marginTop="10dp"
-                 android:layout_marginRight="10dp"
-                 android:layout_alignParentRight="true"
-                 android:textColor="@color/card"
-                 android:background="@drawable/dont_have_c"
-                 android:text="Forgot Password"
-                 android:gravity="center"
-                 android:textSize="16dip"
-                 android:onClick="forgetPassword"/>
+
 
 
          </RelativeLayout>
