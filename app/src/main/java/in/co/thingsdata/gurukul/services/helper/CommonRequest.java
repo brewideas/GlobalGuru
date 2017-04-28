@@ -35,7 +35,8 @@ public abstract class CommonRequest {
     private static final String CREATE_NOTIFICATION_URL = DOMAIN + "notification-service" + "/api/notification/data";
 
     private static final String GET_USER_DETAIL_URL = DOMAIN + "school-data-service/api/school/search/detail/user";
-    private static final String FORGET_PASSWORD_URL = DOMAIN + "api/school/password/forgot/";
+    private static final String FORGET_PASSWORD_URL = DOMAIN + "school-data-service/api/school/password/forgot/";
+    private static final String CHANGE_PASSWORD_URL = DOMAIN + "school-data-service/api/school/password/change/";
 
     public enum RequestType  {
         COMMON_REQUEST_LOGIN,
@@ -62,7 +63,7 @@ public abstract class CommonRequest {
         COMMON_REQUEST_GET_NOTIFICATION_STATS,
 
         COMMON_REQUEST_GET_PROFILE, COMMON_REQUEST_GET_USER_PROFILE_LIST, COMMON_REQUEST_GET_AD,
-        COMMON_REQUEST_RESET_PASSWORD, COMMON_REQUEST_END // WARNING: Add all request types above this line only
+        COMMON_REQUEST_CHANGE_PASSWORD, COMMON_REQUEST_END // WARNING: Add all request types above this line only
     }
 
     public enum ResponseCode  {
@@ -84,7 +85,7 @@ public abstract class CommonRequest {
         COMMON_REQUEST_METHOD_GET,
         COMMON_REQUEST_METHOD_POST,
 
-        COMMON_REQUEST_METHOD_END
+        COMMON_REQUEST_METHOD_PUT, COMMON_REQUEST_METHOD_END
     }
 
     /*---------------------------- Member variables -----------------------------------*/
@@ -165,6 +166,9 @@ public abstract class CommonRequest {
             case COMMON_REQUEST_FORGET_PASSWORD:
                 url = FORGET_PASSWORD_URL;
                 break;
+            case COMMON_REQUEST_CHANGE_PASSWORD:
+                url = CHANGE_PASSWORD_URL;
+                break;
             default:
                 url = null;
         }
@@ -209,7 +213,9 @@ public abstract class CommonRequest {
         }
         else
         {
-            jsObjRequest = new CustomRequest(Request.Method.POST, mURL, mParams, listner, errorListner) {
+            int method;
+            method = (mMethod == CommonRequestMethod.COMMON_REQUEST_METHOD_PUT) ? Request.Method.PUT : Request.Method.POST;
+            jsObjRequest = new CustomRequest(method, mURL, mParams, listner, errorListner) {
                 public String getBodyContentType() {
                     return "application/json";
                 }
