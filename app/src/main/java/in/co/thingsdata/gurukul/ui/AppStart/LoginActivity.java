@@ -21,12 +21,14 @@ import in.co.thingsdata.gurukul.data.common.ClassData;
 import in.co.thingsdata.gurukul.data.common.CommonDetails;
 import in.co.thingsdata.gurukul.data.common.UserData;
 import in.co.thingsdata.gurukul.services.helper.CommonRequest;
+import in.co.thingsdata.gurukul.services.request.ForgetPasswordRequest;
 import in.co.thingsdata.gurukul.services.request.GetClassListRequest;
 import in.co.thingsdata.gurukul.services.request.GetUserDetailRequest;
 import in.co.thingsdata.gurukul.services.request.LoginRequest;
 
 public class LoginActivity extends AppCompatActivity implements GetClassListRequest.GetClassListCallback,
-        LoginRequest.LoginResponseCallback, GetUserDetailRequest.GetUserDetailResponse {
+        LoginRequest.LoginResponseCallback, GetUserDetailRequest.GetUserDetailResponse ,
+        ForgetPasswordRequest.ForgetPasswordCallback{
     EditText mLoginId;
     EditText mPassword;
     private Handler mHandler;
@@ -82,15 +84,13 @@ public class LoginActivity extends AppCompatActivity implements GetClassListRequ
         startActivity(it);
     }
 
-
-
-    public void forgetPassword(View v) {
+    public void enterTemPassword(){
 
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
 
         final EditText edittext = new EditText(LoginActivity.this);
-        alert.setMessage("Enter Your Mobile Number");
-        alert.setTitle("Forgot Password");
+        alert.setMessage("You will receive Temporary passwork in SMS");
+        alert.setTitle("Enter Temporary Password");
 
         alert.setView(edittext);
 
@@ -106,11 +106,61 @@ public class LoginActivity extends AppCompatActivity implements GetClassListRequ
         });
         alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
-                // what ever you want to do with No option.
+                Toast.makeText(LoginActivity.this, "You can use sms received later", Toast.LENGTH_SHORT).show();
+
             }
         });
 
         alert.show();
+
+
+    }
+
+
+
+        @Override
+        public void onForgetPasswordResponse(CommonRequest.ResponseCode res, String mobile_number) {
+            enterTemPassword();
+        }
+
+
+    public void forgetPassword(View v) {
+
+           AlertDialog.Builder alert = new AlertDialog.Builder(LoginActivity.this);
+
+            final EditText edittext = new EditText(LoginActivity.this);
+            alert.setMessage("Enter Your Mobile Number");
+            alert.setTitle("Forgot Password");
+
+            alert.setView(edittext);
+
+            alert.setPositiveButton("Ok",new DialogInterface.OnClickListener()
+
+            {
+                public void onClick (DialogInterface dialog,int whichButton){
+                String mobileNum = edittext.getText().toString();
+                ForgetPasswordRequest req = new ForgetPasswordRequest(LoginActivity.this,mobileNum,LoginActivity.this);
+                    req.executeRequest();
+                //send mobileNum
+                Toast.makeText(LoginActivity.this, "SMS with Temporary password will be received ", Toast.LENGTH_SHORT).show();
+
+
+            }
+            }
+
+            );
+            alert.setNegativeButton("Cancel",new DialogInterface.OnClickListener()
+
+            {
+                public void onClick (DialogInterface dialog,int whichButton){
+                // what ever you want to do with No option.
+            }
+            }
+
+            );
+
+            alert.show();
+
 
     }
 
