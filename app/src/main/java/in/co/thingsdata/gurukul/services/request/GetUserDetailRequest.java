@@ -15,6 +15,7 @@ import in.co.thingsdata.gurukul.data.GetUserDetailsData;
 import in.co.thingsdata.gurukul.data.common.UserData;
 import in.co.thingsdata.gurukul.services.helper.CommonRequest;
 
+import static in.co.thingsdata.gurukul.data.common.CommonDetails.USER_TYPE_STUDENT;
 import static in.co.thingsdata.gurukul.services.helper.JSONParsingEnum.JSON_FIELD_DATA;
 import static in.co.thingsdata.gurukul.services.helper.JSONParsingEnum.JSON_FIELD_NAME;
 import static in.co.thingsdata.gurukul.services.helper.JSONParsingEnum.JSON_FIELD_STATUS;
@@ -54,11 +55,14 @@ public class GetUserDetailRequest extends CommonRequest {
                 mData.setReferenceCode(data.getString("referenceId"));
 
                 JSONObject domainData = data.getJSONObject("domainData");
-                class_id = domainData.getString("CLASS");
-                mData.setClassRoomId(class_id);
-                mData.setSection(domainData.getString("SECTION"));
-                String s_code = class_id.substring(0,1);
-                mData.setSchoolCode(Integer.parseInt(s_code));
+
+                if (mData.getUserType() == USER_TYPE_STUDENT) {
+                    class_id = domainData.getString("CLASS");
+                    mData.setClassRoomId(class_id);
+                    mData.setSection(domainData.getString("SECTION"));
+                    String s_code = class_id.substring(0, 1);
+                    mData.setSchoolCode(Integer.parseInt(s_code));
+                }
                 mAppCallback.onGetUserDetailResponse(ResponseCode.COMMON_RES_SUCCESS, mData);
             }
             else{

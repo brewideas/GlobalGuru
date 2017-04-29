@@ -54,7 +54,7 @@ public class CreateNotificationData {
     public String getExpiryDate(){return mExpiryDate;}
 
     public String getClassName(){
-        if (mClassList.isEmpty()) {
+        if (mClassList == null || mClassList.isEmpty()) {
             return (mClassName.isEmpty())? null: mClassName;
         }
         else
