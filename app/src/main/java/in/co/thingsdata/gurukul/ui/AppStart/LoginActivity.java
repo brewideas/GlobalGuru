@@ -84,6 +84,7 @@ public class LoginActivity extends AppCompatActivity implements GetClassListRequ
         startActivity(it);
     }
 
+    String mobileNum = null;
     public void enterTemPassword(){
 
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
@@ -96,10 +97,12 @@ public class LoginActivity extends AppCompatActivity implements GetClassListRequ
 
         alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
-                String mobileNum = edittext.getText().toString();
+                String otp = edittext.getText().toString();
                 //send mobileNum
 
                 Intent i = new Intent(LoginActivity.this,forgotPassword.class);
+                i.putExtra("mobileNum",mobileNum);
+                i.putExtra("otpForgot",otp);
                 startActivity(i);
 
             }
@@ -116,12 +119,15 @@ public class LoginActivity extends AppCompatActivity implements GetClassListRequ
 
     }
 
+     @Override
+     public void onForgetPasswordResponse(CommonRequest.ResponseCode res, String mobile_number) {
 
-
-        @Override
-        public void onForgetPasswordResponse(CommonRequest.ResponseCode res, String mobile_number) {
-            enterTemPassword();
-        }
+         if (res == CommonRequest.ResponseCode.COMMON_RES_SUCCESS) {
+             enterTemPassword();
+         }else{
+             Toast.makeText(this,"Could not process this time . Try later",Toast.LENGTH_LONG);
+         }
+     }
 
 
     public void forgetPassword(View v) {
@@ -138,7 +144,8 @@ public class LoginActivity extends AppCompatActivity implements GetClassListRequ
 
             {
                 public void onClick (DialogInterface dialog,int whichButton){
-                String mobileNum = edittext.getText().toString();
+
+                    mobileNum = edittext.getText().toString();
                 ForgetPasswordRequest req = new ForgetPasswordRequest(LoginActivity.this,mobileNum,LoginActivity.this);
                     req.executeRequest();
                 //send mobileNum

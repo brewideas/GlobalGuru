@@ -13,6 +13,7 @@
     <string name="title_activity_report_card_launch">reportCardLaunch</string>
     <string name="title_activity_rc_create">rc_create</string>
     <string name="subject_id">subId</string>
+    <string name="advertismentName">"showCase"</string>
     <string name="intent_extra_posInList">pos</string>
     <string name="intent_extra_id_notification_selected">idOfNotification</string>
     <string name="intent_extra_rolnum">rolnum</string>
