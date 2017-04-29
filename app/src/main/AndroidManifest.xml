@@ -17,6 +17,7 @@
         tools:replace="=android:icon">
         <activity
             android:name=".ui.AppStart.MainActivity"
+            android:noHistory="true"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

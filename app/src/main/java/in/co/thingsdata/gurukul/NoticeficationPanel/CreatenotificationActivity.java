@@ -1,6 +1,7 @@
 package in.co.thingsdata.gurukul.NoticeficationPanel;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -185,6 +186,8 @@ public class CreatenotificationActivity extends AppCompatActivity implements Cre
     public void onCreateNotificationResponse(CommonRequest.ResponseCode res, CreateNotificationData data) {
         if (res == CommonRequest.ResponseCode.COMMON_RES_SUCCESS){
             Toast.makeText(this, "Notification created successfully", Toast.LENGTH_SHORT).show();
+            Intent launchFeature = new Intent(this, ShowNotificationActivity.class);
+            startActivity(launchFeature);
         }
         else
         {
