@@ -33,6 +33,7 @@ public abstract class CommonRequest {
     private static final String GET_STUDENT_LIST_URL = DOMAIN + "school-data-service/api/school/profile/student/search/summary?";
     private static final String GET_SUBJECT_LIST_URL = DOMAIN + "Subject list"; //TODO: Get proper URL
     private static final String CREATE_NOTIFICATION_URL = DOMAIN + "notification-service" + "/api/notification/data";
+    private static final String NOTIFICATION_STAT_URL = DOMAIN + "notification-service" + "/api/notification/result/detail?id=";
 
     private static final String GET_USER_DETAIL_URL = DOMAIN + "school-data-service/api/school/search/detail/user";
     private static final String FORGET_PASSWORD_URL = DOMAIN + "school-data-service/api/school/password/forgot/";
@@ -168,6 +169,9 @@ public abstract class CommonRequest {
                 break;
             case COMMON_REQUEST_CHANGE_PASSWORD:
                 url = CHANGE_PASSWORD_URL;
+                break;
+            case COMMON_REQUEST_GET_NOTIFICATION_STATS:
+                url = NOTIFICATION_STAT_URL;
                 break;
             default:
                 url = null;

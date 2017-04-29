@@ -53,6 +53,10 @@ public class GetUserDetailRequest extends CommonRequest {
                 mData.setUserType(data.getString("primaryRole"));
                 mData.setMobileNumber(data.getString("activeMobileNumber"));
                 mData.setReferenceCode(data.getString("referenceId"));
+                String ref_id = data.getString("referenceId");
+                mData.setReferenceCode(ref_id);
+                String s_code = ref_id.substring(0, 1);
+                mData.setSchoolCode(Integer.parseInt(s_code));
 
                 JSONObject domainData = data.getJSONObject("domainData");
 
@@ -60,8 +64,6 @@ public class GetUserDetailRequest extends CommonRequest {
                     class_id = domainData.getString("CLASS");
                     mData.setClassRoomId(class_id);
                     mData.setSection(domainData.getString("SECTION"));
-                    String s_code = class_id.substring(0, 1);
-                    mData.setSchoolCode(Integer.parseInt(s_code));
                 }
                 mAppCallback.onGetUserDetailResponse(ResponseCode.COMMON_RES_SUCCESS, mData);
             }

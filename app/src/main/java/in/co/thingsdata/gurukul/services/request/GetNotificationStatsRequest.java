@@ -30,7 +30,7 @@ public class GetNotificationStatsRequest extends CommonRequest {
         mData = data; mAppCallback = cb;
 
         String url = getURL();
-        url += JSON_FIELD_NOTIFICATION_ID + "=" + data.getNotificationId();
+        url += data.getNotificationId();
         setURL(url);
     }
 

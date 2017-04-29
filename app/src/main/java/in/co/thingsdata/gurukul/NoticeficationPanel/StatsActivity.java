@@ -70,7 +70,12 @@ public class StatsActivity extends AppCompatActivity {
 
             @Override
             protected void onPostExecute(String s) {
-                s = " {\"message\":\"data for  Notification Response \",\"status\":1,\"data\":[{\"answer\":\"Y\",\"userId\":\"1212\",\"remark\":\"true\",\"statusNotify\":\"STATUS_NOTIFY_RECEIVED_BY_DEVICE\",\"sendDateTime\":\"2017-02-26T09:42:20.501\",\"respondTime\":\"2017-02-27T16:40:10.081\"}]}";
+                s = " {\"message\":\"data for  Notification Response \",\"status\":1," +
+                        "\"data\":[{\"answer\":\"Y\",\"userId\":\"1212\",\"remark\":\"true\"," +
+                        "\"statusNotify\":\"STATUS_NOTIFY_RECEIVED_BY_DEVICE\"," +
+                        "\"sendDateTime\":\"2017-02-26T09:42:20.501\",\"respondTime\":" +
+                        "\"2017-02-27T16:40:10.081\"}]}";
+
                 System.out.println("eeeeeeeeeeeeeeeeee" + s);
                 if (s == null) {
                     progressDialog.dismiss();

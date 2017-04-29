@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -30,12 +31,16 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 import in.co.thingsdata.gurukul.Adapters.NotificationAdapter;
 import in.co.thingsdata.gurukul.Models.Studentnotificationmodel;
 import in.co.thingsdata.gurukul.R;
+import in.co.thingsdata.gurukul.data.GetNotificationData;
+import in.co.thingsdata.gurukul.data.GetNotificationStatsData;
 import in.co.thingsdata.gurukul.data.common.CommonDetails;
 import in.co.thingsdata.gurukul.data.common.UserData;
+import in.co.thingsdata.gurukul.services.helper.CommonRequest;
+import in.co.thingsdata.gurukul.services.request.GetNotificationStatsRequest;
 import in.co.thingsdata.gurukul.ui.NoticeBoard.selectClass;
 
 
-public class ShowNotificationActivity extends AppCompatActivity {
+public class ShowNotificationActivity extends AppCompatActivity implements  GetNotificationStatsRequest.GetNotificationStatsCallback{
     Studentnotificationmodel notificationdata;
     ArrayList<Studentnotificationmodel> notifcationlist = new ArrayList<>();
     private String Data_URL = "http://ec2-35-154-121-61.ap-south-1.compute.amazonaws.com:8080/notification-service/api/notification/data/search";
@@ -188,9 +193,14 @@ public class ShowNotificationActivity extends AppCompatActivity {
                                                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
                                                    @Override
                                                    public void onClick(SweetAlertDialog sweetAlertDialog) {
-                                                       Intent i=new Intent(ShowNotificationActivity.this,StatsActivity.class);
-                                                       i.putExtra("unique_id",notifcationlist.get(position).getUniqueId());
-                                                       startActivity(i);
+                                                       //Intent i=new Intent(ShowNotificationActivity.this,StatsActivity.class);
+                                                       //i.putExtra("unique_id",notifcationlist.get(position).getUniqueId());
+                                                       //startActivity(i);
+
+                                                       GetNotificationStatsData data = new GetNotificationStatsData(null, notifcationlist.get(position).getUniqueId());
+                                                       GetNotificationStatsRequest request = new GetNotificationStatsRequest
+                                                               (ShowNotificationActivity.this, data, ShowNotificationActivity.this);
+                                                       request.executeRequest();
 
                                                        sweetAlertDialog.cancel();
                                                    }
@@ -269,4 +279,8 @@ public class ShowNotificationActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onGetNotificationStatsResponse(CommonRequest.ResponseCode res, GetNotificationStatsData data) {
+        Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show();
+    }
 }
