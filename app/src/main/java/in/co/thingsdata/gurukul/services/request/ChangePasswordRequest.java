@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import in.co.thingsdata.gurukul.data.ChangePasswordData;
+import in.co.thingsdata.gurukul.data.common.UserData;
 import in.co.thingsdata.gurukul.services.helper.CommonRequest;
 
 import static in.co.thingsdata.gurukul.services.helper.JSONParsingEnum.JSON_FIELD_STATUS;
@@ -36,6 +37,10 @@ public class ChangePasswordRequest extends CommonRequest {
         param.put("newPassword", mData.getNewPassword());
         param.put("oldPassword", mData.getOldPassword());
         setParam(param);
+
+        HashMap<String,String> p = new HashMap<>();
+        p.put("Authorization", "bearer " + UserData.getAccessToken());
+        setPostHeader(p);
     }
 
     @Override
