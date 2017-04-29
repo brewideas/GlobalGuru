@@ -159,16 +159,16 @@ public class CreatenotificationActivity extends AppCompatActivity implements Cre
 
         CreateNotificationData nd = null;
         String des = mDetails.getText().toString();
-        try {
-            nd = new CreateNotificationData(
+        if(selClassesList != null && selClassesList.size()>0) {
+             nd = new CreateNotificationData(
                     UserData.getAccessToken(),
                     createDate,
                     expiryDate,
                     des,
                     title.getText().toString(),
-                    selClassesList.get(0),
+                    selClassesList,
                     type,isSMS);
-        }catch (NullPointerException e){
+        }else{
              nd = new CreateNotificationData(
                     UserData.getAccessToken(),
                     createDate,
