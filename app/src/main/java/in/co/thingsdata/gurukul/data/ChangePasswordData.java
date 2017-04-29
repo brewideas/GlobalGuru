@@ -10,8 +10,8 @@ public class ChangePasswordData {
     private String mOldPassword;
     private String mErrorMessage;
 
-    public ChangePasswordData(String otp, String mobile_number, String new_password){
-        mMobileNumber = mobile_number; mNewPassword = new_password;
+    public ChangePasswordData(String old_password, String mobile_number, String new_password){
+        mMobileNumber = mobile_number; mNewPassword = new_password; mOldPassword = old_password;
     }
 
     public void setErrorMessage (String e_msg){mErrorMessage = e_msg;}
