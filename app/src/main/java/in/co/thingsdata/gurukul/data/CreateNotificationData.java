@@ -18,7 +18,7 @@ public class CreateNotificationData {
     private String mExpiryDate;
     private String mClassName;
     private boolean mIsSMS;
-    private ArrayList<ClassData> mClassList;
+    private ArrayList<String> mClassList;
 
     public CreateNotificationData (String access_token, String createDate, String expiryDate,
                                    String desc, String title, String className,
@@ -33,7 +33,7 @@ public class CreateNotificationData {
     }
 
     public CreateNotificationData (String access_token, String createDate, String expiryDate,
-                                   String desc, String title, ArrayList<ClassData> classList,
+                                   String desc, String title, ArrayList<String> classList,
                                    CommonDetails.NotificationTypeEnum type, boolean isSMS){
         mTitle = title;
         mNotificationType = type;
@@ -59,9 +59,9 @@ public class CreateNotificationData {
         }
         else
         {
-            String class_name = mClassList.get(0).getName();;
+            String class_name = mClassList.get(0);
             for (int i = 1; i < mClassList.size(); i++){
-                class_name = "," + mClassList.get(i).getName();
+                class_name = "," + mClassList.get(i);
             }
             return class_name;
         }
