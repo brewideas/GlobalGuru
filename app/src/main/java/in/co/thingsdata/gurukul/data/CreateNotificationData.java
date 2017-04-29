@@ -1,5 +1,8 @@
 package in.co.thingsdata.gurukul.data;
 
+import java.util.ArrayList;
+
+import in.co.thingsdata.gurukul.data.common.ClassData;
 import in.co.thingsdata.gurukul.data.common.CommonDetails;
 
 /**
@@ -14,11 +17,11 @@ public class CreateNotificationData {
     private String mAccessToken;
     private String mExpiryDate;
     private String mClassName;
-    private String mSection;
     private boolean mIsSMS;
+    private ArrayList<ClassData> mClassList;
 
     public CreateNotificationData (String access_token, String createDate, String expiryDate,
-                                   String desc, String title, String className, String section,
+                                   String desc, String title, String className,
                                    CommonDetails.NotificationTypeEnum type, boolean isSMS){
         mTitle = title;
         mNotificationType = type;
@@ -26,8 +29,22 @@ public class CreateNotificationData {
         mDescription = desc;
         mCreateDate = createDate;
         mExpiryDate = expiryDate;
-        mClassName = className; mSection = section; mIsSMS = isSMS;
+        mClassName = className; mIsSMS = isSMS;
     }
+
+    public CreateNotificationData (String access_token, String createDate, String expiryDate,
+                                   String desc, String title, ArrayList<ClassData> classList,
+                                   CommonDetails.NotificationTypeEnum type, boolean isSMS){
+        mTitle = title;
+        mNotificationType = type;
+        mAccessToken = access_token;
+        mDescription = desc;
+        mCreateDate = createDate;
+        mExpiryDate = expiryDate;
+        mClassList = classList; mIsSMS = isSMS;
+    }
+
+
 
     public String getTitle(){return mTitle;}
     public String getDescription(){return mDescription;}
@@ -35,7 +52,20 @@ public class CreateNotificationData {
     public CommonDetails.NotificationTypeEnum getNotificationType(){return mNotificationType;}
     public String getCreateDate(){return mCreateDate;}
     public String getExpiryDate(){return mExpiryDate;}
-    public String getClassName(){return mClassName;}
-    public String getSection(){return mSection;}
+
+    public String getClassName(){
+        if (mClassList.isEmpty()) {
+            return (mClassName.isEmpty())? null: mClassName;
+        }
+        else
+        {
+            String class_name = mClassList.get(0).getName();;
+            for (int i = 1; i < mClassList.size(); i++){
+                class_name = "," + mClassList.get(i).getName();
+            }
+            return class_name;
+        }
+    }
+    public String getSection(){return "A,B,C,D";}
     public boolean IsSMS(){return mIsSMS;}
 }

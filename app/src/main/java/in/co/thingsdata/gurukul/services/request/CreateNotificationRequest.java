@@ -81,11 +81,12 @@ public class CreateNotificationRequest extends CommonRequest {
                 target.put("targetUserType", "QUERY_SPECIFIC_PRE_FETCH");
 
                 JSONArray queryId = new JSONArray();
-                queryId.put("CLASS_SECTION_DATA");
+                queryId.put("CLASS_SECTION_DATA_IN");
                 target.put("uniqueQueryIds", queryId);
 
                 JSONArray values = new JSONArray();
                 values.put("STUDENT");
+                values.put("TEACHER");
                 target.put("values", values);
 
                 JSONObject targetParam = new JSONObject();
@@ -97,7 +98,9 @@ public class CreateNotificationRequest extends CommonRequest {
             }
             else
             {
-                param.put(JSON_FIELD_NOTIFICATION_TARGET_USER_DATA, NOTIFICATION_TARGET_ALL_STRING);
+                JSONObject allData = new JSONObject();
+                allData.put("targetUserType", "ALL");
+                param.put(JSON_FIELD_NOTIFICATION_TARGET_USER_DATA, allData);
             }
 
             if (mData.IsSMS()){

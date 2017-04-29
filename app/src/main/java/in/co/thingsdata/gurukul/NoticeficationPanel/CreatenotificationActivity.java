@@ -166,7 +166,7 @@ public class CreatenotificationActivity extends AppCompatActivity implements Cre
                     expiryDate,
                     des,
                     title.getText().toString(),
-                    selClassesList.get(0), selClassesSectionList.get(0),
+                    selClassesList.get(0),
                     type,isSMS);
         }catch (NullPointerException e){
              nd = new CreateNotificationData(
@@ -175,8 +175,7 @@ public class CreatenotificationActivity extends AppCompatActivity implements Cre
                     expiryDate,
                     des,
                     title.getText().toString(),
-                    null, null,
-                    type,isSMS      );
+                    "", type,isSMS);
         }
         CreateNotificationRequest request = new CreateNotificationRequest(this, nd, this);
         request.executeRequest();
