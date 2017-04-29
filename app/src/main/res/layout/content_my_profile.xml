@@ -11,10 +11,10 @@
 
     <ScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:background="@color/card"
-        android:fitsSystemWindows="true"
+        android:fillViewport="true"
         >
 
     <RelativeLayout
@@ -27,6 +27,7 @@
         <ImageButton
             android:layout_width="250dp"
             android:layout_height="200dp"
+            android:layout_margin="20dp"
             android:id="@+id/profileBtn"
             android:src="@drawable/upload"
             android:layout_centerHorizontal="true"
@@ -135,23 +136,40 @@
 
         </LinearLayout>
 
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rowThree"
+            >
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/link_forgotpasword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:background="@android:color/transparent"
+            android:text="Change Password"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:onClick="changePassword"/>
 
         <Button
             android:id="@+id/btn_ok"
             android:layout_width="fill_parent"
             android:layout_height="50dp"
-            android:layout_marginTop="20dp"
-            android:layout_below="@+id/rowThree"
-            android:layout_marginLeft="14dp"
-            android:layout_marginRight="14dp"
-                        android:gravity="center"
+            android:layout_margin="10dp"
+            android:gravity="center"
             android:onClick="finishProfile"
             android:layout_alignParentBottom="true"
             android:background="@drawable/loginbutton"
             android:textColor="@color/card"
             android:text="Ok"
             android:textSize="16dp" />
-
+        </RelativeLayout>
 
     </RelativeLayout>
 
