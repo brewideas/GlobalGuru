@@ -36,8 +36,10 @@ public abstract class CommonRequest {
     private static final String NOTIFICATION_STAT_URL = DOMAIN + "notification-service" + "/api/notification/result/detail?id=";
     private static final String PULL_NOTIFICATION_URL = DOMAIN + "notification-service" + "/api/notification/data/search/pull?";
     private static final String REPLY_NOTIFICATION_URL = DOMAIN + "notification-service" + "/api/notification/do/response";
+    private static final String NOTIFICATION_SUMMARY_URL = DOMAIN + "notification-service" + "/api/notification/result/summary?id=";
 
     private static final String GET_USER_DETAIL_URL = DOMAIN + "school-data-service/api/school/search/detail/user";
+    private static final String GET_USERS_DETAIL_BY_ID_URL = DOMAIN + "school-data-service/api/school/search/summary/users?";
     private static final String FORGET_PASSWORD_URL = DOMAIN + "school-data-service/api/school/password/forgot/";
     private static final String CHANGE_PASSWORD_URL = DOMAIN + "school-data-service/api/school/password/change/";
 
@@ -67,7 +69,8 @@ public abstract class CommonRequest {
         COMMON_REQUEST_GET_NOTIFICATION_STATS,
 
         COMMON_REQUEST_GET_PROFILE, COMMON_REQUEST_GET_USER_PROFILE_LIST, COMMON_REQUEST_GET_AD,
-        COMMON_REQUEST_CHANGE_PASSWORD, COMMON_REQUEST_END // WARNING: Add all request types above this line only
+        COMMON_REQUEST_CHANGE_PASSWORD, COMMON_REQUEST_GET_USERS_DETAIL_BY_ID,
+        COMMON_REQUEST_GET_NOTIFICATION_SUMMARY, COMMON_REQUEST_END // WARNING: Add all request types above this line only
     }
 
     public enum ResponseCode  {
@@ -181,6 +184,12 @@ public abstract class CommonRequest {
                 break;
             case COMMON_REQUEST_REPLY_NOTIFICATION:
                 url = REPLY_NOTIFICATION_URL;
+                break;
+            case COMMON_REQUEST_GET_USER_PROFILE_LIST:
+                url = GET_USERS_DETAIL_BY_ID_URL;
+                break;
+            case COMMON_REQUEST_GET_NOTIFICATION_SUMMARY:
+                url = NOTIFICATION_SUMMARY_URL;
                 break;
             default:
                 url = null;

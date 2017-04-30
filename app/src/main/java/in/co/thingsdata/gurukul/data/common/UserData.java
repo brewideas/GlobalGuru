@@ -164,6 +164,7 @@ public final class UserData {
         mUserType = sharedPref.getString(ROLE, null);
         mSchoolCode = sharedPref.getInt(SCHOOL_CODE, -1);
         mSectionId = sharedPref.getString(SECTION_ID, null);
+        mUserId = mLoginId;
     }
 
     private static void writeToSharedPreference (String key, String value, int int_value){

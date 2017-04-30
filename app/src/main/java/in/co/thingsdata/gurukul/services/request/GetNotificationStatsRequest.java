@@ -4,13 +4,18 @@ import android.content.Context;
 
 import com.android.volley.VolleyError;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Map;
 
 import in.co.thingsdata.gurukul.data.GetNotificationStatsData;
+import in.co.thingsdata.gurukul.data.common.CommonDetails;
+import in.co.thingsdata.gurukul.data.common.NotificationReplyDetail;
 import in.co.thingsdata.gurukul.services.helper.CommonRequest;
 
+import static in.co.thingsdata.gurukul.services.helper.JSONParsingEnum.JSON_FIELD_DATA;
 import static in.co.thingsdata.gurukul.services.helper.JSONParsingEnum.JSON_FIELD_NOTIFICATION_ID;
 
 /**
@@ -36,8 +41,31 @@ public class GetNotificationStatsRequest extends CommonRequest {
 
     @Override
     public void onResponseHandler(JSONObject response) {
-        //TODO: Parse response into NotificationReplyDetail and add in mData.
-        mAppCallback.onGetNotificationStatsResponse(ResponseCode.COMMON_RES_SUCCESS, mData);
+        try {
+            int status = response.getInt("status");
+            if (status == 1){
+                JSONArray data = response.getJSONArray(JSON_FIELD_DATA);
+                for (int i = 0; i < data.length(); i++){
+                    JSONObject reply = data.getJSONObject(i);
+                    String uid = reply.getString("userId");
+                    String answer = reply.getString("answer");
+                    NotificationReplyDetail detail = new NotificationReplyDetail(uid,
+                            CommonDetails.NotificationTypeEnum.NOTIFICATION_TYPE_VOTE,
+                            (answer == "Y")? CommonDetails.NotificationReplyEnum.NOTIFICATION_REPLY_YES:
+                            CommonDetails.NotificationReplyEnum.NOTIFICATION_REPLY_NO);
+                    mData.addReply(detail);
+                }
+                mAppCallback.onGetNotificationStatsResponse(ResponseCode.COMMON_RES_SUCCESS, mData);
+            }
+            else
+            {
+                mData.setErrorMessage(response.getString("message"));
+                mAppCallback.onGetNotificationStatsResponse(ResponseCode.COMMON_RES_SERVER_ERROR_WITH_MESSAGE, mData);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+            mAppCallback.onGetNotificationStatsResponse(ResponseCode.COMMON_RES_INTERNAL_ERROR, mData);
+        }
     }
 
     @Override

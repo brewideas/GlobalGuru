@@ -274,6 +274,8 @@ public class ShowNotificationActivity extends AppCompatActivity implements  GetN
                 try {
                     URL url = new URL(Data_URL);
                     HttpURLConnection con = (HttpURLConnection) url.openConnection();
+                    String authorization = "bearer " + UserData.getAccessToken();
+                    con.setRequestProperty("Authorization", authorization);
                     bufferedReader = new BufferedReader(new InputStreamReader(con.getInputStream()));
 
                     String result;

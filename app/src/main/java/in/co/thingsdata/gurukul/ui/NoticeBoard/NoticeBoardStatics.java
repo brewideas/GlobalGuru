@@ -103,7 +103,7 @@ public class NoticeBoardStatics extends AppCompatActivity implements GetNotifica
 
         if(res == CommonRequest.ResponseCode.COMMON_RES_SUCCESS){
             try{
-                int size = data.getNumberOfNoReplyByStudent();
+                int size = data.getAllReplies().size();
                 ArrayList<NotificationReplyDetail> notificsReply =  data.getAllReplies();
 
                 for(NotificationReplyDetail objNotification : notificsReply){
