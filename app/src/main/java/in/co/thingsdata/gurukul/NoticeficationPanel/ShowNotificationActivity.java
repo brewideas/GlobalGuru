@@ -24,6 +24,7 @@ import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 
@@ -39,11 +40,14 @@ import in.co.thingsdata.gurukul.services.helper.CommonRequest;
 import in.co.thingsdata.gurukul.services.request.GetNotificationStatsRequest;
 import in.co.thingsdata.gurukul.ui.NoticeBoard.selectClass;
 
+import static in.co.thingsdata.gurukul.services.helper.JSONParsingEnum.JSON_FIELD_USER_ID;
+
 
 public class ShowNotificationActivity extends AppCompatActivity implements  GetNotificationStatsRequest.GetNotificationStatsCallback{
     Studentnotificationmodel notificationdata;
     ArrayList<Studentnotificationmodel> notifcationlist = new ArrayList<>();
-    private String Data_URL = "http://ec2-35-154-121-61.ap-south-1.compute.amazonaws.com:8080/notification-service/api/notification/data/search";
+    private String Data_URL = "http://ec2-35-154-121-61.ap-south-1.compute.amazonaws.com:8080" +
+            "/notification-service/api/notification/data/search/pull?";
     ListView list;
     TextView userName;
     @Override
@@ -83,6 +87,18 @@ public class ShowNotificationActivity extends AppCompatActivity implements  GetN
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
+
+                Data_URL += JSON_FIELD_USER_ID + "=" + UserData.getUserId();
+                Data_URL += "&role=" + UserData.getUserType();
+                Data_URL += "&filter=" + UserData.getSchoolCode();
+
+                Calendar c = Calendar.getInstance();
+                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+                SimpleDateFormat df2 = new SimpleDateFormat("HH:mm:ss.SSS");
+                String addTime = df2.format(c.getTime());
+                String currDate = df.format(c.getTime());
+                String createDate =currDate + "T" + addTime;
+                Data_URL += "&lastFetchTime=" + createDate;
                 progressDialog.setMessage("Getting Notification...");
 
                 progressDialog.show();
@@ -149,26 +165,27 @@ public class ShowNotificationActivity extends AppCompatActivity implements  GetN
                             String contentTitle = notify.optString("contentTitle");
                             String contentMsg = notify.optString("contentMsg");
                             String contentData = notify.optString("contentData");
-                            String startDate = notify.optString("startDate");
-                            String expireDate = notify.optString("expireDate");
-                            String uniqueId = notify.optString("uniqueId");
-                            String notifyTargetUser = notify.optString("notifyTargetUser");
-                            String filter = notify.optString("filter");
+                            //String startDate = notify.optString("startDate");
+                            //String expireDate = notify.optString("expireDate");
+                            String uniqueId = notify.optString("userNotifyId");
+                            //String notifyTargetUser = notify.optString("notifyTargetUser");
+                            //String filter = notify.optString("filter");
 
                             notificationdata = new Studentnotificationmodel();
                             notificationdata.setContentType(contentType);
                             notificationdata.setContentTitle(contentTitle);
                             notificationdata.setContentMsg(contentMsg);
                             notificationdata.setContentData(contentData);
-                            notificationdata.setStartDate(startDate);
-                            notificationdata.setExpireDate(expireDate);
+                            //notificationdata.setStartDate(startDate);
+                            //notificationdata.setExpireDate(expireDate);
                             notificationdata.setUniqueId(uniqueId);
-                            notificationdata.setNotifyTargetUser(notifyTargetUser);
-                            notificationdata.setFilter(filter);
+                            //notificationdata.setNotifyTargetUser(notifyTargetUser);
+                            //notificationdata.setFilter(filter);
 
-                            if(!isExpire(expireDate)) {
-                                notifcationlist.add(notificationdata);
-                            }
+                            //if(!isExpire(expireDate)) {
+                                //notifcationlist.add(notificationdata);
+                            //}
+                            notifcationlist.add(notificationdata);
 
                         }
 
@@ -255,7 +272,7 @@ public class ShowNotificationActivity extends AppCompatActivity implements  GetN
                 String s = params[0];
                 BufferedReader bufferedReader = null;
                 try {
-                    URL url = new URL(Data_URL + s);
+                    URL url = new URL(Data_URL);
                     HttpURLConnection con = (HttpURLConnection) url.openConnection();
                     bufferedReader = new BufferedReader(new InputStreamReader(con.getInputStream()));
 

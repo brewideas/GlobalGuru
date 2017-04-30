@@ -34,6 +34,8 @@ public abstract class CommonRequest {
     private static final String GET_SUBJECT_LIST_URL = DOMAIN + "Subject list"; //TODO: Get proper URL
     private static final String CREATE_NOTIFICATION_URL = DOMAIN + "notification-service" + "/api/notification/data";
     private static final String NOTIFICATION_STAT_URL = DOMAIN + "notification-service" + "/api/notification/result/detail?id=";
+    private static final String PULL_NOTIFICATION_URL = DOMAIN + "notification-service" + "/api/notification/data/search/pull?";
+    private static final String REPLY_NOTIFICATION_URL = DOMAIN + "notification-service" + "/api/notification/do/response";
 
     private static final String GET_USER_DETAIL_URL = DOMAIN + "school-data-service/api/school/search/detail/user";
     private static final String FORGET_PASSWORD_URL = DOMAIN + "school-data-service/api/school/password/forgot/";
@@ -60,6 +62,7 @@ public abstract class CommonRequest {
 
         COMMON_REQUEST_CREATE_NOTIFICATION,
         COMMON_REQUEST_GET_NOTIFICATION,
+        COMMON_REQUEST_PULL_NOTIFICATION,
         COMMON_REQUEST_REPLY_NOTIFICATION,
         COMMON_REQUEST_GET_NOTIFICATION_STATS,
 
@@ -172,6 +175,12 @@ public abstract class CommonRequest {
                 break;
             case COMMON_REQUEST_GET_NOTIFICATION_STATS:
                 url = NOTIFICATION_STAT_URL;
+                break;
+            case COMMON_REQUEST_PULL_NOTIFICATION:
+                url = PULL_NOTIFICATION_URL;
+                break;
+            case COMMON_REQUEST_REPLY_NOTIFICATION:
+                url = REPLY_NOTIFICATION_URL;
                 break;
             default:
                 url = null;
