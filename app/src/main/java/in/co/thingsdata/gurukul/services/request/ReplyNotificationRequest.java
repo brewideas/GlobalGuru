@@ -43,6 +43,10 @@ public class ReplyNotificationRequest extends CommonRequest {
                 CommonDetails.NotificationReplyEnum.NOTIFICATION_REPLY_YES)? "Y" : "N");
         param.put("comments", "Replied by" + UserData.getFirstName());
         setParam(param);
+
+        HashMap<String,String> p = new HashMap<>();
+        p.put("Authorization", "bearer " + UserData.getAccessToken());
+        setPostHeader(p);
     }
 
     @Override

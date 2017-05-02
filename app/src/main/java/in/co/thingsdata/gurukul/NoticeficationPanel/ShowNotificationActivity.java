@@ -34,16 +34,19 @@ import in.co.thingsdata.gurukul.Models.Studentnotificationmodel;
 import in.co.thingsdata.gurukul.R;
 import in.co.thingsdata.gurukul.data.GetNotificationData;
 import in.co.thingsdata.gurukul.data.GetNotificationStatsData;
+import in.co.thingsdata.gurukul.data.ReplyNotificationData;
 import in.co.thingsdata.gurukul.data.common.CommonDetails;
 import in.co.thingsdata.gurukul.data.common.UserData;
 import in.co.thingsdata.gurukul.services.helper.CommonRequest;
 import in.co.thingsdata.gurukul.services.request.GetNotificationStatsRequest;
+import in.co.thingsdata.gurukul.services.request.ReplyNotificationRequest;
 import in.co.thingsdata.gurukul.ui.NoticeBoard.selectClass;
 
 import static in.co.thingsdata.gurukul.services.helper.JSONParsingEnum.JSON_FIELD_USER_ID;
 
 
-public class ShowNotificationActivity extends AppCompatActivity implements  GetNotificationStatsRequest.GetNotificationStatsCallback{
+public class ShowNotificationActivity extends AppCompatActivity
+        implements  GetNotificationStatsRequest.GetNotificationStatsCallback, ReplyNotificationRequest.ReplyNotificationCallback{
     Studentnotificationmodel notificationdata;
     ArrayList<Studentnotificationmodel> notifcationlist = new ArrayList<>();
     private String Data_URL = "http://ec2-35-154-121-61.ap-south-1.compute.amazonaws.com:8080" +
@@ -91,6 +94,7 @@ public class ShowNotificationActivity extends AppCompatActivity implements  GetN
                 Data_URL += JSON_FIELD_USER_ID + "=" + UserData.getUserId();
                 Data_URL += "&role=" + UserData.getUserType();
                 Data_URL += "&filter=" + UserData.getSchoolCode();
+                Data_URL += "&pullNew=false";
 
                 Calendar c = Calendar.getInstance();
                 SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
@@ -235,12 +239,28 @@ public class ShowNotificationActivity extends AppCompatActivity implements  GetN
                                                @Override
                                                public void onClick(SweetAlertDialog sDialog) {
                                                    sDialog.cancel();
+                                                   ReplyNotificationData data = new ReplyNotificationData(
+                                                           UserData.getAccessToken(),
+                                                           notifcationlist.get(position).getUniqueId(),
+                                                           CommonDetails.NotificationReplyEnum.NOTIFICATION_REPLY_NO);
+                                                   ReplyNotificationRequest req = new ReplyNotificationRequest(
+                                                           ShowNotificationActivity.this, data,
+                                                           ShowNotificationActivity.this);
+                                                   req.executeRequest();
                                                }
                                            })
                                            .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
                                                @Override
                                                public void onClick(SweetAlertDialog sweetAlertDialog) {
                                                    sweetAlertDialog.cancel();
+                                                   ReplyNotificationData data = new ReplyNotificationData(
+                                                           UserData.getAccessToken(),
+                                                           notifcationlist.get(position).getUniqueId(),
+                                                           CommonDetails.NotificationReplyEnum.NOTIFICATION_REPLY_YES);
+                                                   ReplyNotificationRequest req = new ReplyNotificationRequest(
+                                                           ShowNotificationActivity.this, data,
+                                                           ShowNotificationActivity.this);
+                                                   req.executeRequest();
                                                }
                                            })
                                            .show();}
@@ -301,5 +321,12 @@ public class ShowNotificationActivity extends AppCompatActivity implements  GetN
     @Override
     public void onGetNotificationStatsResponse(CommonRequest.ResponseCode res, GetNotificationStatsData data) {
         Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onReplyNotificationResponse(CommonRequest.ResponseCode res, ReplyNotificationData data) {
+        if (res != CommonRequest.ResponseCode.COMMON_RES_SUCCESS){
+            Toast.makeText(this, "Reply failed, please try later", Toast.LENGTH_SHORT).show();
+        }
     }
 }

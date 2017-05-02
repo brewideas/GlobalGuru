@@ -52,6 +52,7 @@ public class CreateNotificationRequest extends CommonRequest {
         JSONObject param = new JSONObject();
         try {
             param.put(JSON_FIELD_NOTIFICATION_FILTER, Integer.toString(UserData.getSchoolCode()));
+            param.put("org", Integer.toString(UserData.getSchoolCode()));
             param.put(JSON_FIELD_NOTIFICATION_CREATE_DATE, data.getCreateDate());
             param.put(JSON_FIELD_NOTIFICATION_EXPIRY_DATE, data.getExpiryDate());
             param.put(JSON_FIELD_NAME, data.getTitle());

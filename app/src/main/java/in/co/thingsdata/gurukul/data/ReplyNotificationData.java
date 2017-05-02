@@ -12,7 +12,7 @@ public class ReplyNotificationData {
     private String mErrorMessage;
     private CommonDetails.NotificationReplyEnum mReply;
 
-    public ReplyNotificationData (String token, String notif_id, String fetched_time,
+    public ReplyNotificationData (String token, String notif_id,
                                   CommonDetails.NotificationReplyEnum reply){
         mAccessToken = token; mNotificationId = notif_id; mReply = reply;
     }

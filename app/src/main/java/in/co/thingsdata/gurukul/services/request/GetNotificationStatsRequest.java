@@ -8,11 +8,13 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import in.co.thingsdata.gurukul.data.GetNotificationStatsData;
 import in.co.thingsdata.gurukul.data.common.CommonDetails;
 import in.co.thingsdata.gurukul.data.common.NotificationReplyDetail;
+import in.co.thingsdata.gurukul.data.common.UserData;
 import in.co.thingsdata.gurukul.services.helper.CommonRequest;
 
 import static in.co.thingsdata.gurukul.services.helper.JSONParsingEnum.JSON_FIELD_DATA;
@@ -37,6 +39,10 @@ public class GetNotificationStatsRequest extends CommonRequest {
         String url = getURL();
         url += data.getNotificationId();
         setURL(url);
+
+        HashMap<String,String> p = new HashMap<>();
+        p.put("Authorization", "bearer " + UserData.getAccessToken());
+        setPostHeader(p);
     }
 
     @Override
