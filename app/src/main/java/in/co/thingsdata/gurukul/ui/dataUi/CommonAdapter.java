@@ -53,7 +53,7 @@ public class CommonAdapter extends RecyclerView.Adapter<CommonAdapter.ReportCard
                     .inflate(R.layout.rc_tv_studentlist, parent, false);
         }else if(mScrnNumber == NB_STATICS){
             itemView = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.nb_statics, parent, false);
+                    .inflate(R.layout.nb_stats_adapter, parent, false);
         }else if(mScrnNumber == NB_LIST){
             itemView = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.nb_list_adapter, parent, false);

@@ -8,6 +8,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -15,24 +17,28 @@ import java.util.List;
 
 import in.co.thingsdata.gurukul.R;
 import in.co.thingsdata.gurukul.data.GetNotificationStatsData;
+import in.co.thingsdata.gurukul.data.GetNotificationSummaryData;
 import in.co.thingsdata.gurukul.data.common.CommonDetails;
 import in.co.thingsdata.gurukul.data.common.NotificationReplyDetail;
 import in.co.thingsdata.gurukul.data.common.UserData;
 import in.co.thingsdata.gurukul.services.helper.CommonRequest;
 import in.co.thingsdata.gurukul.services.request.GetNotificationStatsRequest;
+import in.co.thingsdata.gurukul.services.request.GetNotificationSummaryRequest;
 import in.co.thingsdata.gurukul.ui.dataUi.CommonAdapter;
 import in.co.thingsdata.gurukul.ui.dataUi.DataOfUi;
 import in.co.thingsdata.gurukul.ui.dataUi.NoticeBoardModel;
 
-public class NoticeBoardStatics extends AppCompatActivity implements GetNotificationStatsRequest.GetNotificationStatsCallback{
+public class NoticeBoardStatics extends AppCompatActivity implements GetNotificationStatsRequest.GetNotificationStatsCallback, GetNotificationSummaryRequest.GetNotificationSummaryCallback {
     private RecyclerView mRecyclerView;
     private CommonAdapter mAdapter;
 
-    TextView mtvYes,mtvNo,mtvPending;
+    TextView mtvYes,mtvNo,mtvPending,mtvMsg;
+    RelativeLayout showDetail;
+    android.support.v7.widget.CardView cView;
     private List<DataOfUi> dataList = new ArrayList<>();
     private String TAG = "NoticeBoardStatics";
     String mSelNotification = null;
-
+    Button detailsbutton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,14 +62,21 @@ public class NoticeBoardStatics extends AppCompatActivity implements GetNotifica
             }
         });
 
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
-        mRecyclerView.setLayoutManager(mLayoutManager);
-        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        mRecyclerView.setAdapter(mAdapter);
 
-        getResultsOfQuery();
+
+       // getResultsOfQuery();
+
+        getSummary();
    }
 
+
+   private void  getSummary(){
+
+       GetNotificationSummaryData data = new GetNotificationSummaryData(mSelNotification);
+       GetNotificationSummaryRequest request = new GetNotificationSummaryRequest(this,data,this);
+
+       request.executeRequest();
+   }
 
     private void getResultsOfQuery(){
         try{
@@ -71,6 +84,7 @@ public class NoticeBoardStatics extends AppCompatActivity implements GetNotifica
 
             GetNotificationStatsData data = new GetNotificationStatsData(token,mSelNotification);
             GetNotificationStatsRequest req = new GetNotificationStatsRequest(NoticeBoardStatics.this,data,NoticeBoardStatics.this);
+
 
             req.executeRequest();
 
@@ -84,14 +98,16 @@ public class NoticeBoardStatics extends AppCompatActivity implements GetNotifica
     }
 
 
-
     void initRes(){
         mRecyclerView = (RecyclerView)findViewById(R.id.statsRecyclerView);
 
-        mtvYes = (TextView)findViewById(R.id.yesCalTv);
-        mtvNo = (TextView)findViewById(R.id.noCalTv);
-        mtvPending = (TextView)findViewById(R.id.pendingCalTv);
-
+        mtvYes = (TextView)findViewById(R.id.yes);
+        mtvNo = (TextView)findViewById(R.id.no);
+        cView = (android.support.v7.widget.CardView)findViewById(R.id.InfoAboutVoteResults);
+        mtvPending = (TextView)findViewById(R.id.pending);
+        mtvMsg = (TextView)findViewById(R.id.msg);
+        showDetail = (RelativeLayout)findViewById(R.id.showDetailRl);
+        detailsbutton = (Button)findViewById(R.id.btn_statsdetail);
     }
 
     @Override
@@ -102,6 +118,12 @@ public class NoticeBoardStatics extends AppCompatActivity implements GetNotifica
         }
 
         if(res == CommonRequest.ResponseCode.COMMON_RES_SUCCESS){
+
+            showDetail.setVisibility(View.VISIBLE);
+            mRecyclerView.setVisibility(View.VISIBLE);
+            detailsbutton.setVisibility(View.GONE);
+            mtvMsg.setVisibility(View.GONE);
+            cView.setVisibility(View.GONE);
             try{
                 int size = data.getAllReplies().size();
                 ArrayList<NotificationReplyDetail> notificsReply =  data.getAllReplies();
@@ -110,7 +132,9 @@ public class NoticeBoardStatics extends AppCompatActivity implements GetNotifica
 
                     String name = objNotification.getUserName();
                     String rolNum = Integer.toString(objNotification.getRollNumber());
-                    String className = Integer.toString(objNotification.getClassId());
+                    String className = objNotification.getClassId();
+
+
                     CommonDetails.NotificationReplyEnum resEnum = objNotification.getNotificationReply();
                     String resDisplay = null;
 
@@ -119,7 +143,7 @@ public class NoticeBoardStatics extends AppCompatActivity implements GetNotifica
                     }else if (CommonDetails.NotificationReplyEnum.NOTIFICATION_REPLY_NO == resEnum){
                             resDisplay = "No";
                     }else if (CommonDetails.NotificationReplyEnum.NOTIFICATION_REPLY_PENDING == resEnum){
-                        resDisplay = "Pending";
+                            resDisplay = "Pending";
                     }
 
                     NoticeBoardModel obj = new NoticeBoardModel(name,rolNum,className,resDisplay);
@@ -134,8 +158,64 @@ public class NoticeBoardStatics extends AppCompatActivity implements GetNotifica
 
             }
 
+        }else{
+            mRecyclerView.setVisibility(View.GONE);
+            showDetail.setVisibility(View.GONE);
+            detailsbutton.setVisibility(View.VISIBLE);
+            cView.setVisibility(View.VISIBLE);
+            mtvMsg.setVisibility(View.VISIBLE);
+
         }
     }
 
 
+    @Override
+    public void onGetNotificationSummaryResponse(CommonRequest.ResponseCode res, GetNotificationSummaryData data) {
+
+        String toDisplay = "";
+        if(res == CommonRequest.ResponseCode.COMMON_RES_SUCCESS){
+            int total = data.getTotalNoNotificationCount();
+            int yesCount = data.getTotalYesNotificationCount();
+            int noCount = data.getTotalNoNotificationCount();
+            int pending = total - (yesCount + noCount);
+
+            if(yesCount == 0 && noCount == 0){
+                toDisplay = getResources().getString(R.string.vote_noVotes);
+            }else if(yesCount  > noCount){
+                toDisplay = getResources().getString(R.string.vote_success);
+            }else if(noCount  > yesCount){
+                toDisplay = getResources().getString(R.string.vote_fail);
+            }else if(noCount == yesCount){
+                toDisplay = getResources().getString(R.string.vote_equal);
+            }
+            String totalStr = String.valueOf(total);
+            String pendingStr;
+            if(pending > 0){
+                pendingStr = String.valueOf(pending);
+            }else{
+                pendingStr = "0";
+            }
+
+            cView.setVisibility(View.VISIBLE);
+            mtvMsg.setVisibility(View.VISIBLE);
+            mtvMsg.setText(toDisplay);
+            mtvNo.setText(String.valueOf(noCount) + "/" +totalStr);
+            mtvYes.setText(String.valueOf(yesCount) + "/" +totalStr);
+            mtvPending.setText(String.valueOf(pendingStr) + "/" +totalStr);
+        }
+
+    }
+
+    public void Showdetails(View view) {
+
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        mRecyclerView.setAdapter(mAdapter);
+
+
+
+        getResultsOfQuery();
+
+    }
 }

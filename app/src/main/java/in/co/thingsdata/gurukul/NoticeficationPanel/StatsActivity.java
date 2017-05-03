@@ -4,14 +4,10 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -23,13 +19,14 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
-import in.co.thingsdata.gurukul.Adapters.NotificationAdapter;
 import in.co.thingsdata.gurukul.Adapters.StatNotificationAdapter;
 import in.co.thingsdata.gurukul.Models.Statsmodel;
-import in.co.thingsdata.gurukul.Models.Studentnotificationmodel;
 import in.co.thingsdata.gurukul.R;
+import in.co.thingsdata.gurukul.data.GetNotificationStatsData;
+import in.co.thingsdata.gurukul.services.helper.CommonRequest;
+import in.co.thingsdata.gurukul.services.request.GetNotificationStatsRequest;
 
-public class StatsActivity extends AppCompatActivity {
+public class StatsActivity extends AppCompatActivity implements GetNotificationStatsRequest.GetNotificationStatsCallback{
     Statsmodel stats;
     ArrayList<Statsmodel> notifcationlist = new ArrayList<>();
 
@@ -42,15 +39,16 @@ public class StatsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_stats);
         intent = getIntent();
         final String uid = intent.getStringExtra("unique_id");
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, uid, Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-                Notification(uid);
-            }
-        });
+//        Notification(uid);
+//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Snackbar.make(view, uid, Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//                Notification(uid);
+//            }
+//        });
     }
 
     private void Notification(String filter) {
@@ -140,5 +138,13 @@ public class StatsActivity extends AppCompatActivity {
         ru.execute(urlSuffix);
 
 
+    }
+
+    @Override
+    public void onGetNotificationStatsResponse(CommonRequest.ResponseCode res, GetNotificationStatsData data) {
+
+    }
+
+    public void Showdetails(View view) {
     }
 }

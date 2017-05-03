@@ -21,7 +21,7 @@ import in.co.thingsdata.gurukul.R;
 public class StatNotificationAdapter extends BaseAdapter {
     private final Context mContext;
     private final List<Statsmodel> mModuleArrayList;
-    TextView title, discreption, startdate, enddate;
+    TextView name, rolNum, sClass, sResponse;
 
     public StatNotificationAdapter(Context context, List<Statsmodel> moduleArrayList) {
         mContext = context;
@@ -30,12 +30,12 @@ public class StatNotificationAdapter extends BaseAdapter {
 
 
     @Override
-    public int getCount() {
+    public int getCount(){
         return mModuleArrayList.size();
     }
 
     @Override
-    public Statsmodel getItem(int position) {
+    public Statsmodel getItem(int position){
         return mModuleArrayList.get(position);
     }
 
@@ -50,12 +50,17 @@ public class StatNotificationAdapter extends BaseAdapter {
         // ViewHolder viewHolder;
         if (convertView == null) {
             LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-            convertView = inflater.inflate(R.layout.statslayout, parent, false);
+            convertView = inflater.inflate(R.layout.nb_stats_adapter, parent, false);
         }
-        title= (TextView) convertView.findViewById(R.id.userid);
-        discreption= (TextView) convertView.findViewById(R.id.response);
-        title.setText(getItem(position).getUser1d());
-        discreption.setText(getItem(position).getAnswer());
+        name = (TextView) convertView.findViewById(R.id.nbSName);
+        rolNum = (TextView) convertView.findViewById(R.id.nbSRollN);
+        sClass = (TextView) convertView.findViewById(R.id.nbSClass);
+        sResponse = (TextView) convertView.findViewById(R.id.nbSResponse);
+
+        name.setText(getItem(position).getName());
+        rolNum.setText(getItem(position).getRolNum());
+        sClass.setText(getItem(position).getClassName());
+        sResponse.setText(getItem(position).getAnswer());
 
 
 

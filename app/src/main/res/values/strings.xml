@@ -33,4 +33,9 @@
     <string name="title_activity_image_cropped">Crop Image</string>
     <string name="title_activity_school_gallery">School Gallery</string>
     <string name="title_activity_forgot_password">Change Password</string>
+
+    <string name="vote_success">It seems Vote is positve and People are intersetd</string>
+    <string name="vote_fail">It seems not all People are intersetd</string>
+    <string name="vote_equal">WOW ! Equal Votes .</string>
+    <string name="vote_noVotes">No Vote casted as yet</string>
 </resources>

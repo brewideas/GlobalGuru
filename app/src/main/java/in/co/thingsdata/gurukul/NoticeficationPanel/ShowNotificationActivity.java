@@ -32,7 +32,6 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 import in.co.thingsdata.gurukul.Adapters.NotificationAdapter;
 import in.co.thingsdata.gurukul.Models.Studentnotificationmodel;
 import in.co.thingsdata.gurukul.R;
-import in.co.thingsdata.gurukul.data.GetNotificationData;
 import in.co.thingsdata.gurukul.data.GetNotificationStatsData;
 import in.co.thingsdata.gurukul.data.ReplyNotificationData;
 import in.co.thingsdata.gurukul.data.common.CommonDetails;
@@ -40,9 +39,15 @@ import in.co.thingsdata.gurukul.data.common.UserData;
 import in.co.thingsdata.gurukul.services.helper.CommonRequest;
 import in.co.thingsdata.gurukul.services.request.GetNotificationStatsRequest;
 import in.co.thingsdata.gurukul.services.request.ReplyNotificationRequest;
+import in.co.thingsdata.gurukul.ui.NoticeBoard.NoticeBoardStatics;
 import in.co.thingsdata.gurukul.ui.NoticeBoard.selectClass;
 
 import static in.co.thingsdata.gurukul.services.helper.JSONParsingEnum.JSON_FIELD_USER_ID;
+
+//Appid : 1:714710807475:android:1ee963c0e5cdb9d0
+//PAckage Name : com.GlobalGurukul.android
+//PAcakge id : globalgurukul-e3b64
+//Web API Key  AIzaSyA9haqp94N4XO197P3U-RC8CduPtIxeXTQ
 
 
 public class ShowNotificationActivity extends AppCompatActivity
@@ -341,7 +346,14 @@ public class ShowNotificationActivity extends AppCompatActivity
 
     @Override
     public void onGetNotificationStatsResponse(CommonRequest.ResponseCode res, GetNotificationStatsData data) {
-        Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show();
+
+        Intent i = new Intent(this ,NoticeBoardStatics.class);
+        String notificationId = data.getNotificationId();
+        i.putExtra(getResources().getString(R.string.intent_extra_id_notification_selected),notificationId);
+        startActivity(i);
+
+
     }
 
     @Override

@@ -12,4 +12,7 @@
     <color name="cardHint">#90FFFFFF</color>
     <color name="selectionControl">#EA2C2E</color>
     <color name="yellow">#FFFF00</color>
+    <color name="red">#FF0000</color>
+    <color name="indigo">#4B0042</color>
+    <color name="bluevoilet">#8A2BE2</color>
 </resources>
