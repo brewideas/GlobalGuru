@@ -51,6 +51,9 @@ public class ShowNotificationActivity extends AppCompatActivity
     ArrayList<Studentnotificationmodel> notifcationlist = new ArrayList<>();
     private String Data_URL = "http://ec2-35-154-121-61.ap-south-1.compute.amazonaws.com:8080" +
             "/notification-service/api/notification/data/search/pull?";
+
+    private String Data_URL_Principal = "http://ec2-35-154-121-61.ap-south-1.compute.amazonaws.com:8080" +
+            "/notification-service/api/notification/data/search?";
     ListView list;
     TextView userName;
     @Override
@@ -91,18 +94,24 @@ public class ShowNotificationActivity extends AppCompatActivity
             protected void onPreExecute() {
                 super.onPreExecute();
 
-                Data_URL += JSON_FIELD_USER_ID + "=" + UserData.getUserId();
-                Data_URL += "&role=" + UserData.getUserType();
-                Data_URL += "&filter=" + UserData.getSchoolCode();
-                Data_URL += "&pullNew=false";
+                if (!UserData.getUserType().contentEquals(CommonDetails.USER_TYPE_PRINCIPAL)) {
+                    Data_URL += JSON_FIELD_USER_ID + "=" + UserData.getUserId();
+                    Data_URL += "&role=" + UserData.getUserType();
+                    Data_URL += "&filter=" + UserData.getSchoolCode();
+                    Data_URL += "&pullNew=false";
 
-                Calendar c = Calendar.getInstance();
-                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-                SimpleDateFormat df2 = new SimpleDateFormat("HH:mm:ss.SSS");
-                String addTime = df2.format(c.getTime());
-                String currDate = df.format(c.getTime());
-                String createDate =currDate + "T" + addTime;
-                Data_URL += "&lastFetchTime=" + createDate;
+                    Calendar c = Calendar.getInstance();
+                    SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+                    SimpleDateFormat df2 = new SimpleDateFormat("HH:mm:ss.SSS");
+                    String addTime = df2.format(c.getTime());
+                    String currDate = df.format(c.getTime());
+                    String createDate = currDate + "T" + addTime;
+                    Data_URL += "&lastFetchTime=" + createDate;
+                }
+                else
+                {
+                    Data_URL_Principal += "org="+ UserData.getSchoolCode();
+                }
                 progressDialog.setMessage("Getting Notification...");
 
                 progressDialog.show();
@@ -171,7 +180,13 @@ public class ShowNotificationActivity extends AppCompatActivity
                             String contentData = notify.optString("contentData");
                             //String startDate = notify.optString("startDate");
                             //String expireDate = notify.optString("expireDate");
-                            String uniqueId = notify.optString("userNotifyId");
+                            String uniqueId;
+                            if (!UserData.getUserType().contentEquals(CommonDetails.USER_TYPE_PRINCIPAL)) {
+                                uniqueId = notify.optString("userNotifyId");
+                            }
+                            else {
+                                uniqueId = notify.optString("uniqueId");
+                            }
                             //String notifyTargetUser = notify.optString("notifyTargetUser");
                             //String filter = notify.optString("filter");
 
@@ -292,7 +307,13 @@ public class ShowNotificationActivity extends AppCompatActivity
                 String s = params[0];
                 BufferedReader bufferedReader = null;
                 try {
-                    URL url = new URL(Data_URL);
+                    URL url;
+                    if (UserData.getUserType().contentEquals(CommonDetails.USER_TYPE_PRINCIPAL)){
+                        url = new URL(Data_URL_Principal);
+                    }
+                    else {
+                        url = new URL(Data_URL);
+                    }
                     HttpURLConnection con = (HttpURLConnection) url.openConnection();
                     String authorization = "bearer " + UserData.getAccessToken();
                     con.setRequestProperty("Authorization", authorization);

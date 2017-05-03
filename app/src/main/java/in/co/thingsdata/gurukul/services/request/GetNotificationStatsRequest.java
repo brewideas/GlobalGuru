@@ -55,10 +55,26 @@ public class GetNotificationStatsRequest extends CommonRequest {
                     JSONObject reply = data.getJSONObject(i);
                     String uid = reply.getString("userId");
                     String answer = reply.getString("answer");
+                    String reg_number = reply.getString("userMasterRefid");
                     NotificationReplyDetail detail = new NotificationReplyDetail(uid,
                             CommonDetails.NotificationTypeEnum.NOTIFICATION_TYPE_VOTE,
                             (answer == "Y")? CommonDetails.NotificationReplyEnum.NOTIFICATION_REPLY_YES:
                             CommonDetails.NotificationReplyEnum.NOTIFICATION_REPLY_NO);
+                    JSONObject userDetail = reply.getJSONObject("userDetail");
+                    String name = userDetail.getString("name");
+                    JSONArray roles = userDetail.getJSONArray("roles");
+                    String userType = roles.getString(0);
+                    String classCode, section;
+                    if (userType.contentEquals(CommonDetails.USER_TYPE_STUDENT)) {
+                        JSONObject domainData = userDetail.getJSONObject("domainData");
+                        classCode = domainData.getString("CLASS");
+                        section = domainData.getString("SECTION");
+                        detail.setStudentDetails(name, classCode, section, -1, reg_number);
+                    }
+                    else{
+                        classCode = null; section = null;
+                        detail.setTeacherDetails(name, reg_number);
+                    }
                     mData.addReply(detail);
                 }
                 mAppCallback.onGetNotificationStatsResponse(ResponseCode.COMMON_RES_SUCCESS, mData);

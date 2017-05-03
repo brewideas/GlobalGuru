@@ -5,12 +5,12 @@ package in.co.thingsdata.gurukul.data.common;
  */
 
 public class NotificationReplyDetail {
-    private String mNotificationId;
+    private String mUserId;
     private String mUserName;
     private String mUserType;
     private CommonDetails.NotificationTypeEnum mType;
     private CommonDetails.NotificationReplyEnum mReply;
-    private int mClassId;
+    private String mClassId;
     private String mSectionId;
     private int mRollNumber;
     private String mRegistrationNumber;
@@ -18,10 +18,10 @@ public class NotificationReplyDetail {
 
     public NotificationReplyDetail (String id, CommonDetails.NotificationTypeEnum type, CommonDetails.NotificationReplyEnum reply)
     {
-        mNotificationId = id; mType = type; mReply = reply;
+        mUserId = id; mType = type; mReply = reply;
     }
 
-    public void setStudentDetails(String name, int class_id, String section, int roll_number,
+    public void setStudentDetails(String name, String class_id, String section, int roll_number,
                                   String reg_number)
     {
         mUserType = CommonDetails.USER_TYPE_STUDENT;
@@ -32,16 +32,17 @@ public class NotificationReplyDetail {
 
     public void setTeacherDetails(String name, String emp_code){
         mUserType = CommonDetails.USER_TYPE_TEACHER;
-        mUserName = name; mEmpCode = emp_code; mClassId = -1; mSectionId = "A";
+        mUserName = name; mEmpCode = emp_code; mClassId = null; mSectionId = null;
         mRegistrationNumber = null; mRollNumber = -1;
     }
 
-    public String getNotificationId(){return mNotificationId;}
+    public String getUserId(){return mUserId;}
     public String getUserName(){return mUserName;}
     public String getUserType(){return mUserType;}
     public CommonDetails.NotificationTypeEnum getNotificationType(){return mType;}
     public CommonDetails.NotificationReplyEnum getNotificationReply(){return mReply;}
-    public int getClassId(){return mClassId;}
+    public String getClassId(){return mClassId;}
+    public String getClassName(){return mClassId.substring(mClassId.indexOf("-"), 1);}
     public String getSection(){return mSectionId;}
     public int getRollNumber(){return mRollNumber;}
     public String getRegistrationNumber(){return mRegistrationNumber;}
