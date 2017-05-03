@@ -161,7 +161,7 @@
             android:background="@android:color/holo_blue_bright"
             android:id="@+id/included"
             android:layout_height="wrap_content">
-          <include layout="@layout/nb_stats_adapter"/>
+          <include layout="@layout/nb_stats_header"/>
         </LinearLayout>
      <android.support.v7.widget.RecyclerView
             android:id="@+id/statsRecyclerView"

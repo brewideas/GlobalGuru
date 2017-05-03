@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.FileInputStream;
@@ -23,15 +24,36 @@ import in.co.thingsdata.gurukul.data.common.UserData;
 public class MyProfile extends AppCompatActivity {
 
     ImageButton proImg ;
+    TextView tvprofileName,tvprofileClass,tvprofileRolNum;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.my_profile);
 
+        initRes();
+
+
         proImg = (ImageButton)findViewById(R.id.profileBtn);
         showImageForBackround();
       }
+
+    void initRes(){
+
+        try {
+            tvprofileName = (TextView) findViewById(R.id.profileName);
+            String userName = UserData.getFirstName();
+            String userClass = Integer.toString(UserData.getClassId());
+            String userRolNum = Integer.toString(UserData.getRollNumber());
+            tvprofileName.setText(userName);
+            tvprofileClass = (TextView) findViewById(R.id.profileClass);
+            tvprofileClass.setText(userClass);
+            tvprofileRolNum = (TextView) findViewById(R.id.profileRolNum);
+            tvprofileRolNum.setText(userRolNum);
+        }catch(Exception e){
+            Toast.makeText(MyProfile.this, "Profile data not available as this moment , Please check again", Toast.LENGTH_SHORT).show();
+        }
+    }
 
     private void showImageForBackround(){
         Log.v("editCampaign", "showImageCampaign");

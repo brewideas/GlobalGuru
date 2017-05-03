@@ -128,7 +128,7 @@ int row_index = -1;
             holder.nbName.setText(data.getStatsName());
             holder.nbRollNum.setText(data.getStatsRolNum());
             holder.nbClass.setText(data.getStatsClass());
-            holder.nbClass.setText(data.getStatsResponse());
+            holder.nbResponse.setText(data.getStatsResponse());
         }else if(mScrnNumber == NB_LIST){
             NoticeBoardModel data = (NoticeBoardModel) mListOfData.get(position);
             holder.nbTitle.setText(data.getListTitle());
@@ -234,7 +234,7 @@ int row_index = -1;
                 marksObtained = (TextView) view.findViewById(R.id.marksObtained);
                 total = (TextView) view.findViewById(R.id.total);
             }else if(mScrnNumber == NB_STATICS){
-                nbName = (TextView) view.findViewById(R.id.nbSClass);
+                nbName = (TextView) view.findViewById(R.id.nbSName);
                 nbRollNum = (TextView) view.findViewById(R.id.nbSRollN);
                 nbClass = (TextView) view.findViewById(R.id.nbSClass);
                 nbResponse = (TextView) view.findViewById(R.id.nbSResponse);

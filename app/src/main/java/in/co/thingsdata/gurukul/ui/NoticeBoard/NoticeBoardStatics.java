@@ -132,7 +132,7 @@ public class NoticeBoardStatics extends AppCompatActivity implements GetNotifica
 
                     String name = objNotification.getUserName();
                     String rolNum = Integer.toString(objNotification.getRollNumber());
-                    String className = objNotification.getClassId();
+                    String className = objNotification.getClassName();
 
 
                     CommonDetails.NotificationReplyEnum resEnum = objNotification.getNotificationReply();

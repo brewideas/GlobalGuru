@@ -6,24 +6,24 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/card_view"
     android:layout_width="match_parent"
-    android:padding="10dp"
-    android:layout_height="80dp"
-
+    android:layout_height="50dp"
     card_view:cardCornerRadius="4dp"
     android:layout_margin="5dp">
 
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="5dp"
+        android:layout_height="match_parent"
+        android:background="@color/blue_btn_bg_color"
         android:weightSum="4">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Name"
-
+            android:textStyle="bold"
+            android:layout_marginLeft="2dp"
+            android:textColor="@android:color/holo_purple"
             android:paddingTop="15dp"
             android:id="@+id/nbSName"
             android:layout_weight="1"
@@ -32,10 +32,11 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Marks"
+            android:text="RollNumber"
+            android:textStyle="bold"
+            android:textColor="@android:color/holo_purple"
             android:layout_toRightOf="@+id/nbSName"
             android:paddingTop="15dp"
-            android:layout_marginLeft="5dp"
             android:layout_weight="1"
             android:id="@+id/nbSRollN"
 
@@ -46,6 +47,8 @@
             android:layout_height="wrap_content"
             android:text="Class"
             android:gravity="center"
+            android:textStyle="bold"
+            android:textColor="@android:color/holo_purple"
             android:layout_toRightOf="@+id/nbSRollN"
             android:paddingTop="15dp"
             android:layout_weight="1"
@@ -57,6 +60,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Response"
+            android:textStyle="bold"
+            android:textColor="@android:color/holo_purple"
             android:gravity="center"
             android:layout_toRightOf="@+id/nbSClass"
             android:paddingTop="15dp"
