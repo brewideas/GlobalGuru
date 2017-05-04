@@ -8,9 +8,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import in.co.thingsdata.gurukul.data.GetNotificationSummaryData;
+import in.co.thingsdata.gurukul.data.common.UserData;
 import in.co.thingsdata.gurukul.services.helper.CommonRequest;
 
 /**
@@ -33,6 +35,10 @@ public class GetNotificationSummaryRequest extends CommonRequest {
         String url = getURL();
         url += data.getNotificationId();
         setURL(url);
+
+        HashMap<String,String> param = new HashMap<>();
+        param.put("Authorization", "bearer " + UserData.getAccessToken());
+        setPostHeader(param);
     }
 
     @Override
@@ -40,20 +46,24 @@ public class GetNotificationSummaryRequest extends CommonRequest {
         try {
             int status = response.getInt("status");
             if (status == 1){
-                JSONArray data = response.getJSONArray("data");
+                JSONObject data = response.getJSONObject("data");
+                JSONArray answer = data.getJSONArray("answers");
+                int total_YES = 0, total_NO = 0;
                 for (int i=0; i < data.length(); i++)
                 {
-                    JSONObject res = data.getJSONObject(0);
-                    if (res.getString("responseMsg") == "Y")
+                    JSONObject res = answer.getJSONObject(i);
+                    if (res.getString("responseMsg").contentEquals("Y"))
                     {
-                        mData.setTotalYesNotificationCount(res.getInt("total"));
+                        total_YES += res.getInt("total");
                     }
-                    if (res.getString("responseMsg") == "N")
+                    if (res.getString("responseMsg").contentEquals("N"))
                     {
-                        mData.setTotalNoNotificationCount(res.getInt("total"));
+                        total_NO += res.getInt("total");
                     }
                     //TODO: Get total number of notifications
                 }
+                mData.setTotalYesNotificationCount(total_YES);
+                mData.setTotalNoNotificationCount(total_NO);
                 mAppCallback.onGetNotificationSummaryResponse(ResponseCode.COMMON_RES_SUCCESS, mData);
             }
             else
