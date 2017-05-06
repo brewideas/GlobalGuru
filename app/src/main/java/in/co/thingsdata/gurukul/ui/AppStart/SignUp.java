@@ -172,6 +172,7 @@ public class SignUp extends AppCompatActivity implements SignUpRequest.SignUpCal
             UserData.setMobileNumber(data.getMobileNumber());
             UserData.setUserId(data.getUserId());
             UserData.setUniqueId(data.getReferenceCode());
+            UserData.setFirstName(data.getName());
 
             GetClassListRequest req = new GetClassListRequest(this, this);
             req.executeRequest();
