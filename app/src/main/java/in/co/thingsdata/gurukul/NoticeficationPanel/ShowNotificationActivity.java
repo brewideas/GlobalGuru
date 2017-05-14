@@ -71,7 +71,7 @@ public class ShowNotificationActivity extends AppCompatActivity
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 
-        if(//(UserData.getUserType().equals(CommonDetails.USER_TYPE_STUDENT)) ||
+        if((UserData.getUserType().equals(CommonDetails.USER_TYPE_STUDENT)) ||
                  (UserData.getUserType().equals(CommonDetails.USER_TYPE_PARENT))){
             fab.setVisibility(View.GONE);
         }else {
@@ -182,26 +182,38 @@ public class ShowNotificationActivity extends AppCompatActivity
                             String contentType = notify.optString("contentType");
                             String contentTitle = notify.optString("contentTitle");
                             String contentMsg = notify.optString("contentMsg");
-                            String contentData = notify.optString("contentData");
-                            //String startDate = notify.optString("startDate");
-                            //String expireDate = notify.optString("expireDate");
+                            String contentData;
+                            if (!UserData.getUserType().contentEquals(CommonDetails.USER_TYPE_PRINCIPAL) &&
+                                    contentType.contentEquals("QUESTION")) {
+                                JSONObject data = notify.getJSONObject("contentData");
+                                contentData = data.optString("questText");
+                            }
+                            else
+                            {
+                                contentData = notify.optString("contentData");
+                            }
+                            String startDate;
+                            String expireDate;
                             String uniqueId;
+                            notificationdata = new Studentnotificationmodel();
                             if (!UserData.getUserType().contentEquals(CommonDetails.USER_TYPE_PRINCIPAL)) {
                                 uniqueId = notify.optString("userNotifyId");
                             }
                             else {
                                 uniqueId = notify.optString("uniqueId");
+                                startDate = notify.optString("startDate");
+                                expireDate = notify.optString("expireDate");
+                                notificationdata.setStartDate(startDate);
+                                notificationdata.setExpireDate(expireDate);
                             }
                             //String notifyTargetUser = notify.optString("notifyTargetUser");
                             //String filter = notify.optString("filter");
 
-                            notificationdata = new Studentnotificationmodel();
+
                             notificationdata.setContentType(contentType);
                             notificationdata.setContentTitle(contentTitle);
                             notificationdata.setContentMsg(contentMsg);
                             notificationdata.setContentData(contentData);
-                            //notificationdata.setStartDate(startDate);
-                            //notificationdata.setExpireDate(expireDate);
                             notificationdata.setUniqueId(uniqueId);
                             //notificationdata.setNotifyTargetUser(notifyTargetUser);
                             //notificationdata.setFilter(filter);

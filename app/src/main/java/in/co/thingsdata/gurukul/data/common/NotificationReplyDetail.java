@@ -42,7 +42,11 @@ public class NotificationReplyDetail {
     public CommonDetails.NotificationTypeEnum getNotificationType(){return mType;}
     public CommonDetails.NotificationReplyEnum getNotificationReply(){return mReply;}
     public String getClassId(){return mClassId;}
-    public String getClassName(){return mClassId.substring(mClassId.indexOf("-"), 1);}
+    public String getClassName(){String name;
+        String[] parts = mClassId.split("-");
+        name = parts[1];
+        return name;
+    }
     public String getSection(){return mSectionId;}
     public int getRollNumber(){return mRollNumber;}
     public String getRegistrationNumber(){return mRegistrationNumber;}

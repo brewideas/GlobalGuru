@@ -132,7 +132,7 @@ public class NoticeBoardStatics extends AppCompatActivity implements GetNotifica
 
                     String name = objNotification.getUserName();
                     String rolNum = Integer.toString(objNotification.getRollNumber());
-                    String className = objNotification.getClassId();
+                    String className = objNotification.getClassName();
 
 
                     CommonDetails.NotificationReplyEnum resEnum = objNotification.getNotificationReply();
@@ -174,7 +174,7 @@ public class NoticeBoardStatics extends AppCompatActivity implements GetNotifica
 
         String toDisplay = "";
         if(res == CommonRequest.ResponseCode.COMMON_RES_SUCCESS){
-            int total = data.getTotalNoNotificationCount();
+            int total = data.getTotalNotificationCount();
             int yesCount = data.getTotalYesNotificationCount();
             int noCount = data.getTotalNoNotificationCount();
             int pending = total - (yesCount + noCount);

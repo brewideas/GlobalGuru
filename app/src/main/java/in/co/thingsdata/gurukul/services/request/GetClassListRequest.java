@@ -89,7 +89,7 @@ public class GetClassListRequest extends CommonRequest {
 
     @Override
     public void onErrorHandler(VolleyError error) {
-        if (error.networkResponse.statusCode > 400 && error.networkResponse.statusCode < 500) {
+        if (error.networkResponse != null && (error.networkResponse.statusCode > 400 && error.networkResponse.statusCode < 500)) {
             mAppCallback.onGetClassListResponse(COMMON_RES_PROFILE_AUTHENTICATION_FAILED, null);
         }
         else {
