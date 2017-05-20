@@ -223,6 +223,7 @@ public class LoginActivity extends AppCompatActivity implements GetClassListRequ
             UserData.setLoginId(data.getMobileNumber());
             UserData.setMobileNumber(data.getMobileNumber());
             UserData.setUserId(data.getUserId());
+            UserData.setFirstName(data.getName());
             UserData.setUniqueId(data.getReferenceCode());
 
 
