@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="in.co.thingsdata.gurukul.ui.Fees.FeesDetails"
+    tools:showIn="@layout/fees_details">
+
+    <LinearLayout
+        android:id="@+id/TopFrame"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:background="@color/cardview_light_background"
+        >
+
+        <include layout="@layout/fees_header" />
+
+        <LinearLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="8dp"
+            android:orientation="vertical"
+
+            >
+
+            <Button
+                android:layout_height="50dp"
+                android:layout_width="80dp"
+                android:layout_margin="10dp"
+                android:id="@+id/findButton"
+                android:layout_weight="1"
+                android:onClick="executeFindQuery"
+                android:text="View"
+                />
+
+            <Button
+                android:layout_height="50dp"
+                android:layout_width="80dp"
+                android:id="@+id/uploadButton"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="1"
+
+                android:text="Upload"
+                android:onClick="executeUploadQuery"
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+    <AutoCompleteTextView
+        android:layout_height="60dp"
+        android:layout_width="match_parent"
+        android:padding="10dp"
+
+        android:layout_below="@+id/TopFrame"
+        android:hint="Type name of student to search"
+        android:id="@+id/searchList"
+        />
+
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/headerOfListFees"
+        card_view:cardBackgroundColor="@color/lineColor"
+        android:layout_below="@+id/searchList"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        card_view:cardCornerRadius="4dp"
+        android:layout_marginTop="10dp"
+
+        >
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="85dp"
+            android:layout_height="match_parent"
+            android:text="Name"
+            android:paddingTop="10dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="4dp"
+            android:id="@+id/Nametitle"
+            android:textStyle="bold"
+
+            />
+
+        <TextView
+            android:layout_width="55dp"
+            android:layout_height="match_parent"
+            android:text="Roll Number"
+            android:layout_toRightOf="@+id/Nametitle"
+            android:layout_centerVertical="true"
+            android:paddingTop="10dp"
+            android:layout_marginLeft="15dp"
+            android:textStyle="bold"
+            android:id="@+id/RollNumebrTitle"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Last Paid"
+            android:layout_toRightOf="@+id/RollNumebrTitle"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="45dp"
+            android:paddingTop="10dp"
+            android:textStyle="bold"
+            android:id="@+id/lastFeesPaid"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Balance"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:paddingTop="10dp"
+            android:textStyle="bold"
+            android:id="@+id/balanceTitle"
+            />
+
+
+    </RelativeLayout>
+</android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/feesRecycler"
+        android:layout_below="@+id/headerOfListFees"
+        android:background="@color/lineColor"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:visibility="gone"
+        />
+
+</RelativeLayout>

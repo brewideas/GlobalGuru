@@ -13,6 +13,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import in.co.thingsdata.gurukul.Models.FeesListModel;
 import in.co.thingsdata.gurukul.R;
 
 /**
@@ -30,6 +31,7 @@ public class CommonAdapter extends RecyclerView.Adapter<CommonAdapter.ReportCard
     public static final int NB_STATICS = 3;
     public static final int NB_LIST = 4;
     public static final int SCHOOL_GALLERY = 5;
+    public static final int FEES_DETAILS = 6;
     private OnItemClickListener mOnItemClickListener;
 
     public interface OnItemClickListener {
@@ -60,6 +62,9 @@ public class CommonAdapter extends RecyclerView.Adapter<CommonAdapter.ReportCard
         }else if(mScrnNumber == SCHOOL_GALLERY){
             itemView = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.school_gallery_adapter, parent, false);
+        }else if(mScrnNumber == FEES_DETAILS){
+            itemView = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.fees_list_adapter, parent, false);
         }
 
         return new ReportCardViewHolder(itemView);
@@ -139,9 +144,15 @@ int row_index = -1;
            // holder.sg_title.setText(data.getImage_title());
             holder.sg_img.setScaleType(ImageView.ScaleType.CENTER_CROP);
             holder.sg_img.setImageResource((data.getImage_ID()));
-
+        }else if(mScrnNumber == FEES_DETAILS){
+            FeesListModel data = (FeesListModel)mListOfData.get(position);
+            holder.feesName.setText(data.getName());
+            holder.feesRollNum.setText(data.getRollNumber());
+            holder.feesLastPaid.setText(data.getLastFeesPaid());
+            holder.feesBalance.setText(data.getBalanceFees());
 
         }
+
 
     }
 
@@ -212,6 +223,8 @@ int row_index = -1;
         private TextView sg_title;
         private ImageView sg_img;
 
+        public TextView feesName,feesRollNum,feesLastPaid,feesBalance;
+
         public View row_view;
 
         public ReportCardViewHolder(View view) {
@@ -244,6 +257,12 @@ int row_index = -1;
             }else if(mScrnNumber == SCHOOL_GALLERY){
                 sg_title = (TextView)view.findViewById(R.id.title);
                 sg_img = (ImageView) view.findViewById(R.id.img);
+            }else if(mScrnNumber == FEES_DETAILS){
+                feesName = (TextView) view.findViewById(R.id.Nametitle);
+                feesRollNum = (TextView) view.findViewById(R.id.RollNumebrTitle);
+                feesLastPaid = (TextView) view.findViewById(R.id.lastFeesPaid);
+                feesBalance = (TextView) view.findViewById(R.id.balanceTitle);
+
             }
 
         }

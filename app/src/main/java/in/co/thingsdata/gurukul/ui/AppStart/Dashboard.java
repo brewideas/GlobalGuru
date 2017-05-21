@@ -7,6 +7,7 @@ import android.view.View;
 
 import in.co.thingsdata.gurukul.NoticeficationPanel.ShowNotificationActivity;
 import in.co.thingsdata.gurukul.R;
+import in.co.thingsdata.gurukul.ui.Fees.FeesDetails;
 import in.co.thingsdata.gurukul.ui.ReportCardUi.ReportCardTeacherView;
 
 public class Dashboard extends AppCompatActivity {
@@ -47,6 +48,12 @@ public class Dashboard extends AppCompatActivity {
 
     public void launchGallery(View view) {
         Intent launchFeature = new Intent(this, schoolGallery.class);
+        startActivity(launchFeature);
+
+    }
+
+    public void launchFees(View view) {
+        Intent launchFeature = new Intent(this, FeesDetails.class);
         startActivity(launchFeature);
 
     }

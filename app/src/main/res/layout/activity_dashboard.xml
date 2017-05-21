@@ -175,10 +175,17 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginTop="25dp"
+                    android:orientation="horizontal"
+                    android:id="@+id/rowThree"
                     android:layout_below="@+id/rowTwo"
-                    android:layout_weight="1" >
+                    android:layout_marginTop="@dimen/activity_vertical_margin">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    >
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -194,6 +201,30 @@
                         android:layout_gravity="center"
                         android:layout_marginTop="5dp"
                         android:textSize="18sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1" >
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="launchFees"
+                        android:src="@drawable/fees"
+                        android:background="@null"
+                        android:id="@+id/feesList" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Fees"
+                        android:gravity="center"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
                 </LinearLayout>
             </RelativeLayout>
 

@@ -75,8 +75,15 @@
             android:label="Gallery" />
         <activity
             android:name=".ui.AppStart.forgotPassword"
-            android:label="@string/title_activity_forgot_password"
-            ></activity>
+            android:label="@string/title_activity_forgot_password" />
+        <activity
+            android:name=".ui.Fees.FeesDetails"
+            android:label="@string/title_activity_fees_details"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.Fees.FeesProfile"
+            android:label="@string/title_activity_fees_profile"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
