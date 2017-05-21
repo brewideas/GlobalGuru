@@ -83,6 +83,10 @@
         <activity
             android:name=".ui.Fees.FeesProfile"
             android:label="@string/title_activity_fees_profile"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.Fees.PendingFees"
+            android:label="@string/title_activity_pending_fees"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

@@ -7,7 +7,7 @@
 
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="in.co.thingsdata.gurukul.ui.AppStart.MyProfile"
-    tools:showIn="@layout/my_profile">
+    tools:showIn="@layout/fees_profile">
 
     <ScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -37,6 +37,8 @@
 
                 <TextView
                     android:text="Name"
+                    android:textColor="@color/colorAccent"
+                    android:textStyle="bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/Name"
@@ -48,7 +50,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/profileName"
+                    android:id="@+id/profileNameTV"
                     android:layout_weight="1"
                     android:textSize="20sp"
                     android:singleLine="true"
@@ -70,20 +72,22 @@
 
                 <TextView
                     android:text="Class"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorAccent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/className"
                     android:textSize="20sp"
 
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textColor="@color/cardview_dark_background"
+
                     android:layout_marginRight="14dp"
                     android:layout_marginLeft="@dimen/component_left_margin"/>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/profileClass"
+                    android:id="@+id/profileClassTV"
                     android:layout_weight="1"
                     android:textSize="20sp"
                     android:layout_marginLeft="75dp"
@@ -106,17 +110,18 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/textView1"
+                    android:textStyle="bold"
                     android:textSize="20sp"
                     android:text="Roll Number"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textColor="@color/cardview_dark_background"
+                    android:textColor="@color/colorAccent"
                     android:layout_marginRight="14dp"
                     android:layout_marginLeft="@dimen/component_left_margin"/>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/profileRolNum"
+                    android:id="@+id/profileRolNumTV"
                     android:layout_weight="1"
                     android:textSize="20sp"
                     android:layout_marginLeft="15dp"
@@ -125,42 +130,195 @@
 
             </LinearLayout>
 
-            <RelativeLayout
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:id="@+id/rowFour"
                 android:layout_below="@+id/rowThree"
-                >
+                android:paddingTop="10dp"
+                android:paddingLeft="10dp"
+                android:layout_marginTop="@dimen/activity_top_margin">
 
-                <android.support.v7.widget.AppCompatButton
-                    android:id="@+id/link_forgotpasword"
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:text="Last Paid Amount"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/colorAccent"
+                    android:layout_marginRight="14dp"
+                    android:layout_marginLeft="@dimen/component_left_margin"/>
+
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="8dp"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="10dp"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:background="@android:color/transparent"
-                    android:text="Change Password"
-                    android:gravity="center"
-                    android:textSize="16sp"
-                    android:onClick="changePassword"/>
+                    android:id="@+id/lastPaidAmountTV"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
+                    android:layout_marginLeft="15dp"
+                    android:text="88"
+                    />
 
-                <Button
-                    android:id="@+id/btn_ok"
-                    android:layout_width="fill_parent"
-                    android:layout_height="50dp"
-                    android:layout_margin="10dp"
-                    android:gravity="center"
-                    android:onClick="finishProfile"
-                    android:layout_alignParentBottom="true"
-                    android:background="@drawable/loginbutton"
-                    android:textColor="@color/card"
-                    android:text="Ok"
-                    android:textSize="16dp" />
-            </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/rowFive"
+                android:layout_below="@+id/rowFour"
+                android:paddingTop="10dp"
+                android:paddingLeft="10dp"
+                android:layout_marginTop="@dimen/activity_top_margin">
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textViewDate"
+                    android:textSize="20sp"
+                    android:text="Last Paid Date"
+                    android:textStyle="bold"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/colorAccent"
+                    android:layout_marginRight="14dp"
+                    android:layout_marginLeft="@dimen/component_left_margin"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/lastPaidDateTV"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
+                    android:layout_marginLeft="15dp"
+                    android:text="88"
+                    />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/rowSix"
+                android:layout_below="@+id/rowFive"
+                android:paddingTop="10dp"
+                android:paddingLeft="10dp"
+                android:layout_marginTop="@dimen/activity_top_margin">
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textViewPay"
+                    android:textSize="20sp"
+                    android:text="Pay for month"
+                    android:textStyle="bold"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/colorAccent"
+                    android:layout_marginRight="14dp"
+                    android:layout_marginLeft="@dimen/component_left_margin"/>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:id="@+id/spin1"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="3dp"
+                    android:background="@drawable/spinnerbg"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <Spinner
+                        android:id="@+id/spinner_month"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:padding="5dp"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center"
+
+                        android:layout_marginLeft="5dp"
+                        android:spinnerMode="dropdown" />
+
+
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:id="@+id/rowSeven"
+                android:layout_below="@+id/rowSix"
+                android:paddingTop="10dp"
+                android:paddingLeft="10dp"
+                android:layout_marginTop="@dimen/activity_top_margin">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:layout_weight="1"
+                    android:layout_marginBottom="2dp">
+                    <EditText android:id="@+id/amountpaidEV"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:textColor="@color/card"
+                        android:hint="Amount Paid"
+
+                        android:textColorHint = "@color/cardHint"
+                        />
+                </android.support.design.widget.TextInputLayout>
+
+             <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:layout_weight="1"
+                    android:layout_marginBottom="2dp">
+                    <EditText android:id="@+id/balanceEV"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:textColor="@color/card"
+                        android:hint="Balance remaining"
+
+                        android:textColorHint = "@color/cardHint"
+                        />
+                </android.support.design.widget.TextInputLayout>
+
+            </LinearLayout>
+
+
+
+
+
+
+
+
 
         </RelativeLayout>
-
     </ScrollView>
+
+    <Button
+        android:id="@+id/btn_ok"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:onClick="feesProfile"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/loginbutton"
+        android:textColor="@color/card"
+        android:text="Ok"
+        android:textSize="16dp" />
 </RelativeLayout>

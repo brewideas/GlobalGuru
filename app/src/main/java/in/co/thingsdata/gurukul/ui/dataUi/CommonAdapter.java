@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import in.co.thingsdata.gurukul.Models.FeesListModel;
+import in.co.thingsdata.gurukul.Models.FeesPendingModel;
 import in.co.thingsdata.gurukul.R;
 
 /**
@@ -32,6 +33,7 @@ public class CommonAdapter extends RecyclerView.Adapter<CommonAdapter.ReportCard
     public static final int NB_LIST = 4;
     public static final int SCHOOL_GALLERY = 5;
     public static final int FEES_DETAILS = 6;
+    public static final int FEES_PENDING = 7;
     private OnItemClickListener mOnItemClickListener;
 
     public interface OnItemClickListener {
@@ -65,6 +67,9 @@ public class CommonAdapter extends RecyclerView.Adapter<CommonAdapter.ReportCard
         }else if(mScrnNumber == FEES_DETAILS){
             itemView = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.fees_list_adapter, parent, false);
+        }else if(mScrnNumber == FEES_PENDING){
+            itemView = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.fees_pending_adapter, parent, false);
         }
 
         return new ReportCardViewHolder(itemView);
@@ -151,6 +156,11 @@ int row_index = -1;
             holder.feesLastPaid.setText(data.getLastFeesPaid());
             holder.feesBalance.setText(data.getBalanceFees());
 
+        }else if(mScrnNumber == FEES_PENDING){
+            FeesPendingModel data = (FeesPendingModel)mListOfData.get(position);
+            holder.feesPendingName.setText(data.getName());
+            holder.feesPendingRollNum.setText(data.getRollNumber());
+            holder.feesPendingClass.setText(data.getClassName());
         }
 
 
@@ -225,6 +235,8 @@ int row_index = -1;
 
         public TextView feesName,feesRollNum,feesLastPaid,feesBalance;
 
+        public TextView feesPendingName,feesPendingRollNum,feesPendingClass;
+
         public View row_view;
 
         public ReportCardViewHolder(View view) {
@@ -262,9 +274,11 @@ int row_index = -1;
                 feesRollNum = (TextView) view.findViewById(R.id.RollNumebrTitle);
                 feesLastPaid = (TextView) view.findViewById(R.id.lastFeesPaid);
                 feesBalance = (TextView) view.findViewById(R.id.balanceTitle);
-
+            }else if(mScrnNumber == FEES_PENDING) {
+                feesPendingName = (TextView) view.findViewById(R.id.Nametitle);
+                feesPendingRollNum = (TextView) view.findViewById(R.id.RollNumebrTitle);
+                feesPendingClass = (TextView) view.findViewById(R.id.classTv);
             }
-
         }
 
         /*

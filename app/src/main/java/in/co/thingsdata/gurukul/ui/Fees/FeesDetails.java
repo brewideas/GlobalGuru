@@ -168,6 +168,12 @@ public class FeesDetails extends AppCompatActivity {
     }
 
 
+    public void executePendingQuery(View view) {
 
 
+
+    }
+
+    public void executeViewFeesQuery(View view) {
+    }
 }
