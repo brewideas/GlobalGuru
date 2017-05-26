@@ -10,9 +10,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.InterstitialAd;
+
 import java.util.ArrayList;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
+import in.co.thingsdata.gurukul.R;
 import in.co.thingsdata.gurukul.data.common.ClassData;
 import in.co.thingsdata.gurukul.data.common.CommonDetails;
 import in.co.thingsdata.gurukul.data.common.UserData;
@@ -28,10 +31,21 @@ public class MainActivity extends AppCompatActivity implements GetClassListReque
     public static final String OPEN_GALLERY_FOR = "Open_gallery _for_which_act";
     public static final String STUDENT_PROFILE_CROPED_NAME = "profileImg";
 
+
+    InterstitialAd mInterstitialAd;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         UserData.setContext(getApplicationContext());
+        setContentView(R.layout.activity_main);
+
+//        mAdView = (AdView) findViewById(R.id.adView);
+//        AdRequest adRequest = new   AdRequest.Builder().build();
+//        mAdView.loadAd(adRequest);
+//
+//        mInterstitialAd = new InterstitialAd(this);
+        //ca-app-pub-9639896740962554/9263815621
+
         if (UserData.isUserAlreadyLoggedIn()){
             UserData.init();
             GetClassListRequest req = new GetClassListRequest(this, this);
