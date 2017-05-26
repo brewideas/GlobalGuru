@@ -49,7 +49,7 @@ public class GetNotificationSummaryRequest extends CommonRequest {
                 JSONObject data = response.getJSONObject("data");
                 JSONArray answer = data.getJSONArray("answers");
                 int total_YES = 0, total_NO = 0; int grand_total = 0;
-                for (int i=0; i < data.length(); i++)
+                for (int i=0; i < answer.length(); i++)
                 {
                     JSONObject res = answer.getJSONObject(i);
                     if (res.getString("responseMsg").contentEquals("Y"))
@@ -60,12 +60,10 @@ public class GetNotificationSummaryRequest extends CommonRequest {
                     {
                         total_NO += res.getInt("total");
                     }
-                    grand_total = total_NO + total_YES;
-                    //TODO: Get total number of notifications
                 }
+                mData.setTotalNotificationCount(data.getInt("total"));
                 mData.setTotalYesNotificationCount(total_YES);
                 mData.setTotalNoNotificationCount(total_NO);
-                mData.setTotalNotificationCount(grand_total);
                 mAppCallback.onGetNotificationSummaryResponse(ResponseCode.COMMON_RES_SUCCESS, mData);
             }
             else
