@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     android:layout_height="wrap_content"
+    android:paddingBottom="12dp"
     android:layout_below="@+id/infoCard"
     android:id="@+id/inputInfo"
-    android:background="@color/colorComponentBG"
+    android:background="@color/card"
     android:layout_width="250dp"
 
     xmlns:android="http://schemas.android.com/apk/res/android">
