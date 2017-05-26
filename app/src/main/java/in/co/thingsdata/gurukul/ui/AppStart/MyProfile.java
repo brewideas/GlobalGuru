@@ -19,6 +19,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 import in.co.thingsdata.gurukul.R;
+import in.co.thingsdata.gurukul.data.common.CommonDetails;
 import in.co.thingsdata.gurukul.data.common.UserData;
 
 public class MyProfile extends AppCompatActivity {
@@ -38,18 +39,35 @@ public class MyProfile extends AppCompatActivity {
         showImageForBackround();
       }
 
+TextView hideclassName,hidetextView1;
     void initRes(){
 
         try {
+
+            hideclassName = (TextView) findViewById(R.id.className);
+            hidetextView1 = (TextView) findViewById(R.id.textView1);
+            tvprofileClass = (TextView) findViewById(R.id.profileClass);
+            tvprofileRolNum = (TextView) findViewById(R.id.profileRolNum);
+            if(UserData.getUserType() == CommonDetails.USER_TYPE_PRINCIPAL) {
+                String userClass = Integer.toString(UserData.getClassId());
+                String userRolNum = Integer.toString(UserData.getRollNumber());
+
+                tvprofileClass.setText(userClass);
+
+                tvprofileRolNum.setText(userRolNum);
+           }else{
+                hideclassName.setVisibility(View.GONE);
+                hidetextView1.setVisibility(View.GONE);
+                tvprofileClass.setVisibility(View.GONE);
+                tvprofileRolNum.setVisibility(View.GONE);
+            }
+
+
             tvprofileName = (TextView) findViewById(R.id.profileName);
             String userName = UserData.getFirstName();
-            String userClass = Integer.toString(UserData.getClassId());
-            String userRolNum = Integer.toString(UserData.getRollNumber());
+
             tvprofileName.setText(userName);
-            tvprofileClass = (TextView) findViewById(R.id.profileClass);
-            tvprofileClass.setText(userClass);
-            tvprofileRolNum = (TextView) findViewById(R.id.profileRolNum);
-            tvprofileRolNum.setText(userRolNum);
+
         }catch(Exception e){
             Toast.makeText(MyProfile.this, "Profile data not available as this moment , Please check again", Toast.LENGTH_SHORT).show();
         }

@@ -127,7 +127,7 @@ public class LoginActivity extends AppCompatActivity implements GetClassListRequ
              enterTemPassword();
          }else
          {
-             Toast.makeText(this,"Could not process this time . Try later",Toast.LENGTH_LONG);
+             Toast.makeText(this, "Could not process this time . Try later", Toast.LENGTH_LONG);
             // enterTemPassword();
          }
      }
@@ -149,10 +149,17 @@ public class LoginActivity extends AppCompatActivity implements GetClassListRequ
                 public void onClick (DialogInterface dialog,int whichButton){
 
                     mobileNum = edittext.getText().toString();
-                ForgetPasswordRequest req = new ForgetPasswordRequest(LoginActivity.this,mobileNum,LoginActivity.this);
-                    req.executeRequest();
+
                 //send mobileNum
-                Toast.makeText(LoginActivity.this, "SMS with Temporary password will be received ", Toast.LENGTH_SHORT).show();
+               if(mobileNum != null && mobileNum.length() > 9) {
+
+                   ForgetPasswordRequest req = new ForgetPasswordRequest(LoginActivity.this,mobileNum,LoginActivity.this);
+                   req.executeRequest();
+                   Toast.makeText(LoginActivity.this, "SMS with Temporary password will be received ", Toast.LENGTH_SHORT).show();
+
+               }else{
+                   Toast.makeText(LoginActivity.this, "Recheck number entered ", Toast.LENGTH_SHORT).show();
+               }
 
 
             }

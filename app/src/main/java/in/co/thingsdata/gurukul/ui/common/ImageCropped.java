@@ -235,4 +235,7 @@ public class ImageCropped extends Activity implements CropImageView.OnGetCropped
     }
 
 
+    public void onCancelImageClick(View view) {
+        finish();
+    }
 }
