@@ -1,10 +1,177 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    tools:context="in.co.thingsdata.gurukul.ui.AppStart.MyProfile">
-    <include layout="@layout/content_my_profile" />
-</android.support.design.widget.CoordinatorLayout>
+
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="in.co.thingsdata.gurukul.ui.AppStart.MyProfile"
+    tools:showIn="@layout/my_profile">
+
+    <ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/card"
+        android:fillViewport="true"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:id="@+id/profileDisplay"
+
+            >
+            <ImageButton
+                android:layout_width="250dp"
+                android:layout_height="200dp"
+                android:layout_margin="20dp"
+                android:id="@+id/profileBtn"
+                android:src="@drawable/upload"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentTop="true"
+                android:background="@color/yellow"
+
+                />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/profileBtn"
+                android:paddingTop="20dp"
+                android:paddingLeft="10dp"
+                android:id="@+id/rowOne"
+                android:layout_marginTop="@dimen/activity_top_margin">
+
+                <TextView
+                    android:text="Name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/Name"
+                    android:textSize="20sp"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+
+                    android:layout_marginRight="14dp"
+                    android:layout_marginLeft="@dimen/component_left_margin"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/profileName"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
+                    android:singleLine="true"
+                    android:layout_marginLeft="75dp"
+
+                    android:text="Raja Ram"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/rowTwo"
+                android:layout_below="@+id/rowOne"
+                android:paddingTop="10dp"
+                android:paddingLeft="10dp"
+                android:layout_marginTop="@dimen/activity_top_margin">
+
+                <TextView
+                    android:text="Class"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/className"
+                    android:textSize="20sp"
+
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/cardview_dark_background"
+                    android:layout_marginRight="14dp"
+                    android:layout_marginLeft="@dimen/component_left_margin"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/profileClass"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
+                    android:layout_marginLeft="75dp"
+
+                    android:text="12"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/rowThree"
+                android:layout_below="@+id/rowTwo"
+                android:paddingTop="10dp"
+                android:paddingLeft="10dp"
+                android:layout_marginTop="@dimen/activity_top_margin">
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView1"
+                    android:textSize="20sp"
+                    android:text="Roll Number"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/cardview_dark_background"
+                    android:layout_marginRight="14dp"
+                    android:layout_marginLeft="@dimen/component_left_margin"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/profileRolNum"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
+                    android:layout_marginLeft="15dp"
+                    android:text="88"
+                    />
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rowThree"
+                >
+
+                <android.support.v7.widget.AppCompatButton
+                    android:id="@+id/link_forgotpasword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:background="@android:color/transparent"
+                    android:text="Change Password"
+                    android:gravity="center"
+                    android:textSize="16sp"
+                    android:onClick="changePassword"/>
+
+                <Button
+                    android:id="@+id/btn_ok"
+                    android:layout_width="fill_parent"
+                    android:layout_height="50dp"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    android:onClick="finishProfile"
+                    android:layout_alignParentBottom="true"
+                    android:background="@drawable/loginbutton"
+                    android:textColor="@color/card"
+                    android:text="Ok"
+                    android:textSize="16dp" />
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </ScrollView>
+</RelativeLayout>

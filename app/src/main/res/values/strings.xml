@@ -38,7 +38,9 @@
     <string name="vote_fail">It seems not all People are intersetd</string>
     <string name="vote_equal">WOW ! Equal Votes .</string>
     <string name="vote_noVotes">No Vote casted as yet</string>
-    <string name="banner_ad_unit_id">ca-app-pub-9639896740962554/2038586827</string>
+    <string name="ad_app_id">ca-app-pub-9639896740962554~3356882827</string>
+    <string name="banner_ad_unit_id">ca-app-pub-9639896740962554/6297539228</string>
+    <string name="fullpage_ad_unit_id">ca-app-pub-9639896740962554/9263815621</string>
     <string name="title_activity_fees_details">FeesDetails</string>
     <string name="title_activity_fees_profile">FeesProfile</string>
     <string name="title_activity_pending_fees">PendingFees</string>
