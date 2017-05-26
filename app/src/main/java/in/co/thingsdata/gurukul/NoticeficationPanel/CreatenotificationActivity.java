@@ -199,6 +199,10 @@ public class CreatenotificationActivity extends AppCompatActivity implements Cre
         CreateNotification(view,true);
     }
 
+    public void cancelCreate(View view) {
+        finish();
+    }
+
   /*  private class AsyncLogin1 extends AsyncTask<String, Integer, String> {
         ProgressDialog pdLoading = new ProgressDialog(CreatenotificationActivity.this);
         HttpURLConnection conn;

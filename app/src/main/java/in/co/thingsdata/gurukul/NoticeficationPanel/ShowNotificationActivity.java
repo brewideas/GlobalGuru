@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -39,6 +40,7 @@ import in.co.thingsdata.gurukul.data.common.UserData;
 import in.co.thingsdata.gurukul.services.helper.CommonRequest;
 import in.co.thingsdata.gurukul.services.request.GetNotificationStatsRequest;
 import in.co.thingsdata.gurukul.services.request.ReplyNotificationRequest;
+import in.co.thingsdata.gurukul.ui.AppStart.Dashboard;
 import in.co.thingsdata.gurukul.ui.NoticeBoard.NoticeBoardStatics;
 import in.co.thingsdata.gurukul.ui.NoticeBoard.selectClass;
 
@@ -374,4 +376,15 @@ public class ShowNotificationActivity extends AppCompatActivity
             Toast.makeText(this, "Reply failed, please try later", Toast.LENGTH_SHORT).show();
         }
     }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            Intent it = new Intent(this, Dashboard.class);//Dashboard.class);
+            startActivity(it);
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
 }
