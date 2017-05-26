@@ -122,14 +122,13 @@ public class LoginActivity extends AppCompatActivity implements GetClassListRequ
      @Override
      public void onForgetPasswordResponse(CommonRequest.ResponseCode res, String mobile_number) {
 
-         //if (res == CommonRequest.ResponseCode.COMMON_RES_SUCCESS)
+         if (res == CommonRequest.ResponseCode.COMMON_RES_SUCCESS)
          {
              enterTemPassword();
-         }
-         //else
+         }else
          {
              Toast.makeText(this,"Could not process this time . Try later",Toast.LENGTH_LONG);
-             enterTemPassword();
+            // enterTemPassword();
          }
      }
 
