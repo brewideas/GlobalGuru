@@ -18,8 +18,8 @@
     <string name="intent_extra_id_notification_selected">idOfNotification</string>
     <string name="intent_extra_rolnum">rolnum</string>
     <string name="title_activity_create_notification">CreateNotification</string>
-    <string name="title_activity_select_class">selectClass</string>
-    <string name="title_activity_notice_board_statics">NoticeBoardStatics</string>
+    <string name="title_activity_select_class">Select Class</string>
+    <string name="title_activity_notice_board_statics">NoticeBoard Statics</string>
     <string name="title_activity_notes_list">Notification</string>
     <string name="title_activity_show_notification">ShowNotificationActivity</string>
     <string name="title_activity_createnotification">CreatenotificationActivity</string>
