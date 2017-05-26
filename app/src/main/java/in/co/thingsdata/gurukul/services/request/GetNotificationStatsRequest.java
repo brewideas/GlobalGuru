@@ -58,7 +58,7 @@ public class GetNotificationStatsRequest extends CommonRequest {
                     String reg_number = reply.getString("userMasterRefid");
                     NotificationReplyDetail detail = new NotificationReplyDetail(uid,
                             CommonDetails.NotificationTypeEnum.NOTIFICATION_TYPE_VOTE,
-                            (answer == "Y")? CommonDetails.NotificationReplyEnum.NOTIFICATION_REPLY_YES:
+                            (answer.equals("Y"))? CommonDetails.NotificationReplyEnum.NOTIFICATION_REPLY_YES:
                             CommonDetails.NotificationReplyEnum.NOTIFICATION_REPLY_NO);
                     JSONObject userDetail = reply.getJSONObject("userDetail");
                     String name = userDetail.getString("name");
