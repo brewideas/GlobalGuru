@@ -66,7 +66,14 @@ public class NoticeBoardDataAdapter extends RecyclerView.Adapter<NoticeBoardData
 
         final int pos = position;
 
-        viewHolder.tvClassName.setText(stList.get(position).getClassName());
+        String className = stList.get(position).getClassName();
+        String classSection = stList.get(position).getClassSection();
+
+        if(classSection != null){
+            className += classSection;
+        }
+
+        viewHolder.tvClassName.setText(className);
 
         viewHolder.chkSelected.setChecked(stList.get(position).isSelected());
 

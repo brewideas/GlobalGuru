@@ -20,28 +20,31 @@ import java.util.Map;
 
 public abstract class CommonRequest {
     /*------------------------- Constant Fields Definition ----------------------------*/
-    private static final String DOMAIN = "http://ec2-35-154-121-61.ap-south-1.compute.amazonaws.com:8080/";
-    private static final String LOGIN_REQUEST_URL = "http://sclerp:gurukul@ec2-35-154-121-61.ap-south-1.compute.amazonaws.com:8080/" +
+    private static final String DOMAIN = "http://52.66.104.137:8080/";
+    private static final String LOGIN_REQUEST_URL = "http://sclerp:gurukul@52.66.104.137:8080/" +
                                                     "user-auth-service/oauth/token?grant_type=password";
     private static final String CLASS_LIST_URL = DOMAIN + "school-data-service/api/school/class/room/search?";
     private static final String CLASS_DETAIL_URL = DOMAIN + "school-data-service/api/school/class/room/search/";
     private static final String SIGN_UP_REQUEST_URL = DOMAIN + "school-data-service/api/school/signup/enduser";
-    private static final String GET_RESULT_URL = DOMAIN + "exam-service/api/school/exam/result/search?";
-    private static final String SUBMIT_MARKSHEET_URL = DOMAIN + "exam-service/api/school/exam/result";
+    private static final String GET_RESULT_URL = DOMAIN + "school-module-service/api/school/exam/result/search?";
+    private static final String SUBMIT_MARKSHEET_URL = DOMAIN + "school-module-service/api/school/exam/result";
     private static final String GET_STUDENT_DETAIL_URL = DOMAIN + "school-data-service/api/school/profile/student/search/detail/regNo?";
     private static final String GET_TEACHER_DETAIL_URL = DOMAIN + "school-data-service/school/profile/teacher/search?";
     private static final String GET_STUDENT_LIST_URL = DOMAIN + "school-data-service/api/school/profile/student/search/summary?";
     private static final String GET_SUBJECT_LIST_URL = DOMAIN + "Subject list"; //TODO: Get proper URL
-    private static final String CREATE_NOTIFICATION_URL = DOMAIN + "notification-service" + "/api/notification/data";
-    private static final String NOTIFICATION_STAT_URL = DOMAIN + "notification-service" + "/api/notification/result/detail?id=";
-    private static final String PULL_NOTIFICATION_URL = DOMAIN + "notification-service" + "/api/notification/data/search/pull?";
-    private static final String REPLY_NOTIFICATION_URL = DOMAIN + "notification-service" + "/api/notification/do/response";
-    private static final String NOTIFICATION_SUMMARY_URL = DOMAIN + "notification-service" + "/api/notification/result/summary?id=";
+    private static final String CREATE_NOTIFICATION_URL = DOMAIN + "school-data-service" + "/api/notification/data";
+    private static final String NOTIFICATION_STAT_URL = DOMAIN + "school-data-service" + "/api/notification/result/detail?id=";
+    private static final String PULL_NOTIFICATION_URL = DOMAIN + "school-data-service" + "/api/notification/data/search/pull?";
+    private static final String REPLY_NOTIFICATION_URL = DOMAIN + "school-data-service" + "/api/notification/do/response";
+    private static final String NOTIFICATION_SUMMARY_URL = DOMAIN + "school-data-service" + "/api/notification/result/summary?id=";
 
     private static final String GET_USER_DETAIL_URL = DOMAIN + "school-data-service/api/school/search/detail/user";
     private static final String GET_USERS_DETAIL_BY_ID_URL = DOMAIN + "school-data-service/api/school/search/summary/users?";
     private static final String FORGET_PASSWORD_URL = DOMAIN + "school-data-service/api/school/password/forgot/";
     private static final String CHANGE_PASSWORD_URL = DOMAIN + "school-data-service/api/school/password/change/";
+
+
+    private static final String GET_APPLICATION_VERSION_URL = DOMAIN + "school-data-service/api/apps/android/version?org=1";
 
     public enum RequestType  {
         COMMON_REQUEST_LOGIN,
@@ -70,7 +73,7 @@ public abstract class CommonRequest {
 
         COMMON_REQUEST_GET_PROFILE, COMMON_REQUEST_GET_USER_PROFILE_LIST, COMMON_REQUEST_GET_AD,
         COMMON_REQUEST_CHANGE_PASSWORD, COMMON_REQUEST_GET_USERS_DETAIL_BY_ID,
-        COMMON_REQUEST_GET_NOTIFICATION_SUMMARY, COMMON_REQUEST_END // WARNING: Add all request types above this line only
+        COMMON_REQUEST_GET_NOTIFICATION_SUMMARY,COMMON_REQUEST_GET_APP_VERSION, COMMON_REQUEST_END // WARNING: Add all request types above this line only
     }
 
     public enum ResponseCode  {
@@ -190,6 +193,9 @@ public abstract class CommonRequest {
                 break;
             case COMMON_REQUEST_GET_NOTIFICATION_SUMMARY:
                 url = NOTIFICATION_SUMMARY_URL;
+                break;
+            case COMMON_REQUEST_GET_APP_VERSION:
+                url = GET_APPLICATION_VERSION_URL;
                 break;
             default:
                 url = null;

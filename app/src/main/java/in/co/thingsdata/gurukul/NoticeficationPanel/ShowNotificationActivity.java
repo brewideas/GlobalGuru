@@ -56,11 +56,11 @@ public class ShowNotificationActivity extends AppCompatActivity
         implements  GetNotificationStatsRequest.GetNotificationStatsCallback, ReplyNotificationRequest.ReplyNotificationCallback{
     Studentnotificationmodel notificationdata;
     ArrayList<Studentnotificationmodel> notifcationlist = new ArrayList<>();
-    private String Data_URL = "http://ec2-35-154-121-61.ap-south-1.compute.amazonaws.com:8080" +
-            "/notification-service/api/notification/data/search/pull?";
+    private String Data_URL = "http://52.66.104.137:8080" +
+            "/school-data-service/api/notification/data/search/pull?";
 
-    private String Data_URL_Principal = "http://ec2-35-154-121-61.ap-south-1.compute.amazonaws.com:8080" +
-            "/notification-service/api/notification/data/search?";
+    private String Data_URL_Principal = "http://52.66.104.137:8080" +
+            "/school-data-service/api/notification/data/search?";
     ListView list;
     TextView userName;
     @Override

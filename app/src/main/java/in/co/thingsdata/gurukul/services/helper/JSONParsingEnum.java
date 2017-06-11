@@ -23,7 +23,7 @@ public class JSONParsingEnum {
 
     public static final String JSON_FIELD_CLASS_ID = "class";
     public static final String JSON_FIELD_CLASS_CODE = "classCode";
-    public static final String JSON_FIELD_CLASS_NAME = "className";
+    public static final String JSON_FIELD_CLASS_NAME = "classCode";
     public static final String JSON_FIELD_CLASS_TEACHER_ID = "classTeacherId";
     public static final String JSON_FIELD_CLASS_TEACHER_NAME = "classTeacherName";
 
@@ -80,4 +80,9 @@ public class JSONParsingEnum {
 
     public static final String JSON_FIELD_SIGN_UP_USER_TYPE = "signupAs";
     public static final String JSON_FIELD_SIGN_UP_REF_CODE = "refCode";
+
+    public static final String JSON_FIELD_MAJOR_VERSION = "major";
+    public static final String JSON_FIELD_MINOR_VERSION = "minor";
+    public static final String JSON_FIELD_VERSION_MESSAGE = "message";
+    public static final String JSON_FIELD_DOWNLOAD_URL = "downloadUrl";
 }

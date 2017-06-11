@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ScrollView;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -24,10 +25,27 @@ public class Dashboard extends AppCompatActivity {
          mAdView = (AdView)findViewById(R.id.adViewBannerDAshBoard);
     }
 
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
+
+        ScrollView rlayout = (ScrollView) findViewById(R.id.screenlayout);
+        rlayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+
+            }
+
+        });
+
+
         initRes();
 
         AdRequest adRequest = new   AdRequest.Builder().build();
@@ -80,8 +98,7 @@ public class Dashboard extends AppCompatActivity {
             Intent launchFeature = new Intent(this, FeesProfile.class);
             startActivity(launchFeature);
         }
-
-
     }
+
 }
 
