@@ -8,9 +8,26 @@ import in.co.thingsdata.gurukul.ui.dataUi.DataOfUi;
 public class FeesListModel extends DataOfUi {
 
     String name;
-    String rollNumber;
+    int rollNumber;
     String lastPaid;
     String balance;
+
+
+    private static String classOfStudent ,typeOfExam,regId;
+    public FeesListModel(String argname ,int rolnum ,String argregId ){
+
+        name = argname;
+        regId = argregId;
+        rollNumber = rolnum;
+
+    }
+
+
+
+    public String getRegId() {
+        return regId;
+    }
+
 
 
     public String getName() {
@@ -20,10 +37,10 @@ public class FeesListModel extends DataOfUi {
         this.name = data;
     }
 
-    public String getRollNumber() {
+    public int getRollNumber() {
         return rollNumber;
     }
-    public void setRollNumber(String data) {
+    public void setRollNumber(int data) {
         this.rollNumber = data;
     }
 
@@ -41,9 +58,15 @@ public class FeesListModel extends DataOfUi {
         this.balance = data;
     }
 
+//    public static  void setSelectedClassRoomId(String data){
+  //      mclassRoomId = data;
+   // }
 
     @Override
     public String getFilterableObject(int screenName) {
-        return null;
+
+        String retVal = name;
+
+        return retVal;
     }
 }

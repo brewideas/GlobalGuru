@@ -1,5 +1,6 @@
 package in.co.thingsdata.gurukul.ui.Fees;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -12,37 +13,34 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import in.co.thingsdata.gurukul.Models.FeesListModel;
 import in.co.thingsdata.gurukul.R;
+import in.co.thingsdata.gurukul.data.GetPendingFeesStudentListData;
+import in.co.thingsdata.gurukul.data.GetStudentListInClassData;
 import in.co.thingsdata.gurukul.data.common.ClassData;
 import in.co.thingsdata.gurukul.data.common.CommonDetails;
+import in.co.thingsdata.gurukul.data.common.Student;
+import in.co.thingsdata.gurukul.data.common.UserData;
+import in.co.thingsdata.gurukul.services.helper.CommonRequest;
+import in.co.thingsdata.gurukul.services.request.GetPendingFeesStudentListReq;
+import in.co.thingsdata.gurukul.services.request.GetStudentListInClassReq;
 import in.co.thingsdata.gurukul.ui.dataUi.CommonAdapter;
-import in.co.thingsdata.gurukul.ui.dataUi.DataOfUi;
-import in.co.thingsdata.gurukul.ui.dataUi.ReportCardStaticData;
 
 
+public class FeesDetails extends AppCompatActivity implements GetStudentListInClassReq.GetStudentListInClassCallback ,
+        GetPendingFeesStudentListReq.GetPendingFeesStudentListCallback{
 
-public class FeesDetails extends AppCompatActivity {
+    Spinner classSpinner, sectionSpinner ,monthSpinner,yearSpinner;
 
-    Spinner classSpinner , rollNumerSpinner;
-    EditText nameEV , rolNumEV;
     private RecyclerView mRecyclerView = null;
     private CommonAdapter mAdapter = null;
 
-    Button findButton ,upLoadButton;
+    Button findButton, upLoadButton;
     AutoCompleteTextView searchList;
 
-    /*
-    * dataList : This list is used to add data in adapter
-    * Fill this list with data that is required to be passed in constructor of DataUi class
-    * */
-    public static List<DataOfUi> dataList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,31 +54,25 @@ public class FeesDetails extends AppCompatActivity {
         initAutoTextView();
 
 
-        mAdapter = new CommonAdapter(dataList, CommonAdapter.FEES_DETAILS
+        mAdapter = new CommonAdapter(FeesDetailsStaticData.dataList, CommonAdapter.FEES_DETAILS
                 , new CommonAdapter.OnItemClickListener() {
 
             @Override
             public void onItemClick(View view, int position) {
 
                 try {
-
-//                    Intent start;
-//                    if (FeesDetailsStaticData.clickedButton == FeesDetailsStaticData.buttonType.viewBtn) {
-//                        start = new Intent(FeesDetails.this, .class);
-//                    } else {
-//                        start = new Intent(FeesDetails.this, .class);
-//                    }
-//                    start.putExtra(getResources().getString(R.string.intent_extra_posInList), position);
-//
-//                    String regId = FeesDetailsStaticData.mStudentList.get(position).getRegistrationId();
-//                    FeesDetailsStaticData.setRegistrationId(regId);
-//
-//                    int rolNumber = FeesDetailsStaticData.mStudentList.get(position).getRollNumber();
-//                    FeesDetailsStaticData.setRollNumber(rolNumber);
-//                    //start.putExtra(getResources().getString(R.string.intent_extra_rolnum),ReportCardStaticData.mStudentList.);
-//
-//                    startActivity(start);
-                }catch(Exception e){
+                    Intent start;
+                    if (FeesDetailsStaticData.clickedButton == FeesDetailsStaticData.buttonType.viewBtn) {
+                        start = new Intent(FeesDetails.this, FeesProfile.class);
+                    } else if(FeesDetailsStaticData.clickedButton == FeesDetailsStaticData.buttonType.pendingBtn){
+                        start = new Intent(FeesDetails.this, FeesProfile.class);
+                    }else{
+                        start = new Intent(FeesDetails.this, FeesProfile.class);
+                    }
+                    start.putExtra(getResources().getString(R.string.intent_extra_Fees_studentposInList), position);
+                    //start.putExtra(getResources().getString(R.string.intent_extra_rolnum),ReportCardStaticData.mStudentList.);
+                    startActivity(start);
+                } catch (Exception e) {
                     Toast.makeText(FeesDetails.this, "Error : Please restart Application", Toast.LENGTH_LONG).show();
                 }
 
@@ -96,21 +88,55 @@ public class FeesDetails extends AppCompatActivity {
     }
 
 
-    void initRes(){
-        mRecyclerView = (RecyclerView)findViewById(R.id.feesRecycler);
-        searchList = (AutoCompleteTextView)findViewById(R.id.searchList);
-        findButton = (Button)findViewById(R.id.findButton);
-        upLoadButton = (Button)findViewById(R.id.uploadButton);
+    void initRes() {
+        mRecyclerView = (RecyclerView) findViewById(R.id.feesRecycler);
+        searchList = (AutoCompleteTextView) findViewById(R.id.searchList);
+        findButton = (Button) findViewById(R.id.findButton);
+        upLoadButton = (Button) findViewById(R.id.uploadButton);
 
-        classSpinner =  (Spinner )findViewById(R.id.spinner_class);
-        rollNumerSpinner =  (Spinner )findViewById(R.id.spinner_section);
+        classSpinner = (Spinner) findViewById(R.id.spinner_class);
+        sectionSpinner = (Spinner) findViewById(R.id.spinner_section);
+        yearSpinner = (Spinner) findViewById(R.id.spinner_year);
+        monthSpinner = (Spinner) findViewById(R.id.spinner_month);
 
-        nameEV = (EditText)findViewById(R.id.nameEV);
-        rolNumEV = (EditText)findViewById(R.id.rollnumberEV);
+        ArrayAdapter<String> spinnerAdapterYear = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, android.R.id.text1);
+        spinnerAdapterYear.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        yearSpinner.setAdapter(spinnerAdapterYear);
+
+        spinnerAdapterYear.add("2016-17");
+        spinnerAdapterYear.add("2017-18");
+        spinnerAdapterYear.add("2018-19");
+        spinnerAdapterYear.add("2019-20");
+        spinnerAdapterYear.add("2020-21");
+        spinnerAdapterYear.add("2021-22");
+        spinnerAdapterYear.add("2022-23");
+        spinnerAdapterYear.add("2023-24");
+
+        spinnerAdapterYear.notifyDataSetChanged();
+
+        ArrayAdapter<String> spinnerAdapterMonth = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, android.R.id.text1);
+        spinnerAdapterYear.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        monthSpinner.setAdapter(spinnerAdapterMonth);
+
+        spinnerAdapterMonth.add("All");
+        spinnerAdapterMonth.add("1");
+        spinnerAdapterMonth.add("2");
+        spinnerAdapterMonth.add("3");
+        spinnerAdapterMonth.add("4");
+        spinnerAdapterMonth.add("5");
+        spinnerAdapterMonth.add("6");
+        spinnerAdapterMonth.add("7");
+        spinnerAdapterMonth.add("8");
+        spinnerAdapterMonth.add("9");
+        spinnerAdapterMonth.add("10");
+        spinnerAdapterMonth.add("11");
+        spinnerAdapterMonth.add("12");
+
+        spinnerAdapterMonth.notifyDataSetChanged();
 
     }
 
-    void fillDropDownData(){
+    void fillDropDownData() {
 
         ArrayAdapter<String> spinnerAdapterClass = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, android.R.id.text1);
         spinnerAdapterClass.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -118,19 +144,19 @@ public class FeesDetails extends AppCompatActivity {
 
         ArrayAdapter<String> spinnerAdapterSection = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, android.R.id.text1);
         spinnerAdapterSection.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        rollNumerSpinner.setAdapter(spinnerAdapterSection);
+        sectionSpinner.setAdapter(spinnerAdapterSection);
 
-        ReportCardStaticData.mClassesInSchoolObj = CommonDetails.getAllClassesInSchool();
+        FeesDetailsStaticData.mClassesInSchoolObj = CommonDetails.getAllClassesInSchool();
 
         try {
-            for (ClassData obj : ReportCardStaticData.mClassesInSchoolObj) {
+            for (ClassData obj : FeesDetailsStaticData.mClassesInSchoolObj) {
                 String classsName = obj.getName();
                 String section = obj.getSection();
 
                 spinnerAdapterClass.add(classsName);
                 spinnerAdapterSection.add(section);
             }
-        }catch(NullPointerException e){
+        } catch (NullPointerException e) {
 
         }
 
@@ -138,7 +164,8 @@ public class FeesDetails extends AppCompatActivity {
         spinnerAdapterSection.notifyDataSetChanged();
 
     }
-    void initAutoTextView(){
+
+    void initAutoTextView() {
 
         try {
             searchList.addTextChangedListener(new TextWatcher() {
@@ -161,19 +188,123 @@ public class FeesDetails extends AppCompatActivity {
                 }
 
             });
-        }catch(Exception e){
+        } catch (Exception e) {
             Log.v("TAG", "Error of searchList autotextview");
         }
 
     }
 
+    void reqStudentList(){
 
-    public void executePendingQuery(View view) {
 
+        String token = UserData.getAccessToken();
+        Integer indexValue = classSpinner.getSelectedItemPosition();
+
+        String classN = FeesDetailsStaticData.mClassesInSchoolObj.get(indexValue).getClassCode();//UserData.getClassRoomId();//todo: uncomment once server data is right //ReportCardStaticData.getSelectedClass();
+        FeesDetailsStaticData.setSelectedStudentClassRoomId(classN);
+
+        indexValue = sectionSpinner.getSelectedItemPosition();
+
+        String sectionStr = FeesDetailsStaticData.mClassesInSchoolObj.get(indexValue).getSection();
+        FeesDetailsStaticData.setSelectedStudentSection(sectionStr);
+
+        GetStudentListInClassData data = new GetStudentListInClassData(token, classN, sectionStr);
+        GetStudentListInClassReq req = new GetStudentListInClassReq(this, data, this);
+
+        req.executeRequest();
+    }
+
+    void reqPendingFeesList(){
+
+        String token = UserData.getAccessToken();
+        Integer indexValue = classSpinner.getSelectedItemPosition();
+
+        String classN = FeesDetailsStaticData.mClassesInSchoolObj.get(indexValue).getClassCode();//UserData.getClassRoomId();//todo: uncomment once server data is right //ReportCardStaticData.getSelectedClass();
+        FeesDetailsStaticData.setSelectedStudentClassRoomId(classN);
+
+        indexValue = sectionSpinner.getSelectedItemPosition();
+
+        String sectionStr = FeesDetailsStaticData.mClassesInSchoolObj.get(indexValue).getSection();
+        FeesDetailsStaticData.setSelectedStudentSection(sectionStr);
+
+        indexValue = yearSpinner.getSelectedItemPosition();
+        String year = yearSpinner.getItemAtPosition(indexValue).toString();
+
+        int iend = year.indexOf("-");
+        String strYearSel = year.substring(0, iend);
+        int yearSel = Integer.parseInt(strYearSel);
+        FeesDetailsStaticData.setYearSearched(yearSel);
+
+        int month = indexValue = monthSpinner.getSelectedItemPosition();
+        FeesDetailsStaticData.setMonthSearched(indexValue);
+
+        GetPendingFeesStudentListData data = new GetPendingFeesStudentListData(token,classN,sectionStr,yearSel,month);
+        GetPendingFeesStudentListReq req= new GetPendingFeesStudentListReq(FeesDetails.this,data,FeesDetails.this);
+
+        req.executeRequest();
 
 
     }
 
+    public void executePendingQuery(View view) {
+
+        FeesDetailsStaticData.clickedButton = FeesDetailsStaticData.buttonType.pendingBtn;
+        reqPendingFeesList();
+    }
+
     public void executeViewFeesQuery(View view) {
+        FeesDetailsStaticData.clickedButton = FeesDetailsStaticData.buttonType.viewBtn;
+
+        reqStudentList();
+
+
+    }
+
+    @Override
+    public void onGetStudentListResponse(CommonRequest.ResponseCode res, GetStudentListInClassData data) {
+
+        FeesListModel dataStudentListForAdapter = null;
+
+        switch (res) {
+
+            case COMMON_RES_SUCCESS:
+
+                if (FeesDetailsStaticData.mFeesStudentList != null) {
+                    FeesDetailsStaticData.mFeesStudentList.clear();
+                }
+
+                FeesDetailsStaticData.mFeesStudentList = data.getStudentListInClass();
+
+                for (Student obj : FeesDetailsStaticData.mFeesStudentList) {
+                    String name = obj.getName();
+                    int rollNumber = obj.getRollNumber();
+                    String regId = obj.getRegistrationId();
+
+                    dataStudentListForAdapter = new FeesListModel(name,rollNumber,regId);
+                    FeesDetailsStaticData.dataList.add(dataStudentListForAdapter);
+                }
+
+                mAdapter.notifyDataSetChanged();
+                Toast.makeText(FeesDetails.this, "Select Student from List", Toast.LENGTH_LONG).show();
+
+
+                break;
+            default:
+                Toast.makeText(FeesDetails.this, "TRy AGain Error this time !", Toast.LENGTH_LONG).show();
+                break;
+        }
+    }
+
+    @Override
+    public void GetPendingFeesStudentListCallback(CommonRequest.ResponseCode res, GetPendingFeesStudentListData data) {
+
+        switch (res) {
+            case COMMON_RES_SUCCESS:
+                Toast.makeText(FeesDetails.this, "These students have not paid fees as yet", Toast.LENGTH_LONG).show();
+                break;
+            default:
+                Toast.makeText(FeesDetails.this, "Try Again Error this time !", Toast.LENGTH_LONG).show();
+                break;
+        }
     }
 }

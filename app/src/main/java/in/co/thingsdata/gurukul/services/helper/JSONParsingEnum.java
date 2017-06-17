@@ -44,6 +44,7 @@ public class JSONParsingEnum {
     public static final String JSON_FIELD_LOGIN_ID = "loginId";
     public static final String JSON_FIELD_PASSWORD = "password";
     public static final String JSON_FIELD_CLASS_ROOM_ID = "classRoomId";
+    public static final String JSON_FIELD_CLASS = "class";
     public static final String JSON_FIELD_SCHOOL = "school";
     public static final String JSON_FIELD_SCHOOL_CODE = "schoolCode";
     public static final String JSON_FIELD_FIRST_NAME = "firstName";
@@ -81,8 +82,28 @@ public class JSONParsingEnum {
     public static final String JSON_FIELD_SIGN_UP_USER_TYPE = "signupAs";
     public static final String JSON_FIELD_SIGN_UP_REF_CODE = "refCode";
 
+    //For Fees Profile of single student
+    public static final String JSON_FIELD_FEES_STATUS = "status";
+    public static final String JSON_FIELD_FEES_MONTH = "month";
+
+    public static final String JSON_FIELD_FEES_LAST_PAID = "lastpaidFees";
+    public static final String JSON_FIELD_FEES_REMAINING = "remainingFees";
+    public static final String JSON_FIELD_FEES_LAST_PAID_DATE = "lastPaidDate";
+
+
+    public static final String JSON_FIELD_FEES_REG_ID = "reg";
+    public static final String JSON_FIELD_FEES_YEAR = "year";
+
+    public static final String JSON_FIELD_FEES_RECEIPT_NUM = "receiptNo";
+    public static final String JSON_FIELD_FEES_PAID_AMOUNT = "paidFees";
+    public static final String JSON_FIELD_FEES_REMAINING_AMOUNT = "remainingFees";
+    public static final String JSON_FIELD_FEES_SUBMITTED_BY = "submittedBy";
+
+    //For application version
     public static final String JSON_FIELD_MAJOR_VERSION = "major";
     public static final String JSON_FIELD_MINOR_VERSION = "minor";
     public static final String JSON_FIELD_VERSION_MESSAGE = "message";
     public static final String JSON_FIELD_DOWNLOAD_URL = "downloadUrl";
+
+
 }

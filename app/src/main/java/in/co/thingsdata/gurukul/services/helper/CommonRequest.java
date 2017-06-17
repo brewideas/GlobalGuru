@@ -44,7 +44,17 @@ public abstract class CommonRequest {
     private static final String CHANGE_PASSWORD_URL = DOMAIN + "school-data-service/api/school/password/change/";
 
 
-    private static final String GET_APPLICATION_VERSION_URL = DOMAIN + "school-data-service/api/apps/android/version?org=1";
+    private static final String GET_APPLICATION_VERSION_URL = DOMAIN +
+                                                "school-data-service/api/apps/android/version?org=1";
+    private static final String GET_APPLICATION_GET_FEES_PROFILE = DOMAIN +
+                                     "school-module-service/api/finance/flat/fees/search/by/regNo?reg=";
+    private static final String PUSH_APPLICATION_SUBMIT_FEES = DOMAIN +
+                                                      "school-module-service/api/finance/flat/fees";
+    private static final String GET_APPLICATION_PENDING_FEES_STUDENT_LIST =  DOMAIN +
+                             "school-module-service/api/finance/flat/fees/search/fee/pending?school=";
+    //2&amp;year=2016&amp;class=12 //for year wise
+    //2&amp;year=2016&amp;month=4&amp;class=12//for month wise
+
 
     public enum RequestType  {
         COMMON_REQUEST_LOGIN,
@@ -73,7 +83,9 @@ public abstract class CommonRequest {
 
         COMMON_REQUEST_GET_PROFILE, COMMON_REQUEST_GET_USER_PROFILE_LIST, COMMON_REQUEST_GET_AD,
         COMMON_REQUEST_CHANGE_PASSWORD, COMMON_REQUEST_GET_USERS_DETAIL_BY_ID,
-        COMMON_REQUEST_GET_NOTIFICATION_SUMMARY,COMMON_REQUEST_GET_APP_VERSION, COMMON_REQUEST_END // WARNING: Add all request types above this line only
+        COMMON_REQUEST_GET_NOTIFICATION_SUMMARY,COMMON_REQUEST_GET_APP_VERSION,
+        COMMON_REQUEST_GET_FEES_PROFILE,COMMON_REQUEST_PUSH_SUBMIT_FEES,COMMON_REQUEST_GET_PENDING_FEES_STUDENT_LIST,
+        COMMON_REQUEST_END // WARNING: Add all request types above this line only
     }
 
     public enum ResponseCode  {
@@ -196,6 +208,15 @@ public abstract class CommonRequest {
                 break;
             case COMMON_REQUEST_GET_APP_VERSION:
                 url = GET_APPLICATION_VERSION_URL;
+                break;
+            case COMMON_REQUEST_GET_FEES_PROFILE:
+                url= GET_APPLICATION_GET_FEES_PROFILE;
+                break;
+            case COMMON_REQUEST_PUSH_SUBMIT_FEES:
+                url= PUSH_APPLICATION_SUBMIT_FEES;
+                break;
+            case COMMON_REQUEST_GET_PENDING_FEES_STUDENT_LIST:
+                url= GET_APPLICATION_PENDING_FEES_STUDENT_LIST;
                 break;
             default:
                 url = null;

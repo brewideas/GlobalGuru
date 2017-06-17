@@ -204,6 +204,8 @@ public class MainActivity extends AppCompatActivity implements GetClassListReque
             });
 
             alert.show();
+        }else{
+            launchApplication();
         }
     }
 

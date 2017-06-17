@@ -9,27 +9,19 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
-import in.co.thingsdata.gurukul.data.AttendanceData;
 import in.co.thingsdata.gurukul.data.MarkSheetData;
 import in.co.thingsdata.gurukul.data.SubjectWiseMarks;
 import in.co.thingsdata.gurukul.data.common.UserData;
 import in.co.thingsdata.gurukul.services.helper.CommonRequest;
 
 import static in.co.thingsdata.gurukul.services.helper.CommonRequest.RequestType.COMMON_REQUEST_SUBMIT_RESULT;
-import static in.co.thingsdata.gurukul.services.helper.JSONParsingEnum.JSON_FIELD_ACCESS_TOKEN;
-import static in.co.thingsdata.gurukul.services.helper.JSONParsingEnum.JSON_FIELD_ATTENDANCE_STATUS;
 import static in.co.thingsdata.gurukul.services.helper.JSONParsingEnum.JSON_FIELD_CLASS_ROOM_ID;
-import static in.co.thingsdata.gurukul.services.helper.JSONParsingEnum.JSON_FIELD_DAY;
 import static in.co.thingsdata.gurukul.services.helper.JSONParsingEnum.JSON_FIELD_EXAM_TYPE;
 import static in.co.thingsdata.gurukul.services.helper.JSONParsingEnum.JSON_FIELD_MARKS;
-import static in.co.thingsdata.gurukul.services.helper.JSONParsingEnum.JSON_FIELD_MONTH;
 import static in.co.thingsdata.gurukul.services.helper.JSONParsingEnum.JSON_FIELD_REG_NUMBER;
 import static in.co.thingsdata.gurukul.services.helper.JSONParsingEnum.JSON_FIELD_RESULT_MARKS_OBTAINED;
 import static in.co.thingsdata.gurukul.services.helper.JSONParsingEnum.JSON_FIELD_RESULT_TOTAL_MARKS;
-import static in.co.thingsdata.gurukul.services.helper.JSONParsingEnum.JSON_FIELD_ROLL_NUMBER;
 import static in.co.thingsdata.gurukul.services.helper.JSONParsingEnum.JSON_FIELD_SCHOOL_CODE;
 import static in.co.thingsdata.gurukul.services.helper.JSONParsingEnum.JSON_FIELD_SUBJECT_ID;
 import static in.co.thingsdata.gurukul.services.helper.JSONParsingEnum.JSON_FIELD_SUBJECT_NAME;
@@ -55,7 +47,7 @@ public class SubmitMarkSheetReq extends CommonRequest{
         try {
             param.put(JSON_FIELD_YEAR, data.getExamYear());
             param.put(JSON_FIELD_EXAM_TYPE, data.getExamType());
-            param.put(JSON_FIELD_REG_NUMBER, "2-ST-8800722771" /*data.getRegistrationId()*/);
+            param.put(JSON_FIELD_REG_NUMBER, data.getRegistrationId());
             param.put(JSON_FIELD_CLASS_ROOM_ID, data.getClassRoomId());
             param.put(JSON_FIELD_SCHOOL_CODE, Integer.toString(UserData.getSchoolCode()));
         } catch (JSONException e) {
