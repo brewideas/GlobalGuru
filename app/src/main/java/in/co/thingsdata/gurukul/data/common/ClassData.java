@@ -22,7 +22,7 @@ public class ClassData {
 
     public String getClassRoomId(){return mClassRoomId;}
     public String getClassTeacherId(){return mClassTeacherId;}
-    public String getName(){return mName;}
+    public String getName(){return (mName+mSection);}
     public String getClassCode(){return mClassCode;}
     public String getClassTeacherName(){return mClassTeacherName;}
     public String getSection(){return mSection;}
