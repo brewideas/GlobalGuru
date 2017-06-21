@@ -9,9 +9,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.google.android.gms.ads.InterstitialAd;
-
 import java.util.ArrayList;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
@@ -31,8 +28,6 @@ public class MainActivity extends AppCompatActivity implements GetClassListReque
     public static final String OPEN_GALLERY_FOR = "Open_gallery _for_which_act";
     public static final String STUDENT_PROFILE_CROPED_NAME = "profileImg";
 
-
-    InterstitialAd mInterstitialAd;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -24,7 +24,7 @@ public class ForgetPasswordRequest extends CommonRequest {
     private ForgetPasswordCallback mAppCallback;
 
     public ForgetPasswordRequest(Context context, String mobile_number, ForgetPasswordCallback cb) {
-        super(context, RequestType.COMMON_REQUEST_FORGET_PASSWORD, CommonRequestMethod.COMMON_REQUEST_METHOD_GET, null);
+        super(context, RequestType.COMMON_REQUEST_FORGET_PASSWORD, CommonRequestMethod.COMMON_REQUEST_METHOD_PUT, null);
         mMobileNumber = mobile_number; mAppCallback = cb;
 
         String url = getURL();

@@ -46,8 +46,19 @@ public class CustomRequest extends Request<JSONObject> {
 
     @Override
     public byte[] getBody() throws AuthFailureError {
-        JSONObject obj = new JSONObject(params);
-        return obj.toString().getBytes();
+        if (params != null) {
+            JSONObject obj = new JSONObject(params);
+            return obj.toString().getBytes();
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    @Override
+    public String getBodyContentType() {
+        return "application/json";
     }
 
     @Override

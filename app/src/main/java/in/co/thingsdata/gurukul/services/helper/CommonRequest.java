@@ -20,7 +20,7 @@ import java.util.Map;
 
 public abstract class CommonRequest {
     /*------------------------- Constant Fields Definition ----------------------------*/
-    private static final String DOMAIN = "http://ec2-35-154-121-61.ap-south-1.compute.amazonaws.com:8080/";
+    private static final String DOMAIN = "http://52.66.104.137:8080/";
     private static final String LOGIN_REQUEST_URL = "http://sclerp:gurukul@ec2-35-154-121-61.ap-south-1.compute.amazonaws.com:8080/" +
                                                     "user-auth-service/oauth/token?grant_type=password";
     private static final String CLASS_LIST_URL = DOMAIN + "school-data-service/api/school/class/room/search?";
