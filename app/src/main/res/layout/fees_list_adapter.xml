@@ -5,7 +5,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/headerOfListFees"
     card_view:cardBackgroundColor="@color/card"
-
     android:layout_below="@+id/searchList"
     android:layout_width="match_parent"
     android:layout_height="40dp"
@@ -15,7 +14,7 @@
     >
 
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
 
@@ -30,47 +29,23 @@
             android:layout_marginLeft="4dp"
             android:id="@+id/Nametitle"
             android:textStyle="bold"
-
-            />
-
-        <TextView
-            android:layout_width="55dp"
-            android:layout_height="match_parent"
-            android:text="Roll Number"
-            android:layout_toRightOf="@+id/Nametitle"
-            android:layout_centerVertical="true"
-            android:paddingTop="2dp"
-            android:layout_marginLeft="15dp"
-            android:textStyle="bold"
-            android:id="@+id/RollNumebrTitle"
+            android:layout_weight="1"
             />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="Last Paid"
-            android:layout_toRightOf="@+id/RollNumebrTitle"
+            android:text="Registration Id"
+
             android:layout_centerVertical="true"
             android:layout_marginLeft="45dp"
             android:paddingTop="10dp"
             android:textStyle="bold"
-            android:id="@+id/lastFeesPaid"
+            android:id="@+id/regID"
+            android:layout_weight="1"
             />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="Balance"
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="15dp"
-            android:paddingTop="10dp"
-            android:textStyle="bold"
-            android:id="@+id/balanceTitle"
-            />
-
-
-    </RelativeLayout>
+  </LinearLayout>
 </android.support.v7.widget.CardView>
 
 

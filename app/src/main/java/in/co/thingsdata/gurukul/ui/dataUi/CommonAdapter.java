@@ -152,9 +152,8 @@ int row_index = -1;
         }else if(mScrnNumber == FEES_DETAILS){
             FeesListModel data = (FeesListModel)mListOfData.get(position);
             holder.feesName.setText(data.getName());
-            holder.feesRollNum.setText(data.getRollNumber());
-            holder.feesLastPaid.setText(data.getLastFeesPaid());
-            holder.feesBalance.setText(data.getBalanceFees());
+            holder.feesStudentRegId.setText(data.getRegId());
+
 
         }else if(mScrnNumber == FEES_PENDING){
             FeesPendingModel data = (FeesPendingModel)mListOfData.get(position);
@@ -233,7 +232,7 @@ int row_index = -1;
         private TextView sg_title;
         private ImageView sg_img;
 
-        public TextView feesName,feesRollNum,feesLastPaid,feesBalance;
+        public TextView feesName,feesStudentRegId;
 
         public TextView feesPendingName,feesPendingRollNum,feesPendingClass;
 
@@ -271,9 +270,8 @@ int row_index = -1;
                 sg_img = (ImageView) view.findViewById(R.id.img);
             }else if(mScrnNumber == FEES_DETAILS){
                 feesName = (TextView) view.findViewById(R.id.Nametitle);
-                feesRollNum = (TextView) view.findViewById(R.id.RollNumebrTitle);
-                feesLastPaid = (TextView) view.findViewById(R.id.lastFeesPaid);
-                feesBalance = (TextView) view.findViewById(R.id.balanceTitle);
+                feesStudentRegId = (TextView) view.findViewById(R.id.regID);
+
             }else if(mScrnNumber == FEES_PENDING) {
                 feesPendingName = (TextView) view.findViewById(R.id.Nametitle);
                 feesPendingRollNum = (TextView) view.findViewById(R.id.RollNumebrTitle);

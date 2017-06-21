@@ -14,6 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/card"
+        android:id="@+id/topView"
         android:fillViewport="true"
         >
 
@@ -109,10 +110,10 @@
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/textView1"
+
                     android:textStyle="bold"
                     android:textSize="20sp"
-                    android:text="Roll Number"
+                    android:text="Previous remaining Amount"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="@color/colorAccent"
                     android:layout_marginRight="14dp"
@@ -121,12 +122,14 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/profileRolNumTV"
+                    android:id="@+id/previousRemainingAmountTV"
                     android:layout_weight="1"
                     android:textSize="20sp"
                     android:layout_marginLeft="15dp"
                     android:text="88"
                     />
+
+
 
             </LinearLayout>
 
@@ -181,7 +184,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/textViewDate"
                     android:textSize="20sp"
-                    android:text="Last Paid Date"
+                    android:text="Last Paid Month"
                     android:textStyle="bold"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="@color/colorAccent"
@@ -272,7 +275,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
-                        android:textColor="@color/card"
+
                         android:hint="Amount Paid"
 
                         android:textColorHint = "@color/cardHint"
@@ -289,7 +292,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
-                        android:textColor="@color/card"
+
                         android:hint="Balance remaining"
 
                         android:textColorHint = "@color/cardHint"
@@ -298,27 +301,21 @@
 
             </LinearLayout>
 
-
-
-
-
-
-
-
+            <Button
+                android:id="@+id/btn_ok"
+                android:layout_below="@+id/rowSeven"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_margin="10dp"
+                android:gravity="center"
+                android:onClick="feesProfile"
+                android:background="@drawable/loginbutton"
+                android:textColor="@color/card"
+                android:text="Ok"
+                android:textSize="16dp" />
 
         </RelativeLayout>
     </ScrollView>
 
-    <Button
-        android:id="@+id/btn_ok"
-        android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:layout_margin="10dp"
-        android:gravity="center"
-        android:onClick="feesProfile"
-        android:layout_alignParentBottom="true"
-        android:background="@drawable/loginbutton"
-        android:textColor="@color/card"
-        android:text="Ok"
-        android:textSize="16dp" />
+
 </RelativeLayout>

@@ -30,7 +30,7 @@
         >
 
       <Button
-            android:layout_height="50dp"
+            android:layout_height="80dp"
             android:layout_width="80dp"
             android:layout_margin="10dp"
             android:id="@+id/findButton"
@@ -40,7 +40,7 @@
      />
 
         <Button
-            android:layout_height="50dp"
+            android:layout_height="80dp"
             android:layout_width="80dp"
             android:id="@+id/uploadButton"
             android:layout_marginLeft="10dp"

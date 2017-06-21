@@ -12,18 +12,16 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import in.co.thingsdata.gurukul.data.common.ClassData;
-import in.co.thingsdata.gurukul.data.common.CommonDetails;
 import in.co.thingsdata.gurukul.data.common.Subject;
 import in.co.thingsdata.gurukul.data.common.UserData;
 import in.co.thingsdata.gurukul.services.helper.CommonRequest;
+import in.co.thingsdata.gurukul.services.helper.JSONParsingEnum;
 
 import static in.co.thingsdata.gurukul.services.helper.CommonRequest.RequestType.COMMON_REQUEST_GET_CLASS_LIST;
 import static in.co.thingsdata.gurukul.services.helper.CommonRequest.ResponseCode.COMMON_RES_PROFILE_AUTHENTICATION_FAILED;
-import static in.co.thingsdata.gurukul.services.helper.JSONParsingEnum.JSON_FIELD_ACCESS_TOKEN;
 import static in.co.thingsdata.gurukul.services.helper.JSONParsingEnum.JSON_FIELD_CLASS_NAME;
 import static in.co.thingsdata.gurukul.services.helper.JSONParsingEnum.JSON_FIELD_CLASS_ROOM_ID;
 import static in.co.thingsdata.gurukul.services.helper.JSONParsingEnum.JSON_FIELD_DATA;
-import static in.co.thingsdata.gurukul.services.helper.JSONParsingEnum.JSON_FIELD_NAME;
 import static in.co.thingsdata.gurukul.services.helper.JSONParsingEnum.JSON_FIELD_SCHOOL;
 import static in.co.thingsdata.gurukul.services.helper.JSONParsingEnum.JSON_FIELD_SECTION_ID;
 import static in.co.thingsdata.gurukul.services.helper.JSONParsingEnum.JSON_FIELD_STATUS;
@@ -69,6 +67,7 @@ public class GetClassListRequest extends CommonRequest {
                     ClassData _class = new ClassData(class_unique_id,name );
                     _class.setSection(class_detail.getString(JSON_FIELD_SECTION_ID));
                     _class.setClassRoomId(class_detail.getString(JSON_FIELD_CLASS_ROOM_ID));
+                    _class.setClassCode(class_detail.getString(JSONParsingEnum.JSON_FIELD_CLASS_CODE));
                     JSONArray subjectList = class_detail.getJSONArray(JSON_FIELD_SUBJECTS);
                     for (int j=0; j<subjectList.length(); j++){
                         Subject s = new Subject(subjectList.get(j).toString(), subjectList.get(j).toString());

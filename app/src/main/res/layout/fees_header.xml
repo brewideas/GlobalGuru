@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     android:layout_height="wrap_content"
-    android:layout_below="@+id/infoCard"
     android:id="@+id/inputInfo"
     android:background="@color/colorComponentBG"
     android:layout_width="250dp"
-
     xmlns:android="http://schemas.android.com/apk/res/android">
 
 
@@ -104,7 +102,7 @@
         android:layout_below="@+id/headSpinner"
 
         >
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:id="@+id/spinerrow2"
@@ -112,27 +110,57 @@
         android:paddingTop="10dp"
         >
 
-    <EditText
+        <RelativeLayout
+            android:layout_width="118dp"
+            android:id="@+id/spin3"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="3dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+    <Spinner
      android:layout_width="118dp"
-        android:paddingTop="10dp"
-        android:textAlignment="center"
+     android:textAlignment="center"
      android:layout_height="wrap_content"
      android:background="@drawable/spinnerbg"
-     android:id="@+id/nameEV"
+     android:id="@+id/spinner_year"
      android:hint="Name\n"
      />
-        <EditText
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="7dp"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:src="@mipmap/dropdowns" />
+            </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="118dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="7dp"
+            android:layout_weight="1"
+            android:layout_toRightOf="@+id/spin3"
+            android:orientation="horizontal">
+          <Spinner
             android:layout_width="118dp"
             android:layout_marginLeft="5dp"
-            android:paddingTop="10dp"
             android:textAlignment="center"
             android:layout_height="wrap_content"
             android:background="@drawable/spinnerbg"
+            android:id="@+id/spinner_month"
 
-            android:id="@+id/rollnumberEV"
-            android:hint="RollNumber\n"
             />
 
-    </LinearLayout>
+         <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="7dp"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:src="@mipmap/dropdowns" />
+</RelativeLayout>
+    </RelativeLayout>
     </android.support.v7.widget.CardView>
 </RelativeLayout>

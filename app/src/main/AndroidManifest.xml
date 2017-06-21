@@ -31,12 +31,14 @@
             android:label="@string/reportCard" />
         <activity
             android:name=".ui.ReportCardUi.ReportCardTeacherView"
+            android:windowSoftInputMode="stateVisible|adjustResize"
             android:label="@string/reportCard" />
         <activity
             android:name=".ui.ReportCardUi.reportCardLaunch"
             android:label="@string/reportCard" />
         <activity
             android:name=".ui.ReportCardUi.ReportCardCreate"
+            android:windowSoftInputMode="stateVisible|adjustResize"
             android:label="@string/reportCard" />
         <activity
             android:name=".ui.NoticeBoard.selectClass"
@@ -53,9 +55,12 @@
             android:label="Notification" />
         <activity
             android:name=".NoticeficationPanel.CreatenotificationActivity"
+            android:windowSoftInputMode="stateVisible|adjustResize"
             android:label="New Notification" />
         <activity
             android:name=".ui.AppStart.LoginActivity"
+            android:windowSoftInputMode="stateVisible|adjustResize"
+            android:noHistory="true"
             android:label="Gurukul" />
         <activity android:name=".ui.AppStart.SignUp" />
         <activity
@@ -75,17 +80,22 @@
             android:label="Gallery" />
         <activity
             android:name=".ui.AppStart.forgotPassword"
+            android:windowSoftInputMode="stateVisible|adjustResize"
             android:label="@string/title_activity_forgot_password" />
         <activity
             android:name=".ui.Fees.FeesDetails"
             android:label="@string/title_activity_fees_details"
+
+            android:windowSoftInputMode="stateHidden|adjustResize"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.Fees.FeesProfile"
             android:label="@string/title_activity_fees_profile"
+            android:windowSoftInputMode="stateVisible|adjustResize"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.Fees.PendingFees"
+            android:windowSoftInputMode="stateVisible|adjustResize"
             android:label="@string/title_activity_pending_fees"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>

@@ -3,23 +3,59 @@ package in.co.thingsdata.gurukul.ui.AppStart;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
+import android.widget.ScrollView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 import in.co.thingsdata.gurukul.NoticeficationPanel.ShowNotificationActivity;
 import in.co.thingsdata.gurukul.R;
 import in.co.thingsdata.gurukul.data.common.CommonDetails;
 import in.co.thingsdata.gurukul.data.common.UserData;
 import in.co.thingsdata.gurukul.ui.Fees.FeesDetails;
-import in.co.thingsdata.gurukul.ui.Fees.FeesProfile;
 import in.co.thingsdata.gurukul.ui.ReportCardUi.ReportCardTeacherView;
 
 public class Dashboard extends AppCompatActivity {
+
+    private AdView mAdView;
+
+    void initRes(){
+         mAdView = (AdView)findViewById(R.id.adViewBannerDAshBoard);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
+
+        ScrollView rlayout = (ScrollView) findViewById(R.id.screenlayout);
+        rlayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+
+            }
+
+        });
+        initRes();
+
+        try{
+        AdRequest adRequest = new   AdRequest.Builder().build();
+
+        if((UserData.getUserType().equals(CommonDetails.USER_TYPE_PRINCIPAL)) ||
+                (UserData.getUserType().equals(CommonDetails.USER_TYPE_TEACHER))) {
+            mAdView.setVisibility(View.GONE);
+        }else{
+            mAdView.loadAd(adRequest);
+        }
+        }catch (NullPointerException e){
+            Log.v("Dashboard","NullPointerException addview"+e);
+        }
+
+
     }
 
     public void launchReportCard(View view) {
@@ -58,16 +94,18 @@ public class Dashboard extends AppCompatActivity {
 
     public void launchFees(View view) {
 
-        if(UserData.getUserType() == CommonDetails.USER_TYPE_PRINCIPAL) {
+        //if(UserData.getUserType() == CommonDetails.USER_TYPE_PRINCIPAL)
+        {
             Intent launchFeature = new Intent(this, FeesDetails.class);
             startActivity(launchFeature);
-        }else{
-            //Need to make request for profile
-            Intent launchFeature = new Intent(this, FeesProfile.class);
-            startActivity(launchFeature);
         }
-
-
+//        else
+//        {
+//            //Need to make request for profile
+//            Intent launchFeature = new Intent(this, FeesProfile.class);
+//            startActivity(launchFeature);
+//        }
     }
+
 }
 

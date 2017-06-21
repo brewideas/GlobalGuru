@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     android:layout_height="wrap_content"
+    android:paddingBottom="12dp"
     android:layout_below="@+id/infoCard"
     android:id="@+id/inputInfo"
-    android:background="@color/colorComponentBG"
+    android:background="@color/card"
     android:layout_width="250dp"
 
     xmlns:android="http://schemas.android.com/apk/res/android">
@@ -40,7 +41,7 @@
             <Spinner
                 android:id="@+id/spinner_class"
                 android:layout_width="110dp"
-                android:layout_height="wrap_content"
+                android:layout_height="70dp"
                 android:layout_centerVertical="true"
                 android:layout_gravity="center"
                 android:background="@drawable/spinnerbg"
@@ -74,7 +75,7 @@
                 android:background="@drawable/spinnerbg"
                 android:textColor="@color/colorAccent"
                 android:textColorHint="@color/colorAccent"
-                android:layout_height="wrap_content"
+                android:layout_height="70dp"
                 />
 
             <ImageView
@@ -124,7 +125,7 @@
             <Spinner
                 android:id="@+id/spinner_year"
                 android:layout_width="110dp"
-                android:layout_height="wrap_content"
+                android:layout_height="70dp"
                 android:layout_centerVertical="true"
                 android:layout_gravity="center"
                 android:background="@drawable/spinnerbg"
@@ -159,7 +160,7 @@
                 android:background="@drawable/spinnerbg"
                 android:textColor="@color/colorAccent"
                 android:textColorHint="@color/colorAccent"
-                android:layout_height="wrap_content"
+                android:layout_height="70dp"
                 />
 
             <ImageView
