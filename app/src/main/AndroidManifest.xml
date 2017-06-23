@@ -31,15 +31,15 @@
             android:label="@string/reportCard" />
         <activity
             android:name=".ui.ReportCardUi.ReportCardTeacherView"
-            android:windowSoftInputMode="stateVisible|adjustResize"
-            android:label="@string/reportCard" />
+            android:label="@string/reportCard"
+            android:windowSoftInputMode="stateVisible|adjustResize" />
         <activity
             android:name=".ui.ReportCardUi.reportCardLaunch"
             android:label="@string/reportCard" />
         <activity
             android:name=".ui.ReportCardUi.ReportCardCreate"
-            android:windowSoftInputMode="stateVisible|adjustResize"
-            android:label="@string/reportCard" />
+            android:label="@string/reportCard"
+            android:windowSoftInputMode="stateVisible|adjustResize" />
         <activity
             android:name=".ui.NoticeBoard.selectClass"
             android:label="@string/title_activity_select_class"
@@ -55,13 +55,13 @@
             android:label="Notification" />
         <activity
             android:name=".NoticeficationPanel.CreatenotificationActivity"
-            android:windowSoftInputMode="stateVisible|adjustResize"
-            android:label="New Notification" />
+            android:label="New Notification"
+            android:windowSoftInputMode="stateVisible|adjustResize" />
         <activity
             android:name=".ui.AppStart.LoginActivity"
-            android:windowSoftInputMode="stateVisible|adjustResize"
+            android:label="Gurukul"
             android:noHistory="true"
-            android:label="Gurukul" />
+            android:windowSoftInputMode="stateVisible|adjustResize" />
         <activity android:name=".ui.AppStart.SignUp" />
         <activity
             android:name=".NoticeficationPanel.StatsActivity"
@@ -80,24 +80,33 @@
             android:label="Gallery" />
         <activity
             android:name=".ui.AppStart.forgotPassword"
-            android:windowSoftInputMode="stateVisible|adjustResize"
-            android:label="@string/title_activity_forgot_password" />
+            android:label="@string/title_activity_forgot_password"
+            android:windowSoftInputMode="stateVisible|adjustResize" />
         <activity
             android:name=".ui.Fees.FeesDetails"
             android:label="@string/title_activity_fees_details"
-
-            android:windowSoftInputMode="stateHidden|adjustResize"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
             android:name=".ui.Fees.FeesProfile"
             android:label="@string/title_activity_fees_profile"
-            android:windowSoftInputMode="stateVisible|adjustResize"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateVisible|adjustResize" />
         <activity
             android:name=".ui.Fees.PendingFees"
-            android:windowSoftInputMode="stateVisible|adjustResize"
             android:label="@string/title_activity_pending_fees"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateVisible|adjustResize" />
+        <activity
+            android:name=".ui.Homework.Showhomework"
+            android:label="@string/title_activity_showhomework"
+            />
+        <activity
+            android:name=".ui.Homework.CreateHomework"
+            android:label="@string/title_activity_create_homework"
+            android:windowSoftInputMode="stateVisible|adjustResize">
+
+        </activity>
     </application>
 
 </manifest>

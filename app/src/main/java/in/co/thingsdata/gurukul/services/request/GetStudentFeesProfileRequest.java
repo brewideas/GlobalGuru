@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.android.volley.VolleyError;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -35,7 +36,10 @@ public class GetStudentFeesProfileRequest extends CommonRequest {
         String url = getURL();
         url+= data.getRegistrationId();
         url += "&" + JSONParsingEnum.JSON_FIELD_FEES_YEAR + "=" + data.getYear();
-        url += "&" + JSONParsingEnum.JSON_FIELD_FEES_MONTH + "=" + data.getMonth();
+        int month = data.getMonth();
+        if(month > 0) {
+            url += "&" + JSONParsingEnum.JSON_FIELD_FEES_MONTH + "=" + month;
+        }
 
         setURL(url);
         HashMap<String,String> param = new HashMap<>();
@@ -53,17 +57,22 @@ public class GetStudentFeesProfileRequest extends CommonRequest {
 
         try {
             if (response.getInt(JSON_FIELD_STATUS) == 1) {
-                JSONObject version_detail = response.getJSONObject(JSON_FIELD_DATA);
-                //int total = data.length();
-                //for (int i = 0; i < total; i++)
+                JSONArray data = response.getJSONArray(JSON_FIELD_DATA);
+                int total = data.length();
+                JSONObject fees_profile_data = data.getJSONObject(total-1);
+
+               // for (int i = 0; i < total; i++)
                 {
                   //  JSONObject version_detail = data.getJSONObject();
-                    int status = version_detail.getInt(JSONParsingEnum.JSON_FIELD_FEES_STATUS);
-                    int month = version_detail.getInt(JSONParsingEnum.JSON_FIELD_FEES_MONTH);
-                    int year = version_detail.getInt(JSONParsingEnum.JSON_FIELD_FEES_YEAR);
-                    int lastPaidAmount =  version_detail.getInt(JSONParsingEnum.JSON_FIELD_FEES_LAST_PAID);
-                    int remaningfees = version_detail.getInt(JSONParsingEnum.JSON_FIELD_FEES_REMAINING);
-                    String lastPaidDate =  version_detail.getString(JSONParsingEnum.JSON_FIELD_FEES_LAST_PAID_DATE);
+                    int status = 1;//fees_profile_data.getInt(JSONParsingEnum.JSON_FIELD_FEES_STATUS);
+                    int month = fees_profile_data.getInt(JSONParsingEnum.JSON_FIELD_FEES_MONTH);
+                    int year = fees_profile_data.getInt(JSONParsingEnum.JSON_FIELD_FEES_YEAR);
+                    int lastPaidAmount =  fees_profile_data.getInt(JSONParsingEnum.JSON_FIELD_FEES_LAST_PAID);
+                    int remaningfees = fees_profile_data.getInt(JSONParsingEnum.JSON_FIELD_FEES_REMAINING);
+                    String lastPaidDate =  fees_profile_data.getString(JSONParsingEnum.JSON_FIELD_FEES_LAST_PAID_DATE);
+                    int pos = lastPaidDate.indexOf('T');
+                    lastPaidDate = lastPaidDate.substring(0,pos);
+
                     mAppCallback.onGetStudentFeesProfileResponse(ResponseCode.COMMON_RES_SUCCESS,
                             status, month, year, lastPaidAmount,remaningfees,lastPaidDate);
                 }

@@ -54,8 +54,6 @@ public class Dashboard extends AppCompatActivity {
         }catch (NullPointerException e){
             Log.v("Dashboard","NullPointerException addview"+e);
         }
-
-
     }
 
     public void launchReportCard(View view) {
@@ -70,8 +68,6 @@ public class Dashboard extends AppCompatActivity {
         startActivity(launchFeature);*/
         Intent launchFeature = new Intent(this, ShowNotificationActivity.class);
         startActivity(launchFeature);
-
-
     }
 
     public void launchSchool(View view) {

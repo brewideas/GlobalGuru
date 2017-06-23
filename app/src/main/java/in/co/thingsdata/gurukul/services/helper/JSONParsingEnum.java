@@ -86,9 +86,9 @@ public class JSONParsingEnum {
     public static final String JSON_FIELD_FEES_STATUS = "status";
     public static final String JSON_FIELD_FEES_MONTH = "month";
 
-    public static final String JSON_FIELD_FEES_LAST_PAID = "lastpaidFees";
+    public static final String JSON_FIELD_FEES_LAST_PAID = "paidFees";
     public static final String JSON_FIELD_FEES_REMAINING = "remainingFees";
-    public static final String JSON_FIELD_FEES_LAST_PAID_DATE = "lastPaidDate";
+    public static final String JSON_FIELD_FEES_LAST_PAID_DATE = "submittedDate";
 
 
     public static final String JSON_FIELD_FEES_REG_ID = "reg";

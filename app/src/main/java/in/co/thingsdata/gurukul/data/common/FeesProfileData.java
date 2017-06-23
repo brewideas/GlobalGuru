@@ -17,20 +17,18 @@ public class FeesProfileData {
                           String FeesSubmittedBy,String ReceiptNumber ,int argYear, int argFeesPaid, int argremainingFees,
                            String lastPaidDate){
 
-        mAccessToken = argtoken; mMonth = argMonth; mYear = argYear;
         mRegistrationId = registrationId;
-        mFeesRemaining = argremainingFees;
+        mAccessToken = argtoken;
+
+        mMonth = argMonth;
         mClassRoomId = classRoomId ;
         mSectionId = sectionId;
+        mFeesSubmittedBy = FeesSubmittedBy;
+        mReceiptNumber = ReceiptNumber;
+        mYear = argYear;
+        mFeesPaid = argFeesPaid;
+        mFeesRemaining = argremainingFees;
         mLastPaidDate = lastPaidDate;
-    }
-
-    public FeesProfileData(String registrationId,String argtoken, int argMonth,
-                           int argYear){
-
-        mAccessToken = argtoken; mMonth = argMonth; mYear = argYear;
-        mRegistrationId = registrationId;
-
     }
 
     public int getYear(){

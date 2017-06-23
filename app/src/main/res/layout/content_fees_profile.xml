@@ -184,7 +184,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/textViewDate"
                     android:textSize="20sp"
-                    android:text="Last Paid Month"
+                    android:text="Last Paid Date"
                     android:textStyle="bold"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="@color/colorAccent"
@@ -242,6 +242,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
                         android:padding="5dp"
+                        android:layout_marginRight="3dp"
                         android:layout_centerVertical="true"
                         android:layout_gravity="center"
 

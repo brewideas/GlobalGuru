@@ -9,6 +9,16 @@
     tools:context=".ui.AppStart.Dashboard"
     android:orientation="vertical">
 
+    <com.google.android.gms.ads.AdView
+            android:id="@+id/adViewBannerDAshBoard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentTop="true"
+            ads:adSize="LARGE_BANNER"
+            ads:adUnitId="@string/banner_ad_unit_id">
+        </com.google.android.gms.ads.AdView>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

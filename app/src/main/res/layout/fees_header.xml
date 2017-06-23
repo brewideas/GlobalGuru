@@ -28,7 +28,7 @@
         android:id="@+id/spinerrow1"    >
 
         <RelativeLayout
-            android:layout_width="118dp"
+            android:layout_width="match_parent"
             android:id="@+id/spin1"
             android:layout_height="wrap_content"
             android:layout_marginRight="3dp"
@@ -37,7 +37,8 @@
 
             <Spinner
                 android:id="@+id/spinner_class"
-                android:layout_width="110dp"
+                android:layout_width="match_parent"
+                android:layout_margin="5dp"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_gravity="center"
@@ -53,39 +54,10 @@
                 android:layout_marginRight="7dp"
                 android:layout_centerVertical="true"
                 android:layout_gravity="center"
+
                 android:src="@mipmap/dropdowns" />
 
         </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="118dp"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="7dp"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-
-            <Spinner
-                android:id="@+id/spinner_section"
-                android:layout_width="110dp"
-                android:layout_marginLeft="5dp"
-                android:hint="Section"
-                android:background="@drawable/spinnerbg"
-                android:textColor="@color/colorAccent"
-                android:textColorHint="@color/colorAccent"
-                android:layout_height="wrap_content"
-                />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="7dp"
-                android:layout_centerVertical="true"
-                android:layout_gravity="center"
-                android:src="@mipmap/dropdowns" />
-
-        </RelativeLayout>
-
   </LinearLayout>
     </android.support.v7.widget.CardView>
 
@@ -133,6 +105,7 @@
             android:layout_centerVertical="true"
             android:layout_gravity="center"
             android:src="@mipmap/dropdowns" />
+
             </RelativeLayout>
 
         <RelativeLayout
@@ -148,9 +121,9 @@
             android:textAlignment="center"
             android:layout_height="wrap_content"
             android:background="@drawable/spinnerbg"
-            android:id="@+id/spinner_month"
+            android:id="@+id/spinner_month"/>
 
-            />
+
 
          <ImageView
             android:layout_width="wrap_content"
@@ -160,7 +133,9 @@
             android:layout_centerVertical="true"
             android:layout_gravity="center"
             android:src="@mipmap/dropdowns" />
-</RelativeLayout>
+        </RelativeLayout>
+
     </RelativeLayout>
     </android.support.v7.widget.CardView>
+
 </RelativeLayout>

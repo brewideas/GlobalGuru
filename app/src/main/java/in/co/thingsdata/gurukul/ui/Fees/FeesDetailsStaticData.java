@@ -59,6 +59,20 @@ public class FeesDetailsStaticData {
         mclassRoomId = classRoomId;
     }
 
+    public static String getSection(String classSectionFullName) {
+        String sectionStr = null;//FeesDetailsStaticData.mClassesInSchoolObj.get(indexValue).getSection();
+        int lenOfClassSection = classSectionFullName.length();
+        for (int i = 0; i < lenOfClassSection; i++) {
+            char ch = classSectionFullName.charAt(i);
+            if (Character.isLetter(ch)) {
+                sectionStr = classSectionFullName.substring(i);
+                break;
+            }
+        }
+        return sectionStr;
+    }
+
+
     public static void setSelectedStudentSection(String section) {
         mSection = section;
     }

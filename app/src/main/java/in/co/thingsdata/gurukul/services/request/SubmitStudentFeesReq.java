@@ -25,7 +25,7 @@ import static in.co.thingsdata.gurukul.services.helper.JSONParsingEnum.JSON_FIEL
 public class SubmitStudentFeesReq extends CommonRequest{
     FeesProfileData mData;
     public interface SubmitStudenFeesCallback {
-        void onSubmitMarksResponse(ResponseCode res, FeesProfileData data);
+        void onSubmitFeesResponse(ResponseCode res, FeesProfileData data);
     }
     private SubmitStudenFeesCallback mAppCallback;
 
@@ -61,11 +61,11 @@ public class SubmitStudentFeesReq extends CommonRequest{
 
     @Override
     public void onResponseHandler(JSONObject response) {
-        mAppCallback.onSubmitMarksResponse(ResponseCode.COMMON_RES_SUCCESS, mData);
+        mAppCallback.onSubmitFeesResponse(ResponseCode.COMMON_RES_SUCCESS, mData);
     }
 
     @Override
     public void onErrorHandler(VolleyError error) {
-        mAppCallback.onSubmitMarksResponse(ResponseCode.COMMON_RES_FAILED_TO_CONNECT, mData);
+        mAppCallback.onSubmitFeesResponse(ResponseCode.COMMON_RES_FAILED_TO_CONNECT, mData);
     }
 }

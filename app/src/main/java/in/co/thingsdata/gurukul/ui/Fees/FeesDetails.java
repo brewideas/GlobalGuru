@@ -2,6 +2,7 @@ package in.co.thingsdata.gurukul.ui.Fees;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -33,7 +34,7 @@ import in.co.thingsdata.gurukul.ui.dataUi.CommonAdapter;
 public class FeesDetails extends AppCompatActivity implements GetStudentListInClassReq.GetStudentListInClassCallback ,
         GetPendingFeesStudentListReq.GetPendingFeesStudentListCallback{
 
-    Spinner classSpinner, sectionSpinner ,monthSpinner,yearSpinner;
+    Spinner classSpinner, monthSpinner,yearSpinner;
 
     private RecyclerView mRecyclerView = null;
     private CommonAdapter mAdapter = null;
@@ -52,7 +53,6 @@ public class FeesDetails extends AppCompatActivity implements GetStudentListInCl
         initRes();
         fillDropDownData();
         initAutoTextView();
-
 
         mAdapter = new CommonAdapter(FeesDetailsStaticData.dataList, CommonAdapter.FEES_DETAILS
                 , new CommonAdapter.OnItemClickListener() {
@@ -85,8 +85,42 @@ public class FeesDetails extends AppCompatActivity implements GetStudentListInCl
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.setAdapter(mAdapter);
+
     }
 
+//    String SAVED_RECYCLER_VIEW_STATUS_ID = "savedState";
+//    String SAVED_RECYCLER_VIEW_DATASET_ID = "dataSetSaved";
+
+    private final String KEY_RECYCLER_STATE = "recycler_state";
+    private static Bundle mBundleRecyclerViewState;
+
+    @Override
+    protected void onPause()
+    {
+        super.onPause();
+
+        // save RecyclerView state
+        mBundleRecyclerViewState = new Bundle();
+        Parcelable listState = mRecyclerView.getLayoutManager().onSaveInstanceState();
+        mBundleRecyclerViewState.putParcelable(KEY_RECYCLER_STATE, listState);
+    }
+
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+
+        // restore RecyclerView state
+        if (mBundleRecyclerViewState != null) {
+            Parcelable listState = mBundleRecyclerViewState.getParcelable(KEY_RECYCLER_STATE);
+            mRecyclerView.getLayoutManager().onRestoreInstanceState(listState);
+        }
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+    }
 
     void initRes() {
         mRecyclerView = (RecyclerView) findViewById(R.id.feesRecycler);
@@ -95,7 +129,7 @@ public class FeesDetails extends AppCompatActivity implements GetStudentListInCl
         upLoadButton = (Button) findViewById(R.id.uploadButton);
 
         classSpinner = (Spinner) findViewById(R.id.spinner_class);
-        sectionSpinner = (Spinner) findViewById(R.id.spinner_section);
+
         yearSpinner = (Spinner) findViewById(R.id.spinner_year);
         monthSpinner = (Spinner) findViewById(R.id.spinner_month);
 
@@ -103,7 +137,7 @@ public class FeesDetails extends AppCompatActivity implements GetStudentListInCl
         spinnerAdapterYear.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         yearSpinner.setAdapter(spinnerAdapterYear);
 
-        spinnerAdapterYear.add("2016-17");
+
         spinnerAdapterYear.add("2017-18");
         spinnerAdapterYear.add("2018-19");
         spinnerAdapterYear.add("2019-20");
@@ -115,7 +149,7 @@ public class FeesDetails extends AppCompatActivity implements GetStudentListInCl
         spinnerAdapterYear.notifyDataSetChanged();
 
         ArrayAdapter<String> spinnerAdapterMonth = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, android.R.id.text1);
-        spinnerAdapterYear.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerAdapterMonth.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         monthSpinner.setAdapter(spinnerAdapterMonth);
 
         spinnerAdapterMonth.add("All");
@@ -141,27 +175,18 @@ public class FeesDetails extends AppCompatActivity implements GetStudentListInCl
         ArrayAdapter<String> spinnerAdapterClass = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, android.R.id.text1);
         spinnerAdapterClass.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         classSpinner.setAdapter(spinnerAdapterClass);
-
-        ArrayAdapter<String> spinnerAdapterSection = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, android.R.id.text1);
-        spinnerAdapterSection.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        sectionSpinner.setAdapter(spinnerAdapterSection);
-
         FeesDetailsStaticData.mClassesInSchoolObj = CommonDetails.getAllClassesInSchool();
-
         try {
             for (ClassData obj : FeesDetailsStaticData.mClassesInSchoolObj) {
                 String classsName = obj.getName();
                 String section = obj.getSection();
-
                 spinnerAdapterClass.add(classsName);
-                spinnerAdapterSection.add(section);
+
             }
         } catch (NullPointerException e) {
 
         }
-
         spinnerAdapterClass.notifyDataSetChanged();
-        spinnerAdapterSection.notifyDataSetChanged();
 
     }
 
@@ -203,9 +228,9 @@ public class FeesDetails extends AppCompatActivity implements GetStudentListInCl
         String classN = FeesDetailsStaticData.mClassesInSchoolObj.get(indexValue).getClassCode();//UserData.getClassRoomId();//todo: uncomment once server data is right //ReportCardStaticData.getSelectedClass();
         FeesDetailsStaticData.setSelectedStudentClassRoomId(classN);
 
-        indexValue = sectionSpinner.getSelectedItemPosition();
+        String classSection = classSpinner.getSelectedItem().toString();
 
-        String sectionStr = FeesDetailsStaticData.mClassesInSchoolObj.get(indexValue).getSection();
+        String sectionStr = FeesDetailsStaticData.getSection(classSection);
         FeesDetailsStaticData.setSelectedStudentSection(sectionStr);
 
         GetStudentListInClassData data = new GetStudentListInClassData(token, classN, sectionStr);
@@ -222,9 +247,9 @@ public class FeesDetails extends AppCompatActivity implements GetStudentListInCl
         String classN = FeesDetailsStaticData.mClassesInSchoolObj.get(indexValue).getClassCode();//UserData.getClassRoomId();//todo: uncomment once server data is right //ReportCardStaticData.getSelectedClass();
         FeesDetailsStaticData.setSelectedStudentClassRoomId(classN);
 
-        indexValue = sectionSpinner.getSelectedItemPosition();
 
-        String sectionStr = FeesDetailsStaticData.mClassesInSchoolObj.get(indexValue).getSection();
+
+        String sectionStr = FeesDetailsStaticData.getSection(classN);
         FeesDetailsStaticData.setSelectedStudentSection(sectionStr);
 
         indexValue = yearSpinner.getSelectedItemPosition();
@@ -307,4 +332,5 @@ public class FeesDetails extends AppCompatActivity implements GetStudentListInCl
                 break;
         }
     }
+
 }

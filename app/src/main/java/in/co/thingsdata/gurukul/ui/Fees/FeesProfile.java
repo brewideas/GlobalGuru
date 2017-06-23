@@ -24,7 +24,7 @@ import in.co.thingsdata.gurukul.services.request.SubmitStudentFeesReq;
 
 public class FeesProfile extends AppCompatActivity implements GetStudentFeesProfileRequest.GetFeesProfileCallback  , SubmitStudentFeesReq.SubmitStudenFeesCallback{
 
-    TextView feesSubmittedByTv,nameTV,classTV,LpaidAmountTV,LPaidDateTV,previousRemainingAmountTV;
+    TextView feesSubmittedByTv,nameTV,classTV,LpaidAmountTV,LPaidDateTV,previousRemainingAmountTV,textViewDateTV;
 
     EditText balanceRemaingEt , amluntPaidEt;
     Spinner monthSv;
@@ -34,6 +34,7 @@ public class FeesProfile extends AppCompatActivity implements GetStudentFeesProf
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fees_profile);
+        FeesDetailsStaticData.showProgressBar(this);
         Intent intent = getIntent();
         mposInList = intent.getIntExtra(getResources().getString(R.string.intent_extra_Fees_studentposInList), 1);
 
@@ -43,24 +44,22 @@ public class FeesProfile extends AppCompatActivity implements GetStudentFeesProf
         mSelectedStudent = (FeesListModel) FeesDetailsStaticData.dataList.get(mposInList);
         nameTV.setText(mSelectedStudent.getName());
         classTV.setText(mSelectedStudent.getRegId());
-
-
         showIndividualFeesProfile();
     }
 
     void showIndividualFeesProfile(){
 
         String registrationId = mSelectedStudent.getRegId();
-        int month = 6;
+        int month = 0;
         int year = 2017;
         String classRoomId = FeesDetailsStaticData.getSelectedStudentClassRoomId();
         String section =  FeesDetailsStaticData.getSelectedStudentSection();
         String feesSubmittedBy = "Teacher";//String.valueOf(feesSubmittedByTv.getText());
         String ReceiptNumber = "121";
 
-        int feesPaid  = 100 ;
-        int remainingFees  = 100;
-        String lastPaidDate  = "12";
+        int feesPaid  = 0 ;
+        int remainingFees  = 0;
+        String lastPaidDate  = "Not Updated";
 
         FeesProfileData data = new FeesProfileData(registrationId, UserData.getAccessToken(), month,classRoomId,section,
                 feesSubmittedBy,ReceiptNumber ,year,feesPaid, remainingFees,
@@ -69,7 +68,7 @@ public class FeesProfile extends AppCompatActivity implements GetStudentFeesProf
         GetStudentFeesProfileRequest reqFees = new GetStudentFeesProfileRequest(this,this,data);
         reqFees.executeRequest();
 
-        FeesDetailsStaticData.showProgressBar(this);
+
 
     }
 
@@ -101,6 +100,7 @@ public class FeesProfile extends AppCompatActivity implements GetStudentFeesProf
         LpaidAmountTV = (TextView)findViewById(R.id.lastPaidAmountTV);
         LPaidDateTV = (TextView)findViewById(R.id.lastPaidDateTV);
         previousRemainingAmountTV  = (TextView)findViewById(R.id.previousRemainingAmountTV);
+        textViewDateTV =  (TextView)findViewById(R.id.textViewDate);
         monthSv = (Spinner)findViewById(R.id.spinner_month);
 
         setViewGoneIfNotPrinciple();
@@ -151,16 +151,29 @@ public class FeesProfile extends AppCompatActivity implements GetStudentFeesProf
     public void executeResultQuery() {
 
         String registrationId = mSelectedStudent.getRegId();
-        int month = 6;
-        int year = 2017;
+        int month = monthSv.getSelectedItemPosition() + 1;
+
+        Calendar c = Calendar.getInstance();
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        String addTime = df.format(c.getTime());
+
+        int pos = addTime.indexOf('-');
+        addTime = addTime.substring(0,pos);
+
+        int year = Integer.parseInt(addTime);
         String classRoomId = FeesDetailsStaticData.getSelectedStudentClassRoomId();
         String section =  FeesDetailsStaticData.getSelectedStudentSection();
-        String feesSubmittedBy = "Teacher";//String.valueOf(feesSubmittedByTv.getText());
+
+        String feesSubmittedBy = UserData.getFirstName();
         String ReceiptNumber = "121";
 
-        int feesPaid  = 100 ;
-        int remainingFees  = 100;
-        String lastPaidDate  = "12";
+        String fePaid = amluntPaidEt.getText().toString();
+        int feesPaid  = Integer.parseInt(fePaid);
+
+        String feeremaining = balanceRemaingEt.getText().toString();
+
+        int remainingFees = Integer.parseInt(feeremaining);
+        String lastPaidDate  = "0";
 
         FeesProfileData data = new FeesProfileData(registrationId, UserData.getAccessToken(), month,classRoomId,section,
                 feesSubmittedBy,ReceiptNumber ,year,feesPaid, remainingFees,
@@ -178,7 +191,8 @@ public class FeesProfile extends AppCompatActivity implements GetStudentFeesProf
     int mMonth = 0 , mYear = 0, mPaidFees = 0, mRemainingFees = 0;
     String lastPaidDate = null;
     @Override
-    public void onGetStudentFeesProfileResponse(CommonRequest.ResponseCode res, int status, int month, int year, int paidFees, int remainingFees, String lastPaidDate) {
+    public void onGetStudentFeesProfileResponse(CommonRequest.ResponseCode res, int status, int month,
+                                                int year, int paidFees, int remainingFees, String lastPaidDate) {
 
              FeesDetailsStaticData.dismissProgressBar();
 
@@ -188,6 +202,7 @@ public class FeesProfile extends AppCompatActivity implements GetStudentFeesProf
                 LpaidAmountTV.setText(Integer.toString(paidFees));
                 LPaidDateTV.setText(Integer.toString(month));
                 previousRemainingAmountTV.setText(Integer.toString(mRemainingFees));
+                textViewDateTV.setText(lastPaidDate);
 
             }else{
                // Toast.makeText(FeesProfile.this,"Error please try some other time",Toast.LENGTH_LONG);
@@ -197,15 +212,16 @@ public class FeesProfile extends AppCompatActivity implements GetStudentFeesProf
     }
 
     @Override
-    public void onSubmitMarksResponse(CommonRequest.ResponseCode res, FeesProfileData data) {
+    public void onSubmitFeesResponse(CommonRequest.ResponseCode res, FeesProfileData data) {
 
         FeesDetailsStaticData.dismissProgressBar();
 
-        if(CommonRequest.ResponseCode.COMMON_RES_SUCCESS == res){
-            Toast.makeText(FeesProfile.this,"Fees paid successfully",Toast.LENGTH_LONG);
+        if(CommonRequest.ResponseCode.COMMON_RES_SUCCESS == res) {
+            Toast.makeText(FeesProfile.this, "Fees paid successfully",Toast.LENGTH_LONG);
+            finish();
 
         }else{
-            //Toast.makeText(FeesProfile.this,"Error in submitting fees",Toast.LENGTH_LONG);
+            Toast.makeText(FeesProfile.this,"Error in submitting fees",Toast.LENGTH_LONG);
             //      finish();
         }
 

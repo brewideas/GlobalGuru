@@ -45,4 +45,6 @@
     <string name="title_activity_fees_details">FeesDetails</string>
     <string name="title_activity_fees_profile">FeesProfile</string>
     <string name="title_activity_pending_fees">PendingFees</string>
+    <string name="title_activity_showhomework">HomeWork</string>
+    <string name="title_activity_create_homework">Create Homework</string>
 </resources>
