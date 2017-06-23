@@ -1,5 +1,6 @@
 package in.co.thingsdata.gurukul.Models;
 
+import in.co.thingsdata.gurukul.ui.Fees.FeesDetailsStaticData;
 import in.co.thingsdata.gurukul.ui.dataUi.DataOfUi;
 
 /**
@@ -23,6 +24,17 @@ public class FeesListModel extends DataOfUi {
     }
 
 
+    public String getRegIdFromPos(int pos) {
+
+        if(FeesDetailsStaticData.mFeesStudentList != null){
+
+            regId = FeesDetailsStaticData.mFeesStudentList.get(pos).getRegistrationId();
+            rollNumber = FeesDetailsStaticData.mFeesStudentList.get(pos).getRollNumber();
+            name =  FeesDetailsStaticData.mFeesStudentList.get(pos).getName();
+        }
+
+        return regId;
+    }
 
     public String getRegId() {
         return regId;

@@ -42,8 +42,10 @@ public class FeesProfile extends AppCompatActivity implements GetStudentFeesProf
         fillDropDownData();
 
         mSelectedStudent = (FeesListModel) FeesDetailsStaticData.dataList.get(mposInList);
+
+        String regId = mSelectedStudent.getRegIdFromPos(mposInList);
         nameTV.setText(mSelectedStudent.getName());
-        classTV.setText(mSelectedStudent.getRegId());
+        classTV.setText(regId);
         showIndividualFeesProfile();
     }
 
@@ -51,7 +53,22 @@ public class FeesProfile extends AppCompatActivity implements GetStudentFeesProf
 
         String registrationId = mSelectedStudent.getRegId();
         int month = 0;
-        int year = 2017;
+
+        Calendar c = Calendar.getInstance();
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        String addTime = df.format(c.getTime());
+
+        int pos = addTime.indexOf('-');
+
+
+        if(month == 0){
+            String Strmonth = addTime.substring(pos+1,pos+3);
+            month = Integer.parseInt(Strmonth);
+        }
+
+        addTime = addTime.substring(0,pos);
+        int year = Integer.parseInt(addTime);
+
         String classRoomId = FeesDetailsStaticData.getSelectedStudentClassRoomId();
         String section =  FeesDetailsStaticData.getSelectedStudentSection();
         String feesSubmittedBy = "Teacher";//String.valueOf(feesSubmittedByTv.getText());
@@ -158,8 +175,14 @@ public class FeesProfile extends AppCompatActivity implements GetStudentFeesProf
         String addTime = df.format(c.getTime());
 
         int pos = addTime.indexOf('-');
-        addTime = addTime.substring(0,pos);
 
+
+//        if(month == 0){
+//          String Strmonth = addTime.substring(pos,2);
+//          month = Integer.parseInt(Strmonth);
+//        }
+
+        addTime = addTime.substring(0,pos);
         int year = Integer.parseInt(addTime);
         String classRoomId = FeesDetailsStaticData.getSelectedStudentClassRoomId();
         String section =  FeesDetailsStaticData.getSelectedStudentSection();
@@ -181,7 +204,6 @@ public class FeesProfile extends AppCompatActivity implements GetStudentFeesProf
 
         SubmitStudentFeesReq reqFees = new SubmitStudentFeesReq(this,data,this);
         reqFees.executeRequest();
-
         FeesDetailsStaticData.showProgressBar(this);
 
 

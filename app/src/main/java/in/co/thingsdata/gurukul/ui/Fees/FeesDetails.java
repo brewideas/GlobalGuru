@@ -88,7 +88,29 @@ public class FeesDetails extends AppCompatActivity implements GetStudentListInCl
 
     }
 
-//    String SAVED_RECYCLER_VIEW_STATUS_ID = "savedState";
+    String postOfStudentListSaved = "postOfStudentListSaved";
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        if(FeesDetailsStaticData.dataList != null) {
+            outState.putInt(postOfStudentListSaved, FeesDetailsStaticData.dataList.size());
+        }
+
+    }
+    int savedPos = -1;
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        savedPos = savedInstanceState.getInt(postOfStudentListSaved);
+
+
+    }
+
+    //    String SAVED_RECYCLER_VIEW_STATUS_ID = "savedState";
 //    String SAVED_RECYCLER_VIEW_DATASET_ID = "dataSetSaved";
 
     private final String KEY_RECYCLER_STATE = "recycler_state";
