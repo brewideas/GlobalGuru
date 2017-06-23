@@ -38,7 +38,7 @@ public class GetStudentFeesProfileRequest extends CommonRequest {
         url += "&" + JSONParsingEnum.JSON_FIELD_FEES_YEAR + "=" + data.getYear();
         int month = data.getMonth();
         if(month > 0) {
-            url += "&" + JSONParsingEnum.JSON_FIELD_FEES_MONTH + "=" + month;
+     //       url += "&" + JSONParsingEnum.JSON_FIELD_FEES_MONTH + "=" + month;
         }
 
         setURL(url);
@@ -49,7 +49,7 @@ public class GetStudentFeesProfileRequest extends CommonRequest {
 
     public interface GetFeesProfileCallback {
         void onGetStudentFeesProfileResponse(ResponseCode res, int status, int month , int year, int paidFees,
-        int remainingFees , String lastPaidDate);
+        int remainingFees , String lastPaidDate ,String lastFeeCollector);
     }
 
     @Override
@@ -72,15 +72,15 @@ public class GetStudentFeesProfileRequest extends CommonRequest {
                     String lastPaidDate =  fees_profile_data.getString(JSONParsingEnum.JSON_FIELD_FEES_LAST_PAID_DATE);
                     int pos = lastPaidDate.indexOf('T');
                     lastPaidDate = lastPaidDate.substring(0,pos);
-
+                 //   String lastFeeCollector = fees_profile_data.getString(JSONParsingEnum.JSON_FIELD_FEES_SUBMITTED_BY);
                     mAppCallback.onGetStudentFeesProfileResponse(ResponseCode.COMMON_RES_SUCCESS,
-                            status, month, year, lastPaidAmount,remaningfees,lastPaidDate);
+                            status, month, year, lastPaidAmount,remaningfees,lastPaidDate,"no data");
                 }
             }
         }catch (JSONException e) {
                     e.printStackTrace();
                     mAppCallback.onGetStudentFeesProfileResponse(ResponseCode.COMMON_RES_INTERNAL_ERROR,
-                            0, 0, 0, 0,0,"error");
+                            0, 0, 0, 0,0,"error","error");
         }
     }
 
@@ -89,11 +89,11 @@ public class GetStudentFeesProfileRequest extends CommonRequest {
 
         if (error.networkResponse != null && (error.networkResponse.statusCode > 400 && error.networkResponse.statusCode < 500)) {
             mAppCallback.onGetStudentFeesProfileResponse(COMMON_RES_PROFILE_AUTHENTICATION_FAILED,
-                    0, 0, 0, 0, 0, "error");
+                    0, 0, 0, 0, 0, "error","errr");
         }
         else {
             mAppCallback.onGetStudentFeesProfileResponse(ResponseCode.COMMON_RES_FAILED_TO_CONNECT,
-                    0, 0, 0, 0, 0, "error");
+                    0, 0, 0, 0, 0, "error","eror");
         }
     }
 }

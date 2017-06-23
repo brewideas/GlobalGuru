@@ -243,6 +243,8 @@ public class FeesDetails extends AppCompatActivity implements GetStudentListInCl
 
     void reqStudentList(){
 
+        FeesDetailsStaticData.dataList.clear();
+        mAdapter.notifyDataSetChanged();
 
         String token = UserData.getAccessToken();
         Integer indexValue = classSpinner.getSelectedItemPosition();
@@ -262,6 +264,9 @@ public class FeesDetails extends AppCompatActivity implements GetStudentListInCl
     }
 
     void reqPendingFeesList(){
+
+        FeesDetailsStaticData.dataList.clear();
+        mAdapter.notifyDataSetChanged();
 
         String token = UserData.getAccessToken();
         Integer indexValue = classSpinner.getSelectedItemPosition();

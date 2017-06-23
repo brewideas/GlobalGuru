@@ -67,18 +67,18 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/rowTwo"
                 android:layout_below="@+id/rowOne"
-                android:visibility="gone"
+               android:visibility="gone"
                 android:paddingTop="10dp"
                 android:paddingLeft="10dp"
                 android:layout_marginTop="@dimen/activity_top_margin">
 
                 <TextView
-                    android:text="Class"
+                    android:text="Last Fee Collector"
                     android:textStyle="bold"
                     android:textColor="@color/colorAccent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/className"
+                    android:id="@+id/feeSubmitter"
                     android:textSize="20sp"
 
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
@@ -89,7 +89,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/profileClassTV"
+                    android:id="@+id/feeCollectorTv"
                     android:layout_weight="1"
                     android:textSize="20sp"
                     android:layout_marginLeft="75dp"
@@ -199,7 +199,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/textViewMonth"
                     android:textSize="20sp"
-                    android:text="PAid for Month : "
+                    android:text="Paid for Month : "
                     android:textStyle="bold"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="@color/colorAccent"

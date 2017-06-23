@@ -24,8 +24,8 @@ import in.co.thingsdata.gurukul.services.request.SubmitStudentFeesReq;
 
 public class FeesProfile extends AppCompatActivity implements GetStudentFeesProfileRequest.GetFeesProfileCallback  , SubmitStudentFeesReq.SubmitStudenFeesCallback{
 
-    TextView feesSubmittedByTv,nameTV,classTV,LpaidAmountTV,LPaidDateTV,previousRemainingAmountTV,textViewDateTV;
-
+    TextView nameTV,classTV,LpaidAmountTV,LPaidDateTV,previousRemainingAmountTV,textViewDateTV;
+//feeCollectorTv,
     EditText balanceRemaingEt , amluntPaidEt;
     Spinner monthSv;
     int mposInList = 0;
@@ -45,7 +45,6 @@ public class FeesProfile extends AppCompatActivity implements GetStudentFeesProf
 
         String regId = mSelectedStudent.getRegIdFromPos(mposInList);
         nameTV.setText(mSelectedStudent.getName());
-        classTV.setText(regId);
         showIndividualFeesProfile();
     }
 
@@ -111,7 +110,7 @@ public class FeesProfile extends AppCompatActivity implements GetStudentFeesProf
         amluntPaidEt = (EditText)findViewById(R.id.amountpaidEV);
 
         nameTV = (TextView)findViewById(R.id.profileNameTV);
-        classTV = (TextView)findViewById(R.id.profileClassTV);
+//        feeCollectorTv = (TextView)findViewById(R.id.feeCollectorTv);
 
 
         LpaidAmountTV = (TextView)findViewById(R.id.lastPaidAmountTV);
@@ -214,7 +213,7 @@ public class FeesProfile extends AppCompatActivity implements GetStudentFeesProf
     String lastPaidDate = null;
     @Override
     public void onGetStudentFeesProfileResponse(CommonRequest.ResponseCode res, int status, int month,
-                                                int year, int paidFees, int remainingFees, String lastPaidDate) {
+                                                int year, int paidFees, int remainingFees, String lastPaidDate,String lastFeeCollector) {
 
              FeesDetailsStaticData.dismissProgressBar();
 
@@ -223,6 +222,7 @@ public class FeesProfile extends AppCompatActivity implements GetStudentFeesProf
 
                 LpaidAmountTV.setText(Integer.toString(paidFees));
                 LPaidDateTV.setText(Integer.toString(month));
+//                feeCollectorTv.setText(lastFeeCollector);
                 previousRemainingAmountTV.setText(Integer.toString(mRemainingFees));
                 textViewDateTV.setText(lastPaidDate);
 
