@@ -8,7 +8,7 @@
     tools:context="in.co.thingsdata.gurukul.ui.Fees.FeesDetails"
     tools:showIn="@layout/fees_details">
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/TopFrame"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
@@ -19,8 +19,11 @@
 
         <LinearLayout
             android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:layout_marginLeft="8dp"
+            android:layout_width="wrap_content"
+
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="5dp"
+            android:layout_alignParentRight="true"
             android:orientation="vertical"
 
             >
@@ -48,7 +51,7 @@
                 android:onClick="executePendingQuery"
                 />
         </LinearLayout>
-    </LinearLayout>
+    </RelativeLayout>
 
     <AutoCompleteTextView
         android:layout_height="60dp"

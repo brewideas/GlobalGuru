@@ -111,10 +111,9 @@
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
                     android:textStyle="bold"
                     android:textSize="20sp"
-                    android:text="Previous remaining Amount"
+                    android:text="Previous Balance"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="@color/colorAccent"
                     android:layout_marginRight="14dp"
@@ -184,7 +183,7 @@
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/textViewDate"
+                    android:id="@+id/textViewDa"
                     android:textSize="20sp"
                     android:text="Last Paid Date"
                     android:textStyle="bold"
@@ -197,14 +196,38 @@
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/textViewDate"
+                    android:textSize="20sp"
+                    android:text="Date Not available"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginLeft="@dimen/component_left_margin"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/rowFiveX"
+                android:layout_below="@+id/rowFive"
+                android:paddingTop="10dp"
+                android:weightSum="3"
+                android:paddingLeft="10dp"
+                android:layout_marginTop="@dimen/activity_top_margin">
+
+            <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:id="@+id/textViewMonth"
                     android:textSize="20sp"
-                    android:text="Paid for Month : "
+                    android:text="Last Paid for Month : "
                     android:textStyle="bold"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="@color/colorAccent"
+                    android:layout_marginLeft="@dimen/component_left_margin"/>
                     android:layout_marginRight="14dp"
-                    android:layout_marginLeft="14dp"/>
+                    />
 
 
                 <TextView
@@ -225,7 +248,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/rowSix"
-                android:layout_below="@+id/rowFive"
+                android:layout_below="@+id/rowFiveX"
                 android:paddingTop="10dp"
                 android:paddingLeft="10dp"
                 android:layout_marginTop="@dimen/activity_top_margin">
