@@ -13,7 +13,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.ads.InterstitialAd;
@@ -33,7 +32,7 @@ public class MainActivity extends AppCompatActivity implements GetClassListReque
 
     EditText email, password;
     private Handler handler;
-    TextView signup;
+    boolean isUserLoggedIn = false;
 
     public static final String OPEN_GALLERY_FOR = "Open_gallery _for_which_act";
     public static final String STUDENT_PROFILE_CROPED_NAME = "profileImg";
@@ -54,11 +53,27 @@ public class MainActivity extends AppCompatActivity implements GetClassListReque
 
         getSavedVersionOfApplication();
 
-        if (UserData.isUserAlreadyLoggedIn()){
+        if (UserData.isUserAlreadyLoggedIn()) {
+            isUserLoggedIn = true;
             UserData.init();
-            GetClassListRequest req = new GetClassListRequest(this, this);
-            req.executeRequest();
+
+//          Runnable rn = new Runnable() {
+//                @Override
+//                public void run() {
+//                    GetClassListRequest req = new GetClassListRequest(MainActivity.this, MainActivity.this);
+//                    req.executeRequest();
+//                }
+//            };
+//            Thread thCLreqm = new Thread(rn);
+//            thCLreqm.run();
+//
+//        }
+
+        }else{
+            isUserLoggedIn = false;
         }
+            GetClassListRequest req = new GetClassListRequest(MainActivity.this, MainActivity.this);
+            req.executeRequest();
 
         GetAppVersionRequest resVersion = new GetAppVersionRequest(this,this);
         resVersion.executeRequest();
@@ -66,21 +81,17 @@ public class MainActivity extends AppCompatActivity implements GetClassListReque
 
   void launchApplication(){
 
-      if (UserData.isUserAlreadyLoggedIn()){
+      if (isUserLoggedIn == true){
 
                   Intent it = new Intent(MainActivity.this, Dashboard.class);//Dashboard.class);
                   startActivity(it);
-          }else {
-                    Intent it = new Intent(MainActivity.this, LoginActivity.class);//Dashboard.class);
+      }else {
+                  Intent it = new Intent(MainActivity.this, LoginActivity.class);//Dashboard.class);
                   startActivity(it);
-
       }
-
-
   }
 
-
-    public void dashboard(View v) {
+  public void dashboard(View v) {
         if (email.getText().length() == 0) {
             email.setError("Please enter your email");
         }
@@ -117,6 +128,9 @@ public class MainActivity extends AppCompatActivity implements GetClassListReque
         else {
             if (res == CommonRequest.ResponseCode.COMMON_RES_PROFILE_AUTHENTICATION_FAILED)
                 UserData.clearAll();
+            isUserLoggedIn = false;
+
+
             Toast.makeText(this, "Session expired, please login again", Toast.LENGTH_LONG).show();
         }
 //        handler = new Handler();

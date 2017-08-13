@@ -17,6 +17,9 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import in.co.thingsdata.gurukul.Models.FeesListModel;
 import in.co.thingsdata.gurukul.R;
 import in.co.thingsdata.gurukul.data.GetPendingFeesStudentListData;
@@ -288,13 +291,19 @@ public class FeesDetails extends AppCompatActivity implements GetStudentListInCl
         FeesDetailsStaticData.setYearSearched(yearSel);
 
         int month = indexValue = monthSpinner.getSelectedItemPosition();
+        if(month == 0){
+            Calendar c = Calendar.getInstance();
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            String addTime = df.format(c.getTime());
+            int pos = addTime.indexOf('-');
+            String Strmonth = addTime.substring(pos + 1, pos + 3);
+            month = Integer.parseInt(Strmonth);
+        }
         FeesDetailsStaticData.setMonthSearched(indexValue);
 
         GetPendingFeesStudentListData data = new GetPendingFeesStudentListData(token,classN,sectionStr,yearSel,month);
         GetPendingFeesStudentListReq req= new GetPendingFeesStudentListReq(FeesDetails.this,data,FeesDetails.this);
-
         req.executeRequest();
-
 
     }
 
