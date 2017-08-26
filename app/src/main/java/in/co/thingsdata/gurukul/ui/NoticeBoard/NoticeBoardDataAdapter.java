@@ -49,7 +49,7 @@ public class NoticeBoardDataAdapter extends RecyclerView.Adapter<NoticeBoardData
 
     }
 
-    @Override
+        @Override
     public NoticeBoardDataAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemLayoutView = LayoutInflater.from(parent.getContext()).inflate(
                 R.layout.nb_selectclass_adapter, null);
