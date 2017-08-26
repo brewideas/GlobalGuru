@@ -9,11 +9,18 @@
     tools:context="in.co.thingsdata.gurukul.ui.AppStart.MyProfile"
     tools:showIn="@layout/fees_profile">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/profileDisplay"
+    >
+
     <ScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/card"
+        android:layout_above="@+id/btn_ok"
         android:id="@+id/topView"
         android:fillViewport="true"
         >
@@ -21,9 +28,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-
-            android:id="@+id/profileDisplay"
-
+            android:id="@+id/profileFees"
             >
 
             <LinearLayout
@@ -311,12 +316,60 @@
                     android:layout_marginTop="2dp"
                     android:layout_weight="1"
                     android:layout_marginBottom="2dp">
+                    <EditText android:id="@+id/lateFeesEV"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+
+                        android:hint="Late Fees"
+
+                        android:textColorHint = "@color/cardHint"
+                        />
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:layout_weight="1"
+                    android:layout_marginBottom="2dp">
+                    <EditText android:id="@+id/otherChargesEV"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+
+                        android:hint="Other Charges"
+
+                        android:textColorHint = "@color/cardHint"
+                        />
+                </android.support.design.widget.TextInputLayout>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/rowEight"
+                android:layout_below="@+id/rowSeven"
+
+                android:paddingTop="10dp"
+                android:paddingLeft="10dp"
+                android:layout_marginTop="@dimen/activity_top_margin">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:layout_weight="1"
+                    android:layout_marginBottom="2dp">
                     <EditText android:id="@+id/amountpaidEV"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
 
-                        android:hint="Amount Paid"
+                        android:hint="Total Amount"
 
                         android:textColorHint = "@color/cardHint"
                         />
@@ -340,22 +393,21 @@
                 </android.support.design.widget.TextInputLayout>
 
             </LinearLayout>
-
-            <Button
-                android:id="@+id/btn_ok"
-                android:layout_below="@+id/rowSeven"
-                android:layout_width="fill_parent"
-                android:layout_height="50dp"
-                android:layout_margin="10dp"
-                android:gravity="center"
-                android:onClick="feesProfile"
-                android:background="@drawable/loginbutton"
-                android:textColor="@color/card"
-                android:text="Ok"
-                android:textSize="16dp" />
-
-        </RelativeLayout>
+    </RelativeLayout>
     </ScrollView>
 
+               <Button
+                   android:id="@+id/btn_ok"
+                   android:layout_alignParentBottom="true"
+                   android:layout_width="fill_parent"
+                   android:layout_height="50dp"
+                   android:layout_margin="10dp"
+                   android:gravity="center"
+                   android:onClick="feesProfile"
+                   android:background="@drawable/loginbutton"
+                   android:textColor="@color/card"
+                   android:text="Ok"
+                   android:textSize="16dp" />
 
-</RelativeLayout>
+             </RelativeLayout>
+    </RelativeLayout>
