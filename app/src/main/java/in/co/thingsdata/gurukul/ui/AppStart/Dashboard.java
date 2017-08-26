@@ -15,6 +15,7 @@ import in.co.thingsdata.gurukul.R;
 import in.co.thingsdata.gurukul.data.common.CommonDetails;
 import in.co.thingsdata.gurukul.data.common.UserData;
 import in.co.thingsdata.gurukul.ui.Fees.FeesDetails;
+import in.co.thingsdata.gurukul.ui.Homework.Showhomework;
 import in.co.thingsdata.gurukul.ui.ReportCardUi.ReportCardTeacherView;
 
 public class Dashboard extends AppCompatActivity {
@@ -103,5 +104,10 @@ public class Dashboard extends AppCompatActivity {
 //        }
     }
 
+    public void LaunchHomeWork(View view) {
+
+        Intent launchFeature = new Intent(this, Showhomework.class);
+        startActivity(launchFeature);
+    }
 }
 

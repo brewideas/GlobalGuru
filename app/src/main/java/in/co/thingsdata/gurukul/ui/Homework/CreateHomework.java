@@ -19,7 +19,6 @@ import in.co.thingsdata.gurukul.data.common.CommonDetails;
 import in.co.thingsdata.gurukul.data.common.UserData;
 import in.co.thingsdata.gurukul.services.helper.CommonRequest;
 import in.co.thingsdata.gurukul.services.request.CreateNotificationRequest;
-import in.co.thingsdata.gurukul.ui.Fees.FeesDetailsStaticData;
 
 import static in.co.thingsdata.gurukul.data.common.CommonDetails.NotificationTypeEnum.NOTIFICATION_TYPE_NORMAL;
 
@@ -100,9 +99,11 @@ public class CreateHomework extends AppCompatActivity implements AdapterView.OnI
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-        String selClass = classSpinner.getSelectedItem().toString();
+        String selClass = parent.getSelectedItem().toString();
+        int len  = selClass.length();
+        String intOnly = selClass.substring(0,len-1);
 
-        int selClassIs = Integer.getInteger(selClass);
+        int selClassIs = Integer.parseInt(intOnly);
         if(selClassIs > 10){
             mClassLevel = classLevel.Secondary;
 
@@ -158,6 +159,8 @@ public class CreateHomework extends AppCompatActivity implements AdapterView.OnI
         super.onCreate(savedInstanceState);
         setContentView(R.layout.create_homework);
 
+        initRes();
+        fillDropDownData();
         //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
     }
@@ -177,11 +180,10 @@ public class CreateHomework extends AppCompatActivity implements AdapterView.OnI
         ArrayAdapter<String> spinnerAdapterClass = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, android.R.id.text1);
         spinnerAdapterClass.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         classSpinner.setAdapter(spinnerAdapterClass);
-
         HomeWorkStaticData.mClassesInSchoolObj = CommonDetails.getAllClassesInSchool();
 
         try {
-            for (ClassData obj : FeesDetailsStaticData.mClassesInSchoolObj) {
+            for (ClassData obj : HomeWorkStaticData.mClassesInSchoolObj) {
                 String classsName = obj.getName();
                 String section = obj.getSection();
                 spinnerAdapterClass.add(classsName);

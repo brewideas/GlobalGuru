@@ -57,35 +57,6 @@
 
         </RelativeLayout>
 
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="7dp"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-
-            <Spinner
-                android:id="@+id/spinner_section"
-                android:layout_width="168dp"
-                android:layout_marginLeft="5dp"
-                android:layout_alignParentRight="true"
-                android:hint="Section"
-                android:background="@drawable/spinnerbg"
-                android:textColor="@color/colorAccent"
-                android:textColorHint="@color/colorAccent"
-                android:layout_height="wrap_content"
-                />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="7dp"
-                android:layout_centerVertical="true"
-                android:layout_gravity="center"
-                android:src="@mipmap/dropdowns" />
-
-        </RelativeLayout>
 
   </LinearLayout>
     </android.support.v7.widget.CardView>

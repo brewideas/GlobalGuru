@@ -43,6 +43,7 @@ public abstract class CommonRequest {
     private static final String FORGET_PASSWORD_URL = DOMAIN + "school-data-service/api/school/password/forgot/";
     private static final String CHANGE_PASSWORD_URL = DOMAIN + "school-data-service/api/school/password/change/";
 
+    private static final String HOMEWORK_AS_NOTIFICATION_STAT_URL = DOMAIN + "school-data-service" + "/api/notification/data/search/pull?";
 
     private static final String GET_APPLICATION_VERSION_URL = DOMAIN +
                                                 "school-data-service/api/apps/android/version?org=1";
@@ -85,6 +86,7 @@ public abstract class CommonRequest {
         COMMON_REQUEST_CHANGE_PASSWORD, COMMON_REQUEST_GET_USERS_DETAIL_BY_ID,
         COMMON_REQUEST_GET_NOTIFICATION_SUMMARY,COMMON_REQUEST_GET_APP_VERSION,
         COMMON_REQUEST_GET_FEES_PROFILE,COMMON_REQUEST_PUSH_SUBMIT_FEES,COMMON_REQUEST_GET_PENDING_FEES_STUDENT_LIST,
+        COMMON_REQUEST_PULL_HOMEWORK_AS_NOTIFICATION,
         COMMON_REQUEST_END // WARNING: Add all request types above this line only
     }
 
@@ -216,6 +218,9 @@ public abstract class CommonRequest {
                 url= PUSH_APPLICATION_SUBMIT_FEES;
                 break;
             case COMMON_REQUEST_GET_PENDING_FEES_STUDENT_LIST:
+                url= GET_APPLICATION_PENDING_FEES_STUDENT_LIST;
+                break;
+            case COMMON_REQUEST_PULL_HOMEWORK_AS_NOTIFICATION:
                 url= GET_APPLICATION_PENDING_FEES_STUDENT_LIST;
                 break;
             default:

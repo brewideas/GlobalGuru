@@ -238,11 +238,13 @@
                 </LinearLayout>
 
                 </LinearLayout>
-            </RelativeLayout>
 
-            <!-- <LinearLayout
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:id="@+id/rowFour"
+                android:layout_below="@+id/rowThree"
                 android:orientation="horizontal"
                 android:layout_marginTop="@dimen/activity_vertical_margin">
                 <LinearLayout
@@ -253,19 +255,20 @@
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/examschedule"
-                        android:id="@+id/examSchedule"
+                        android:src="@drawable/homeworkicon"
+                        android:onClick="LaunchHomeWork"
+                        android:id="@+id/homework"
                         />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Exam Schedule"
+                        android:text="HomeWork"
                         android:gravity="center"
                         android:layout_gravity="center"
                         android:layout_marginTop="5dp"
                         android:textSize="18sp" />
                 </LinearLayout>
-                <LinearLayout
+             <!--   <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
@@ -285,9 +288,9 @@
                         android:layout_marginTop="5dp"
                         android:textSize="18sp" />
                 </LinearLayout>
-
+             -->
             </LinearLayout>
-
+<!--
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -332,8 +335,9 @@
                         android:layout_marginTop="5dp"
                         android:textSize="18sp" />
                 </LinearLayout>
-            </LinearLayout> -->
-
+            </LinearLayout>
+            -->
+            </RelativeLayout>
         </LinearLayout>
 
     </ScrollView>

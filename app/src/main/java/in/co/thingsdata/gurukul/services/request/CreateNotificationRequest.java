@@ -8,16 +8,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import in.co.thingsdata.gurukul.data.CreateNotificationData;
 import in.co.thingsdata.gurukul.data.common.UserData;
 import in.co.thingsdata.gurukul.services.helper.CommonRequest;
 
-import static in.co.thingsdata.gurukul.data.common.CommonDetails.NOTIFICATION_TARGET_ALL_STRING;
+import static in.co.thingsdata.gurukul.data.common.CommonDetails.NOTIFICATION_TYPE_JSON_STRING_HOMEWORK;
 import static in.co.thingsdata.gurukul.data.common.CommonDetails.NOTIFICATION_TYPE_JSON_STRING_QUESTION;
 import static in.co.thingsdata.gurukul.data.common.CommonDetails.NOTIFICATION_TYPE_JSON_STRING_TEXT;
+import static in.co.thingsdata.gurukul.data.common.CommonDetails.NotificationTypeEnum.NOTIFICATION_TYPE_HOMEWORK;
 import static in.co.thingsdata.gurukul.data.common.CommonDetails.NotificationTypeEnum.NOTIFICATION_TYPE_VOTE;
 import static in.co.thingsdata.gurukul.services.helper.CommonRequest.RequestType.COMMON_REQUEST_CREATE_NOTIFICATION;
 import static in.co.thingsdata.gurukul.services.helper.JSONParsingEnum.JSON_FIELD_NAME;
@@ -29,7 +27,6 @@ import static in.co.thingsdata.gurukul.services.helper.JSONParsingEnum.JSON_FIEL
 import static in.co.thingsdata.gurukul.services.helper.JSONParsingEnum.JSON_FIELD_NOTIFICATION_FILTER;
 import static in.co.thingsdata.gurukul.services.helper.JSONParsingEnum.JSON_FIELD_NOTIFICATION_QUESTION_TEXT;
 import static in.co.thingsdata.gurukul.services.helper.JSONParsingEnum.JSON_FIELD_NOTIFICATION_RESPONSE_BACK_FLAG;
-import static in.co.thingsdata.gurukul.services.helper.JSONParsingEnum.JSON_FIELD_NOTIFICATION_TARGET_USER;
 import static in.co.thingsdata.gurukul.services.helper.JSONParsingEnum.JSON_FIELD_NOTIFICATION_TARGET_USER_DATA;
 import static in.co.thingsdata.gurukul.services.helper.JSONParsingEnum.JSON_FIELD_NOTIFICATION_TYPE;
 
@@ -71,6 +68,9 @@ public class CreateNotificationRequest extends CommonRequest {
                 opt.put("N", "NO");
                 questionContent.put("options", opt);
                 param.put("questionContents",questionContent);
+            }else if(data.getNotificationType() ==  NOTIFICATION_TYPE_HOMEWORK){
+                param.put(JSON_FIELD_NOTIFICATION_RESPONSE_BACK_FLAG, "false");
+                param.put(JSON_FIELD_NOTIFICATION_TYPE, NOTIFICATION_TYPE_JSON_STRING_HOMEWORK);
             }
             else{
                 param.put(JSON_FIELD_NOTIFICATION_RESPONSE_BACK_FLAG, "false");

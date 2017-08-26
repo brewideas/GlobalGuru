@@ -41,7 +41,7 @@ public class CreatenotificationActivity extends AppCompatActivity implements Cre
     DatePickerDialog.OnDateSetListener date;
     RadioButton normal, optional;
     ArrayList<String> selClassesList;
-    ArrayList<String> selClassesSectionList;
+    //ArrayList<String> selClassesSectionList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,13 +49,13 @@ public class CreatenotificationActivity extends AppCompatActivity implements Cre
 
         try {
             String keyClassName = "selClass";
-            String keyClassSection = "selSection";
+         //   String keyClassSection = "selSection";
             Bundle b = this.getIntent().getExtras();
             selClassesList = b.getStringArrayList(keyClassName);
-            selClassesSectionList = b.getStringArrayList(keyClassSection);
+         //   selClassesSectionList = b.getStringArrayList(keyClassSection);
         }catch(NullPointerException e){
             selClassesList = null;
-            selClassesSectionList = null;
+            //selClassesSectionList = null;
         }
         mDetails= (EditText)findViewById(R.id.detail);
         title = (EditText) findViewById(R.id.addtitle);
@@ -155,7 +155,7 @@ public class CreatenotificationActivity extends AppCompatActivity implements Cre
 //        String createDate = startdate.getText().toString();// + "T" + currTime;
         String expiryDate = enddate.getText().toString() + "T" + "23:59:04.830";
         String createDate =currDate + "T" + addTime;
-                CommonDetails.NotificationTypeEnum type = normal.isChecked()?NOTIFICATION_TYPE_NORMAL:NOTIFICATION_TYPE_VOTE;
+        CommonDetails.NotificationTypeEnum type = normal.isChecked()? NOTIFICATION_TYPE_NORMAL:NOTIFICATION_TYPE_VOTE;
 
         CreateNotificationData nd = null;
         String des = mDetails.getText().toString();

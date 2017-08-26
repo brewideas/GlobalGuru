@@ -70,7 +70,7 @@ public class NoticeBoardDataAdapter extends RecyclerView.Adapter<NoticeBoardData
         String classSection = stList.get(position).getClassSection();
 
         if(classSection != null){
-            className += classSection;
+          //  className += classSection;
         }
 
         viewHolder.tvClassName.setText(className);

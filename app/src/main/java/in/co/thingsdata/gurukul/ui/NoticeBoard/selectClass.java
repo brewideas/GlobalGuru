@@ -77,7 +77,7 @@ public class selectClass extends AppCompatActivity {
             public void onClick(View v) {
                 String data = "";
                 ArrayList<String> classesSel = new ArrayList<String>();
-                ArrayList<String> classesSection = new ArrayList<String>();
+                //ArrayList<String> classesSection = new ArrayList<String>();
 
                 List<NoticeBoardModel> clsList = ((NoticeBoardDataAdapter) mAdapter)
                         .getClassList();
@@ -86,11 +86,11 @@ public class selectClass extends AppCompatActivity {
                     NoticeBoardModel singleClass = clsList.get(i);
                     if (singleClass.isSelected() == true) {
                         String cls = singleClass.getClassName().toString();
-                        String sec = singleClass.getClassSection().toString();
+                 //       String sec = singleClass.getClassSection().toString();
                         data = data + "\n" + cls;
                         NoticeBoardStaticData.setSelectedClassList(singleClass);
                         classesSel.add(cls);
-                        classesSection.add(sec);
+                     //   classesSection.add("");
                     }
 
                 }
@@ -107,7 +107,7 @@ public class selectClass extends AppCompatActivity {
 
                     Bundle bnd = new Bundle();
                     bnd.putStringArrayList("selClass", classesSel);
-                    bnd.putStringArrayList("selSection", classesSection);
+                    //bnd.putStringArrayList("selSection", classesSection);
                     Intent i = new Intent(selectClass.this, CreatenotificationActivity.class);
                     i.putExtras(bnd);
                     startActivity(i);

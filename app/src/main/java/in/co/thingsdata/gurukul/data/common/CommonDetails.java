@@ -13,7 +13,7 @@ public final class CommonDetails {
     public enum NotificationTypeEnum  {
         NOTIFICATION_TYPE_NORMAL, // Used for the day which don't exist like 30 FEB.
         NOTIFICATION_TYPE_VOTE,
-
+        NOTIFICATION_TYPE_HOMEWORK,
         NOTIFICATION_TYPE_END // WARNING: Add all attendance value above this line only
     }
 
@@ -40,6 +40,7 @@ public final class CommonDetails {
 
     public static final String NOTIFICATION_TYPE_JSON_STRING_TEXT = "TEXT";
     public static final String NOTIFICATION_TYPE_JSON_STRING_QUESTION = "QUESTION";
+    public static final String NOTIFICATION_TYPE_JSON_STRING_HOMEWORK = "HOMEWORK";
 
     public static final String EXAM_TYPE_HALF_YEARLY = "HALF_YEARLY";
     public static final String EXAM_TYPE_YEARLY = "YEARLY";
