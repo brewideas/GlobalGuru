@@ -1,25 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="in.co.thingsdata.gurukul.ui.Homework.CreateHomework"
-    tools:showIn="@layout/create_homework">
-
-   <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="14dp"
-        android:fillViewport="true"
-        android:layout_above="@+id/Submit"
-        android:layout_marginRight="14dp">
+    android:layout_height="fill_parent"
+    android:layout_marginLeft="14dp"
+    android:layout_marginRight="14dp">>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="fill_parent"
             android:orientation="vertical">
             <include layout="@layout/homework_header" />
 
@@ -44,14 +32,19 @@
                     android:textColorHint="#909090"/>
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
             <TextView
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="5dp"
                 android:layout_gravity="center"
-                android:text="\nDescription"
+                android:text="Description"
                 android:textColor="#000000"
                 android:textSize="25sp" />
 
@@ -59,26 +52,27 @@
                 android:id="@+id/detail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="5dp"
                 android:layout_centerHorizontal="true"
                 android:drawableLeft="@android:drawable/ic_input_get"
                 android:drawablePadding="10dp"
                 android:ems="10"
-                android:hint="Homework Description.\n Enter details here \n\n\n"
+                android:hint="Homework Description.\n Enter details here"
                 android:inputType="textMultiLine"
                 android:textColorHint="#909090"
                 android:paddingLeft="5dp" />
 
         </LinearLayout>
-   </ScrollView>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:id="@+id/Submit">
+        android:id="@+id/Submit"
+        android:layout_gravity="bottom|end"
+        android:layout_marginTop="50dp">
+
     <Button
             style="?android:attr/buttonStyleSmall"
-
             android:background="@drawable/loginbutton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -86,4 +80,5 @@
             android:onClick="sendHomeWork"
             />
     </LinearLayout>
-</RelativeLayout>
+</LinearLayout>
+</ScrollView>

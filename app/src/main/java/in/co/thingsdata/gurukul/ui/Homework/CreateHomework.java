@@ -1,5 +1,6 @@
 package in.co.thingsdata.gurukul.ui.Homework;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -13,6 +14,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import in.co.thingsdata.gurukul.NoticeficationPanel.ShowNotificationActivity;
 import in.co.thingsdata.gurukul.R;
 import in.co.thingsdata.gurukul.data.CreateNotificationData;
 import in.co.thingsdata.gurukul.data.common.ClassData;
@@ -88,7 +90,14 @@ public class CreateHomework extends AppCompatActivity implements AdapterView.OnI
     @Override
     public void onCreateNotificationResponse(CommonRequest.ResponseCode res, CreateNotificationData data) {
 
-    }
+        if (res == CommonRequest.ResponseCode.COMMON_RES_SUCCESS){
+            Toast.makeText(this, "Notification created successfully", Toast.LENGTH_SHORT).show();
+            Intent launchFeature = new Intent(this, ShowNotificationActivity.class);
+            startActivity(launchFeature);
+        }else{
+            Toast.makeText(this, "Failed to create notification", Toast.LENGTH_SHORT).show();
+        }
+     }
 
     enum classLevel{
         Primary,
