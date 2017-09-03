@@ -27,6 +27,7 @@ import in.co.thingsdata.gurukul.data.common.UserData;
 import in.co.thingsdata.gurukul.services.helper.CommonRequest;
 import in.co.thingsdata.gurukul.services.request.GetAppVersionRequest;
 import in.co.thingsdata.gurukul.services.request.GetClassListRequest;
+import in.co.thingsdata.gurukul.ui.Fees.FeesDetails;
 
 public class MainActivity extends AppCompatActivity implements GetClassListRequest.GetClassListCallback , GetAppVersionRequest.GetAppVersionCallback{
 
@@ -53,9 +54,14 @@ public class MainActivity extends AppCompatActivity implements GetClassListReque
 
         getSavedVersionOfApplication();
 
-        if (UserData.isUserAlreadyLoggedIn()) {
-            isUserLoggedIn = true;
-            UserData.init();
+        boolean temp = false;
+        if(temp == true) {
+            Intent start = new Intent(this, FeesDetails.class);
+            startActivity(start);
+        }else {
+            if (UserData.isUserAlreadyLoggedIn()) {
+                isUserLoggedIn = true;
+                UserData.init();
 
 //          Runnable rn = new Runnable() {
 //                @Override
@@ -69,14 +75,15 @@ public class MainActivity extends AppCompatActivity implements GetClassListReque
 //
 //        }
 
-        }else{
-            isUserLoggedIn = false;
-        }
+            } else {
+                isUserLoggedIn = false;
+            }
             GetClassListRequest req = new GetClassListRequest(MainActivity.this, MainActivity.this);
             req.executeRequest();
 
-        GetAppVersionRequest resVersion = new GetAppVersionRequest(this,this);
-        resVersion.executeRequest();
+            GetAppVersionRequest resVersion = new GetAppVersionRequest(this, this);
+            resVersion.executeRequest();
+        }
   }
 
   void launchApplication(){

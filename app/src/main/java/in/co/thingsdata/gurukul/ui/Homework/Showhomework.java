@@ -30,7 +30,6 @@ import java.util.Collections;
 import java.util.Date;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
-import in.co.thingsdata.gurukul.Adapters.NotificationAdapter;
 import in.co.thingsdata.gurukul.Models.Studentnotificationmodel;
 import in.co.thingsdata.gurukul.R;
 import in.co.thingsdata.gurukul.data.GetNotificationStatsData;
@@ -60,7 +59,7 @@ public class Showhomework extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_show_notification);
+        setContentView(R.layout.showhomework);
 
         userName = (TextView)findViewById(R.id.username);
         userName.setText(UserData.getFirstName());
@@ -176,16 +175,10 @@ public class Showhomework extends AppCompatActivity
                         for (int i = 0; i < notificationarray.length(); i++) {
                             JSONObject notify = notificationarray.getJSONObject(i);
                             String contentType = notify.optString("contentType");
-                            String contentTitle = notify.optString("contentTitle");
+                            String contentSubject = notify.optString("contentTitle");
                             String contentMsg = notify.optString("contentMsg");
-                            String contentData;
-                            if (!UserData.getUserType().contentEquals(CommonDetails.USER_TYPE_PRINCIPAL) &&
-                                    contentType.contentEquals("HOMEWORK")) {
-                                JSONObject data = notify.getJSONObject("contentData");
-                                contentData = data.optString("questText");
-                            }
-                            else
-                            {
+                            String contentData = null;
+                            if (contentType.contentEquals(CommonDetails.NOTIFICATION_TYPE_JSON_STRING_HOMEWORK)){
                                 contentData = notify.optString("contentData");
                             }
                             String startDate;
@@ -207,7 +200,7 @@ public class Showhomework extends AppCompatActivity
 
 
                             notificationdata.setContentType(contentType);
-                            notificationdata.setContentTitle(contentTitle);
+                            notificationdata.setContentTitle(contentSubject);
                             notificationdata.setContentMsg(contentMsg);
                             notificationdata.setContentData(contentData);
                             notificationdata.setUniqueId(uniqueId);
@@ -221,18 +214,17 @@ public class Showhomework extends AppCompatActivity
 
                         }
 
-
-                        list = (ListView) findViewById(R.id.notificationlistView);
+                        list = (ListView) findViewById(R.id.homeworklistView);
                         Collections.reverse(notifcationlist);
-                        NotificationAdapter adap= new NotificationAdapter(Showhomework.this,notifcationlist);
+
+                        HomeworkAdapter adap= new HomeworkAdapter(Showhomework.this,notifcationlist);
                         list.setAdapter(adap);
 
                         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                             @Override
                             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
-                                if(notifcationlist.get(position).getContentType().equals(CommonDetails.NOTIFICATION_TYPE_JSON_STRING_HOMEWORK))    {
-                                    if(UserData.getUserType().equals("PRINCIPAL")){
-                                        new SweetAlertDialog(Showhomework.this, SweetAlertDialog.SUCCESS_TYPE)
+                                if(notifcationlist.get(position).getContentType().equals(CommonDetails.NOTIFICATION_TYPE_JSON_STRING_HOMEWORK)) {
+                                                new SweetAlertDialog(Showhomework.this, SweetAlertDialog.SUCCESS_TYPE)
                                                 .setTitleText(notifcationlist.get(position).getContentTitle())
                                                 .setContentText(notifcationlist.get(position).getContentData())
 
@@ -255,49 +247,6 @@ public class Showhomework extends AppCompatActivity
                                                     }
                                                 })
                                                 .show();
-                                    }else if( (notifcationlist.get(position).getContentType().equals(CommonDetails.NOTIFICATION_TYPE_JSON_STRING_HOMEWORK)) && ((UserData.getUserType().equals(CommonDetails.USER_TYPE_STUDENT))
-                                            || (UserData.getUserType().equals(CommonDetails.USER_TYPE_PARENT)))){
-
-                                        new SweetAlertDialog(Showhomework.this, SweetAlertDialog.SUCCESS_TYPE)
-                                                .setTitleText("This will change your earlier vote \n"+notifcationlist.get(position).getContentTitle())
-                                                .setContentText(notifcationlist.get(position).getContentData())
-                                                .setCancelText("No")
-                                                .setConfirmText("Sure")
-                                                .showCancelButton(true)
-                                                .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                                                    @Override
-                                                    public void onClick(SweetAlertDialog sDialog) {
-                                                        sDialog.cancel();
-                                                        ReplyNotificationData data = new ReplyNotificationData(
-                                                                UserData.getAccessToken(),
-                                                                notifcationlist.get(position).getUniqueId(),
-                                                                CommonDetails.NotificationReplyEnum.NOTIFICATION_REPLY_NO);
-                                                        ReplyNotificationRequest req = new ReplyNotificationRequest(
-                                                                Showhomework.this, data,
-                                                                Showhomework.this);
-                                                        req.executeRequest();
-                                                    }
-                                                })
-                                                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                                                    @Override
-                                                    public void onClick(SweetAlertDialog sweetAlertDialog) {
-                                                        sweetAlertDialog.cancel();
-                                                        ReplyNotificationData data = new ReplyNotificationData(
-                                                                UserData.getAccessToken(),
-                                                                notifcationlist.get(position).getUniqueId(),
-                                                                CommonDetails.NotificationReplyEnum.NOTIFICATION_REPLY_YES);
-                                                        ReplyNotificationRequest req = new ReplyNotificationRequest(
-                                                                Showhomework.this, data,
-                                                                Showhomework.this);
-                                                        req.executeRequest();
-                                                    }
-                                                })
-                                                .show();}
-                                }else{
-                                    new SweetAlertDialog(Showhomework.this, SweetAlertDialog.SUCCESS_TYPE)
-                                            .setTitleText(notifcationlist.get(position).getContentTitle())
-                                            .setContentText(notifcationlist.get(position).getContentData())
-                                            .show();
 
                                 }
                             }

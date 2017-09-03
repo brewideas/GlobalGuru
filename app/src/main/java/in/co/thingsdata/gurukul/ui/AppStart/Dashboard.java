@@ -15,6 +15,7 @@ import in.co.thingsdata.gurukul.R;
 import in.co.thingsdata.gurukul.data.common.CommonDetails;
 import in.co.thingsdata.gurukul.data.common.UserData;
 import in.co.thingsdata.gurukul.ui.Fees.FeesDetails;
+import in.co.thingsdata.gurukul.ui.Gallery.schoolGallery;
 import in.co.thingsdata.gurukul.ui.Homework.Showhomework;
 import in.co.thingsdata.gurukul.ui.ReportCardUi.ReportCardTeacherView;
 
@@ -55,6 +56,15 @@ public class Dashboard extends AppCompatActivity {
         }catch (NullPointerException e){
             Log.v("Dashboard","NullPointerException addview"+e);
         }
+    }
+
+    @Override
+    public void onBackPressed(){
+        Intent a = new Intent(Intent.ACTION_MAIN);
+        a.addCategory(Intent.CATEGORY_HOME);
+        a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(a);
+
     }
 
     public void launchReportCard(View view) {

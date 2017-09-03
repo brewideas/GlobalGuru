@@ -19,7 +19,6 @@ import in.co.thingsdata.gurukul.services.helper.JSONParsingEnum;
 import static in.co.thingsdata.gurukul.services.helper.JSONParsingEnum.JSON_FIELD_DATA;
 import static in.co.thingsdata.gurukul.services.helper.JSONParsingEnum.JSON_FIELD_NAME;
 import static in.co.thingsdata.gurukul.services.helper.JSONParsingEnum.JSON_FIELD_REG_NUMBER;
-import static in.co.thingsdata.gurukul.services.helper.JSONParsingEnum.JSON_FIELD_ROLL_NUMBER;
 import static in.co.thingsdata.gurukul.services.helper.JSONParsingEnum.JSON_FIELD_STATUS;
 import static in.co.thingsdata.gurukul.services.helper.JSONParsingEnum.JSON_FIELD_UNIQUE_ID;
 
@@ -74,10 +73,10 @@ public class GetPendingFeesStudentListReq extends CommonRequest {
                 for (int i = 0; i < total; i++) {
                     JSONObject student = data.getJSONObject(i);
                     String name = student.getString(JSON_FIELD_NAME);
-                    int rollNum = student.getInt(JSON_FIELD_ROLL_NUMBER);
+                   // int rollNum = student.getInt(JSON_FIELD_ROLL_NUMBER);
                     String id = student.getString(JSON_FIELD_UNIQUE_ID);
                     String reg_id = student.getString(JSON_FIELD_REG_NUMBER);
-                    mData.addStudent(new Student(id, name, rollNum, reg_id));
+                    mData.addStudent(new Student(id, name, -1, reg_id));
                 }
                 mAppCallback.GetPendingFeesStudentListCallback(ResponseCode.COMMON_RES_SUCCESS, mData);
             }

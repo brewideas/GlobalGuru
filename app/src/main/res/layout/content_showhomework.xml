@@ -10,14 +10,94 @@
     tools:context="in.co.thingsdata.gurukul.NoticeficationPanel.ShowNotificationActivity"
     tools:showIn="@layout/activity_show_notification">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/howorklist"
-        android:layout_below="@+id/headerOfList"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:background="@color/lineColor"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="260dp"
-        />
+        android:layout_height="0dp"
+        android:visibility="gone"
+        android:background="@color/error_stroke_color"
+        android:layout_weight="0.7">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="User Name"
+            android:textSize="20sp"
+            android:textColor="#ffffff"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:id="@+id/username"
+            android:onClick="txtName"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="201301"
+            android:textColor="#ffffff"
+
+            android:textSize="20sp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:id="@+id/pincode"
+            android:layout_alignRight="@+id/username"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true" />
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="#ffffff"
+            android:layout_centerVertical="true"
+            android:id="@+id/view" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Class 12B"
+            android:id="@+id/studentclass"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp"
+            android:layout_below="@+id/view"
+            android:textSize="20sp"
+            android:textColor="#ffffff"
+
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Father Name"
+            android:id="@+id/fathername"
+            android:layout_alignRight="@+id/studentclass"
+            android:textSize="20sp"
+            android:textColor="#ffffff"
+
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+
+            android:layout_marginTop="10dp"
+            android:dividerHeight="12.0sp"
+            android:layout_marginRight="10dp"
+            android:id="@+id/homeworklistView"
+            />
+
+    </RelativeLayout>
 </LinearLayout>

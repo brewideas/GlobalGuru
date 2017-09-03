@@ -4,21 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="in.co.thingsdata.gurukul.ui.Homework.CreateHomework"
     tools:showIn="@layout/create_homework">
 
-
-
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+   <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="14dp"
+        android:fillViewport="true"
+        android:layout_above="@+id/Submit"
         android:layout_marginRight="14dp">
-
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="fill_parent"
+            android:layout_height="match_parent"
             android:orientation="vertical">
             <include layout="@layout/homework_header" />
 
@@ -38,55 +39,19 @@
                     android:id="@+id/addtitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Homework Title"
+                    android:hint="Enter Homework Title"
                     android:textSize="16sp"
                     android:textColorHint="#909090"/>
             </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp">
-                <TextView
-                    android:id="@+id/Startdate"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:text="Start Date"
-                    android:visibility="gone"
-                    android:textColor="#000000"
-                    android:textSize="16sp" />
-
-                <EditText
-                    android:id="@+id/daate"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:visibility="gone"
-                    android:clickable="false"
-                    android:cursorVisible="false"
-                    android:focusable="false"
-                    android:focusableInTouchMode="false"
-                    android:inputType="textPersonName"
-                    android:text=""
-                    android:textSize="16sp"/>
-            </LinearLayout>
-
-            <View
-                android:id="@+id/view2"
-                android:layout_width="fill_parent"
-                android:layout_height="2dp"
-
-                android:background="#c0c0c0"
-                android:layout_marginTop="20dp"/>
 
             <TextView
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="15dp"
                 android:layout_gravity="center"
-                android:text="Description"
+                android:text="\nDescription"
                 android:textColor="#000000"
                 android:textSize="25sp" />
 
@@ -94,35 +59,31 @@
                 android:id="@+id/detail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="15dp"
                 android:layout_centerHorizontal="true"
                 android:drawableLeft="@android:drawable/ic_input_get"
                 android:drawablePadding="10dp"
                 android:ems="10"
-                android:hint="Homework Description.\n Enter details here "
+                android:hint="Homework Description.\n Enter details here \n\n\n"
                 android:inputType="textMultiLine"
                 android:textColorHint="#909090"
                 android:paddingLeft="5dp" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom|end"
-                android:layout_marginTop="50dp">
-                <Button
-                    android:id="@+id/Submit"
-                    style="?android:attr/buttonStyleSmall"
-                    android:background="@drawable/loginbutton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Submit"
-                    android:onClick="sendHomeWork"
-                    android:layout_weight="1"/>
-
-
-            </LinearLayout>
         </LinearLayout>
-    </ScrollView>
+   </ScrollView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/Submit">
+    <Button
+            style="?android:attr/buttonStyleSmall"
 
-
+            android:background="@drawable/loginbutton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Submit"
+            android:onClick="sendHomeWork"
+            />
+    </LinearLayout>
 </RelativeLayout>

@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#8FBC8F</color>
+    <color name="colorPrimary">#3f51b5</color>
     <color name="colorPrimaryDark">#6B8E23</color>
     <color name="colorAccent">#FF4081</color>
     <color name="colorComponentBG">#83dbd6</color>
     <color name="colorWhite">#ffffff</color>
-    <color name="titleBar">#6B8E23</color>
+    <color name="titleBar">#FF0003</color>
+
     <color name="lineColor">#dddbdc</color>
     <color name="card">#FFFFFF</color>
     <color name="primary">#EA2C2E</color>
@@ -15,4 +16,14 @@
     <color name="red">#FF0000</color>
     <color name="indigo">#4B0042</color>
     <color name="bluevoilet">#8A2BE2</color>
+    <color name="fblue">#FCE4EC</color>
+
+    <color name="colorPrimaryBusiness">#2099D2</color>
+    <color name="colorPrimryDarkBusiness">#197EAC</color>
+    <color name="customBackgroundAttributeColor">#197EAC</color>
+
+    <color name="colorPrimaryOthers">#e42a38</color>
+    <color name="colorPrimaryDarkOthers">#bd232f</color>
+
+
 </resources>

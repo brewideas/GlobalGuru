@@ -65,10 +65,9 @@ public class FeesDetails extends AppCompatActivity implements GetStudentListInCl
 
                 try {
                     Intent start;
-                    if (FeesDetailsStaticData.clickedButton == FeesDetailsStaticData.buttonType.viewBtn) {
-                        start = new Intent(FeesDetails.this, FeesProfile.class);
-                    } else if(FeesDetailsStaticData.clickedButton == FeesDetailsStaticData.buttonType.pendingBtn){
-                        start = new Intent(FeesDetails.this, FeesProfile.class);
+                    if((UserData.getUserType().equals(CommonDetails.USER_TYPE_STUDENT)) ||
+                            (UserData.getUserType().equals(CommonDetails.USER_TYPE_PARENT))){
+                        start = new Intent(FeesDetails.this, FeesProfileNonEditable.class);
                     }else{
                         start = new Intent(FeesDetails.this, FeesProfile.class);
                     }
@@ -245,27 +244,33 @@ public class FeesDetails extends AppCompatActivity implements GetStudentListInCl
     }
 
     void reqStudentList(){
+        try {
+            FeesDetailsStaticData.dataList.clear();
+            mAdapter.notifyDataSetChanged();
 
-        FeesDetailsStaticData.dataList.clear();
-        mAdapter.notifyDataSetChanged();
+            String token = UserData.getAccessToken();
+            Integer indexValue = classSpinner.getSelectedItemPosition();
 
-        String token = UserData.getAccessToken();
-        Integer indexValue = classSpinner.getSelectedItemPosition();
+            String classN = FeesDetailsStaticData.mClassesInSchoolObj.get(indexValue).getClassCode();//UserData.getClassRoomId();//todo: uncomment once server data is right //ReportCardStaticData.getSelectedClass();
+            FeesDetailsStaticData.setSelectedStudentClassRoomId(classN);
 
-        String classN = FeesDetailsStaticData.mClassesInSchoolObj.get(indexValue).getClassCode();//UserData.getClassRoomId();//todo: uncomment once server data is right //ReportCardStaticData.getSelectedClass();
-        FeesDetailsStaticData.setSelectedStudentClassRoomId(classN);
+            String classSection = classSpinner.getSelectedItem().toString();
 
-        String classSection = classSpinner.getSelectedItem().toString();
+            String sectionStr = FeesDetailsStaticData.getSection(classSection);
+            FeesDetailsStaticData.setSelectedStudentSection(sectionStr);
 
-        String sectionStr = FeesDetailsStaticData.getSection(classSection);
-        FeesDetailsStaticData.setSelectedStudentSection(sectionStr);
+            GetStudentListInClassData data = new GetStudentListInClassData(token, classN, sectionStr);
+            GetStudentListInClassReq req = new GetStudentListInClassReq(this, data, this);
 
-        GetStudentListInClassData data = new GetStudentListInClassData(token, classN, sectionStr);
-        GetStudentListInClassReq req = new GetStudentListInClassReq(this, data, this);
+            req.executeRequest();
+        }catch(Exception e){
+            Toast.makeText(this,"Error this time , please try later",Toast.LENGTH_LONG);
+            finish();
+        }
 
-        req.executeRequest();
     }
 
+    //For all classes
     void reqPendingFeesList(){
 
         FeesDetailsStaticData.dataList.clear();
@@ -315,7 +320,6 @@ public class FeesDetails extends AppCompatActivity implements GetStudentListInCl
 
     public void executeViewFeesQuery(View view) {
         FeesDetailsStaticData.clickedButton = FeesDetailsStaticData.buttonType.viewBtn;
-
         reqStudentList();
 
 

@@ -7,6 +7,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -27,21 +28,61 @@ public class CreateHomework extends AppCompatActivity implements AdapterView.OnI
 
     Spinner classSpinner, subjectSpinner;
     EditText title,detail,editSubject;
-    public void sendHomeWork(View view) {
-        String setText = editSubject.getText().toString();
-        if(setText == null) {
-            setText = subjectSpinner.getSelectedItem().toString();
+
+    public void createHomeWork(){
+
+        try {
+            String setSubject = editSubject.getText().toString();
+            if (setSubject == null || setSubject.length() == 0) {
+                setSubject = subjectSpinner.getSelectedItem().toString();
+            }
+            // setSubject += "\n" + detail.getText().toString();
+
+            int indexValue = classSpinner.getSelectedItemPosition();
+            String classCode = HomeWorkStaticData.mClassesInSchoolObj.get(indexValue).getClassCode();
+            HomeWorkStaticData.setSelectedClassRoomId(classCode);
+            selClassesList = null;
+            selClassesList = new ArrayList<String>();
+            selClassesList.add(0, classCode);
+
+            Calendar c = Calendar.getInstance();
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            SimpleDateFormat df2 = new SimpleDateFormat("HH:mm:ss.SSS");
+
+            String addTime = df2.format(c.getTime());
+            String currDate = df.format(c.getTime());
+//        String createDate = startdate.getText().toString();// + "T" + currTime;
+
+            String createDate = currDate + "T" + addTime;
+
+            c.add(c.DATE, 31);
+            addTime = df2.format(c.getTime());
+            currDate = df.format(c.getTime());
+
+            String expiryDate = currDate + "T" + addTime;
+
+            CommonDetails.NotificationTypeEnum type = NOTIFICATION_TYPE_NORMAL;
+
+            CreateNotificationData nd = null;
+            String description = detail.getText().toString();
+            nd = new CreateNotificationData(
+                    UserData.getAccessToken(),
+                    createDate,
+                    expiryDate,
+                    description,
+                    setSubject,
+                    selClassesList, type, false);
+
+            CreateNotificationRequest request = new CreateNotificationRequest(this, nd, this);
+            request.executeRequest();
+        }catch(Exception e){
+            Toast.makeText(CreateHomework.this,"Error creating homework .Please try later",Toast.LENGTH_LONG);
         }
-        setText += "\n" + detail.getText().toString();
+    }
 
-        selClassesList = new ArrayList<String>();
 
-        int indexValue = classSpinner.getSelectedItemPosition();
-        String classCode = HomeWorkStaticData.mClassesInSchoolObj.get(indexValue).getClassCode();
-        HomeWorkStaticData.setSelectedClassRoomId(classCode);
-
-        selClassesList.add(0, classCode);
-
+    public void sendHomeWork(View view) {
+        createHomeWork();
     }
 
     @Override
@@ -79,7 +120,7 @@ public class CreateHomework extends AppCompatActivity implements AdapterView.OnI
 
         String expiryDate =currDate + "T" + addTime;
 
-        CommonDetails.NotificationTypeEnum type = NOTIFICATION_TYPE_NORMAL;
+        CommonDetails.NotificationTypeEnum type = CommonDetails.NotificationTypeEnum.NOTIFICATION_TYPE_HOMEWORK;
         if(selClassesList != null && selClassesList.size()>0) {
             nd = new CreateNotificationData(
                     UserData.getAccessToken(),
@@ -101,6 +142,12 @@ public class CreateHomework extends AppCompatActivity implements AdapterView.OnI
 
         String selClass = parent.getSelectedItem().toString();
         int len  = selClass.length();
+
+        if(len > 3){
+            selClass = selClass.substring(0,3);
+            len = 3;
+        }
+
         String intOnly = selClass.substring(0,len-1);
 
         int selClassIs = Integer.parseInt(intOnly);
@@ -159,16 +206,26 @@ public class CreateHomework extends AppCompatActivity implements AdapterView.OnI
         super.onCreate(savedInstanceState);
         setContentView(R.layout.create_homework);
 
-        initRes();
-        fillDropDownData();
-        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
+        try {
+            if ((UserData.getUserType().equals(CommonDetails.USER_TYPE_STUDENT)) ||
+                    (UserData.getUserType().equals(CommonDetails.USER_TYPE_PARENT))) {
+                finish();
+            }
+
+            initRes();
+            fillDropDownData();
+        }catch(Exception e){
+            Toast.makeText(CreateHomework.this, "Error this time , try later", Toast.LENGTH_SHORT).show();
+            finish();
+        }
     }
 
     void initRes(){
         classSpinner = (Spinner) findViewById(R.id.spinner_class);
         classSpinner.setOnItemSelectedListener(this);
         subjectSpinner = (Spinner) findViewById(R.id.spinner_subject);
+
+
 
         title = (EditText) findViewById(R.id.addtitle);
         detail = (EditText) findViewById(R.id.detail);
@@ -190,7 +247,8 @@ public class CreateHomework extends AppCompatActivity implements AdapterView.OnI
 
             }
         } catch (NullPointerException e) {
-
+            Toast.makeText(CreateHomework.this,"Please try later",Toast.LENGTH_LONG);
+            finish();
         }
         spinnerAdapterClass.notifyDataSetChanged();
 

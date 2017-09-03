@@ -168,7 +168,7 @@ public class CreatenotificationActivity extends AppCompatActivity implements Cre
                     title.getText().toString(),
                     selClassesList,
                     type,isSMS);
-        }else{
+        }else{//To all
              nd = new CreateNotificationData(
                     UserData.getAccessToken(),
                     createDate,

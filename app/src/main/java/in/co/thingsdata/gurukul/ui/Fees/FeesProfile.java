@@ -107,7 +107,7 @@ public class FeesProfile extends AppCompatActivity implements GetStudentFeesProf
     void initRes(){
 
         balanceRemaingEt = (EditText)findViewById(R.id.balanceEV);
-        amluntPaidEt = (EditText)findViewById(R.id.amountpaidEV);
+        amluntPaidEt = (EditText)findViewById(R.id.actualFeesEV);
 
         nameTV = (TextView)findViewById(R.id.profileNameTV);
 //        feeCollectorTv = (TextView)findViewById(R.id.feeCollectorTv);
@@ -213,7 +213,9 @@ public class FeesProfile extends AppCompatActivity implements GetStudentFeesProf
     String lastPaidDate = null;
     @Override
     public void onGetStudentFeesProfileResponse(CommonRequest.ResponseCode res, int status, int month,
-                                                int year, int paidFees, int remainingFees, String lastPaidDate,String lastFeeCollector) {
+                                                int year, int paidFees, int remainingFees,
+                                                String lastPaidDate,String lastFeeCollector,
+                                                int lateFees,int otherCharges) {
 
              FeesDetailsStaticData.dismissProgressBar();
 

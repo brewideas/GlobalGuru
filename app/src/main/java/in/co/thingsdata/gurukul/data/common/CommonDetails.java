@@ -40,7 +40,7 @@ public final class CommonDetails {
 
     public static final String NOTIFICATION_TYPE_JSON_STRING_TEXT = "TEXT";
     public static final String NOTIFICATION_TYPE_JSON_STRING_QUESTION = "QUESTION";
-    public static final String NOTIFICATION_TYPE_JSON_STRING_HOMEWORK = "HOMEWORK";
+    public static final String NOTIFICATION_TYPE_JSON_STRING_HOMEWORK = "HOME_WORK";
 
     public static final String EXAM_TYPE_HALF_YEARLY = "HALF_YEARLY";
     public static final String EXAM_TYPE_YEARLY = "YEARLY";

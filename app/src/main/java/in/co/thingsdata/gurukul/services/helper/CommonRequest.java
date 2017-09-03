@@ -42,7 +42,7 @@ public abstract class CommonRequest {
     private static final String GET_USERS_DETAIL_BY_ID_URL = DOMAIN + "school-data-service/api/school/search/summary/users?";
     private static final String FORGET_PASSWORD_URL = DOMAIN + "school-data-service/api/school/password/forgot/";
     private static final String CHANGE_PASSWORD_URL = DOMAIN + "school-data-service/api/school/password/change/";
-
+private static final String GET_SCHOOL_GALLERY_URL = DOMAIN + "school-data-service/api/utility/files/search?org=";
     private static final String HOMEWORK_AS_NOTIFICATION_STAT_URL = DOMAIN + "school-data-service" + "/api/notification/data/search/pull?";
 
     private static final String GET_APPLICATION_VERSION_URL = DOMAIN +
@@ -81,6 +81,7 @@ public abstract class CommonRequest {
         COMMON_REQUEST_PULL_NOTIFICATION,
         COMMON_REQUEST_REPLY_NOTIFICATION,
         COMMON_REQUEST_GET_NOTIFICATION_STATS,
+        COMMON_REQUEST_GET_SCHOOL_GALLERY,
 
         COMMON_REQUEST_GET_PROFILE, COMMON_REQUEST_GET_USER_PROFILE_LIST, COMMON_REQUEST_GET_AD,
         COMMON_REQUEST_CHANGE_PASSWORD, COMMON_REQUEST_GET_USERS_DETAIL_BY_ID,
@@ -223,6 +224,9 @@ public abstract class CommonRequest {
             case COMMON_REQUEST_PULL_HOMEWORK_AS_NOTIFICATION:
                 url= GET_APPLICATION_PENDING_FEES_STUDENT_LIST;
                 break;
+			case COMMON_REQUEST_GET_SCHOOL_GALLERY:
+                url = GET_SCHOOL_GALLERY_URL;
+                break;	
             default:
                 url = null;
         }
@@ -270,7 +274,7 @@ public abstract class CommonRequest {
             int method;
             method = (mMethod == CommonRequestMethod.COMMON_REQUEST_METHOD_PUT) ? Request.Method.PUT : Request.Method.POST;
             jsObjRequest = new CustomRequest(method, mURL, mParams, listner, errorListner) {
-                public String getBodyContentType() {
+                  public String getBodyContentType() {
                     return "application/json";
                 }
 

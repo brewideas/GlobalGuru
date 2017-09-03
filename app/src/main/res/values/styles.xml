@@ -3,11 +3,14 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorAccent</item>
+        parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
         <item name="android:windowNoTitle">true</item>
-        <item name="colorPrimaryDark">@color/selectionControl</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:buttonStyle">@style/button</item>
+        <item name="colorPrimary">@color/colorPrimaryOthers</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDarkOthers</item>
+
     </style>
 
 

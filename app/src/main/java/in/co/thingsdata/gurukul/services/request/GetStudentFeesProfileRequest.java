@@ -48,8 +48,10 @@ public class GetStudentFeesProfileRequest extends CommonRequest {
     }
 
     public interface GetFeesProfileCallback {
-        void onGetStudentFeesProfileResponse(ResponseCode res, int status, int month , int year, int paidFees,
-        int remainingFees , String lastPaidDate ,String lastFeeCollector);
+        void onGetStudentFeesProfileResponse(ResponseCode res, int status, int month , int year,
+                                             int paidFees,int remainingFees , String lastPaidDate ,
+                                             String lastFeeCollector,int lateFees,
+                                             int otherCharges);
     }
 
     @Override
@@ -69,18 +71,25 @@ public class GetStudentFeesProfileRequest extends CommonRequest {
                     int year = fees_profile_data.getInt(JSONParsingEnum.JSON_FIELD_FEES_YEAR);
                     int lastPaidAmount =  fees_profile_data.getInt(JSONParsingEnum.JSON_FIELD_FEES_LAST_PAID);
                     int remaningfees = fees_profile_data.getInt(JSONParsingEnum.JSON_FIELD_FEES_REMAINING);
+
+                    int lateFees =  fees_profile_data.getInt(JSONParsingEnum.JSON_FIELD_FEES_LATE_FEES);
+                    int otherCharges =  fees_profile_data.getInt(JSONParsingEnum.JSON_FIELD_FEES_OTHER_CHARGES);
+
                     String lastPaidDate =  fees_profile_data.getString(JSONParsingEnum.JSON_FIELD_FEES_LAST_PAID_DATE);
                     int pos = lastPaidDate.indexOf('T');
-                    lastPaidDate = lastPaidDate.substring(0,pos);
+                    if(pos > 0) {
+                        lastPaidDate = lastPaidDate.substring(0, pos);
+                    }
                  //   String lastFeeCollector = fees_profile_data.getString(JSONParsingEnum.JSON_FIELD_FEES_SUBMITTED_BY);
                     mAppCallback.onGetStudentFeesProfileResponse(ResponseCode.COMMON_RES_SUCCESS,
-                            status, month, year, lastPaidAmount,remaningfees,lastPaidDate,"no data");
+                            status, month, year, lastPaidAmount,remaningfees,lastPaidDate,"no data",
+                            lateFees, otherCharges);
                 }
             }
         }catch (JSONException e) {
                     e.printStackTrace();
                     mAppCallback.onGetStudentFeesProfileResponse(ResponseCode.COMMON_RES_INTERNAL_ERROR,
-                            0, 0, 0, 0,0,"error","error");
+                            0, 0, 0, 0,0,"error","error",0,0);
         }
     }
 
@@ -89,11 +98,11 @@ public class GetStudentFeesProfileRequest extends CommonRequest {
 
         if (error.networkResponse != null && (error.networkResponse.statusCode > 400 && error.networkResponse.statusCode < 500)) {
             mAppCallback.onGetStudentFeesProfileResponse(COMMON_RES_PROFILE_AUTHENTICATION_FAILED,
-                    0, 0, 0, 0, 0, "error","errr");
+                    0, 0, 0, 0, 0, "error","errr",0,0);
         }
         else {
             mAppCallback.onGetStudentFeesProfileResponse(ResponseCode.COMMON_RES_FAILED_TO_CONNECT,
-                    0, 0, 0, 0, 0, "error","eror");
+                    0, 0, 0, 0, 0, "error","eror",0,0);
         }
     }
 }

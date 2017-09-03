@@ -35,6 +35,7 @@ public class GetStudentListInClassReq extends CommonRequest {
     }
     private GetStudentListInClassCallback mAppCallback;
 
+    private String mClass = null , mClassSection = null;
     public GetStudentListInClassReq(Context context, GetStudentListInClassData data, GetStudentListInClassCallback cb) {
         super(context, RequestType.COMMON_REQUEST_GET_STUDENT_LIST_IN_CLASS,
                 CommonRequestMethod.COMMON_REQUEST_METHOD_GET, null);
@@ -42,8 +43,8 @@ public class GetStudentListInClassReq extends CommonRequest {
 
         String url = getURL();
         url+= JSON_FIELD_SCHOOL + "=" + UserData.getSchoolCode();
-        url+= "&" + JSON_FIELD_CLASS_ID + "=" + mData.getClassId();
-        url+= "&" + JSON_FIELD_SECTION_ID + "=" + mData.getSectionId();
+        mClass = url+= "&" + JSON_FIELD_CLASS_ID + "=" + mData.getClassId();
+        mClassSection = url+= "&" + JSON_FIELD_SECTION_ID + "=" + mData.getSectionId();
 
         setURL(url);
     }
@@ -60,7 +61,7 @@ public class GetStudentListInClassReq extends CommonRequest {
                     int rollNum = student.getInt(JSON_FIELD_ROLL_NUMBER);
                     String id = student.getString(JSON_FIELD_UNIQUE_ID);
                     String reg_id = student.getString(JSON_FIELD_REG_NUMBER);
-                    mData.addStudent(new Student(id, name, rollNum, reg_id));
+                    mData.addStudent(new Student(id, name, rollNum, reg_id,mClass,mClassSection));
                 }
                 mAppCallback.onGetStudentListResponse(ResponseCode.COMMON_RES_SUCCESS, mData);
             }

@@ -7,11 +7,16 @@ package in.co.thingsdata.gurukul.data.common;
 public final class Student {
     private String mStudentId;
     private String mRegistrationId;
-    private String mStudentName;
+    private String mStudentName , mClass , mSection;
     private int mRollNumber;
 
     public Student (String id, String name, int roll_num, String reg_id){
         mStudentId = id; mStudentName = name; mRollNumber = roll_num; mRegistrationId = reg_id;
+    }
+
+    public Student (String id, String name, int roll_num, String reg_id , String classId , String section){
+        mStudentId = id; mStudentName = name; mRollNumber = roll_num; mRegistrationId = reg_id;
+        mClass = classId; mSection = section;
     }
 
     public String getStudentId(){return mStudentId;}

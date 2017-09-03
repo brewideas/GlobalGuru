@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="in.co.thingsdata.gurukul">
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+        <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -76,7 +76,7 @@
             android:name=".ui.common.ImageCropped"
             android:label="@string/title_activity_image_cropped" />
         <activity
-            android:name=".ui.AppStart.schoolGallery"
+            android:name=".ui.Gallery.schoolGallery"
             android:label="Gallery" />
         <activity
             android:name=".ui.AppStart.forgotPassword"
@@ -102,8 +102,21 @@
             android:label="@string/title_activity_showhomework"
             />
         <activity
-            android:name=".ui.Homework.CreateHomework"
-            android:label="@string/title_activity_create_homework"
+        android:name=".ui.Homework.CreateHomework"
+        android:label="@string/title_activity_create_homework"
+        android:windowSoftInputMode="stateVisible|adjustResize">
+
+    </activity>
+        <activity
+            android:name=".ui.Gallery.UploadPreview"
+            android:label="Upload Preview"
+            android:windowSoftInputMode="stateVisible|adjustResize">
+
+        </activity>
+
+        <activity
+            android:name=".ui.Gallery.GalleryImageViewActivity"
+            android:label="Image"
             android:windowSoftInputMode="stateVisible|adjustResize">
 
         </activity>
