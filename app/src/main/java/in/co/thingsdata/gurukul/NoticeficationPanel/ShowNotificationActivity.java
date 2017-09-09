@@ -228,7 +228,7 @@ public class ShowNotificationActivity extends AppCompatActivity
                         }
 
 
-                        list = (ListView) findViewById(R.id.notificationlistView);
+                        list = (ListView) findViewById(R.id.homeworklistView);
                         Collections.reverse(notifcationlist);
                         NotificationAdapter adap= new NotificationAdapter(ShowNotificationActivity.this,notifcationlist);
                         list.setAdapter(adap);

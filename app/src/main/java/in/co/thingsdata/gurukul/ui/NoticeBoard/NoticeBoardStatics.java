@@ -32,6 +32,8 @@ public class NoticeBoardStatics extends AppCompatActivity implements GetNotifica
     private RecyclerView mRecyclerView;
     private CommonAdapter mAdapter;
 
+    public static String homeworkNotification= "HomeWork88";
+
     TextView mtvYes,mtvNo,mtvPending,mtvMsg;
     RelativeLayout showDetail;
     android.support.v7.widget.CardView cView;

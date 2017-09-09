@@ -14,7 +14,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import in.co.thingsdata.gurukul.NoticeficationPanel.ShowNotificationActivity;
 import in.co.thingsdata.gurukul.R;
 import in.co.thingsdata.gurukul.data.CreateNotificationData;
 import in.co.thingsdata.gurukul.data.common.ClassData;
@@ -22,6 +21,7 @@ import in.co.thingsdata.gurukul.data.common.CommonDetails;
 import in.co.thingsdata.gurukul.data.common.UserData;
 import in.co.thingsdata.gurukul.services.helper.CommonRequest;
 import in.co.thingsdata.gurukul.services.request.CreateNotificationRequest;
+import in.co.thingsdata.gurukul.ui.NoticeBoard.NoticeBoardStatics;
 
 import static in.co.thingsdata.gurukul.data.common.CommonDetails.NotificationTypeEnum.NOTIFICATION_TYPE_NORMAL;
 
@@ -38,6 +38,8 @@ public class CreateHomework extends AppCompatActivity implements AdapterView.OnI
             if (setSubject == null || setSubject.length() == 0) {
                 setSubject = subjectSpinner.getSelectedItem().toString();
             }
+
+            String setHomeWorkSubject = NoticeBoardStatics.homeworkNotification.concat(setSubject);
             // setSubject += "\n" + detail.getText().toString();
 
             int indexValue = classSpinner.getSelectedItemPosition();
@@ -66,13 +68,21 @@ public class CreateHomework extends AppCompatActivity implements AdapterView.OnI
             CommonDetails.NotificationTypeEnum type = NOTIFICATION_TYPE_NORMAL;
 
             CreateNotificationData nd = null;
-            String description = detail.getText().toString();
+            String text = detail.getText().toString();
+            String classOfHomeWork = HomeWorkStaticData.getSelectedClassRoomId();
+
+            String classNum = "Class :";
+            
+            String description = classNum.concat(HomeWorkStaticData.getSelectedClassRoomId());
+            description = description.concat("\n");
+            description = description.concat(text);
+            description = description.concat("\n");
             nd = new CreateNotificationData(
                     UserData.getAccessToken(),
                     createDate,
                     expiryDate,
                     description,
-                    setSubject,
+                    setHomeWorkSubject,
                     selClassesList, type, false);
 
             CreateNotificationRequest request = new CreateNotificationRequest(this, nd, this);
@@ -91,8 +101,8 @@ public class CreateHomework extends AppCompatActivity implements AdapterView.OnI
     public void onCreateNotificationResponse(CommonRequest.ResponseCode res, CreateNotificationData data) {
 
         if (res == CommonRequest.ResponseCode.COMMON_RES_SUCCESS){
-            Toast.makeText(this, "Notification created successfully", Toast.LENGTH_SHORT).show();
-            Intent launchFeature = new Intent(this, ShowNotificationActivity.class);
+            Toast.makeText(this, "Homework created successfully", Toast.LENGTH_SHORT).show();
+            Intent launchFeature = new Intent(this, Showhomework.class);
             startActivity(launchFeature);
         }else{
             Toast.makeText(this, "Failed to create notification", Toast.LENGTH_SHORT).show();

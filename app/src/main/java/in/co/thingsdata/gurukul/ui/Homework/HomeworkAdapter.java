@@ -40,7 +40,7 @@ public class HomeworkAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int position) {
-        return mModuleArrayList.get(position).getContentData().hashCode();
+        return position;
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
