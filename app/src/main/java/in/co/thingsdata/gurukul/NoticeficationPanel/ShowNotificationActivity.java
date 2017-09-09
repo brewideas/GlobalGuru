@@ -15,7 +15,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -185,6 +184,13 @@ public class ShowNotificationActivity extends AppCompatActivity
                             String contentTitle = notify.optString("contentTitle");
                             String contentMsg = notify.optString("contentMsg");
                             String contentData;
+
+                            boolean  isHomework = contentTitle.startsWith(NoticeBoardStatics.homeworkNotification);  // true
+
+                            if(isHomework == true){
+                                continue;
+                            }
+
                             if (!UserData.getUserType().contentEquals(CommonDetails.USER_TYPE_PRINCIPAL) &&
                                     contentType.contentEquals("QUESTION")) {
                                 JSONObject data = notify.getJSONObject("contentData");
@@ -248,10 +254,6 @@ public class ShowNotificationActivity extends AppCompatActivity
                                                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
                                                    @Override
                                                    public void onClick(SweetAlertDialog sweetAlertDialog) {
-                                                       //Intent i=new Intent(ShowNotificationActivity.this,StatsActivity.class);
-                                                       //i.putExtra("unique_id",notifcationlist.get(position).getUniqueId());
-                                                       //startActivity(i);
-
                                                        GetNotificationStatsData data = new GetNotificationStatsData(null, notifcationlist.get(position).getUniqueId());
                                                        GetNotificationStatsRequest request = new GetNotificationStatsRequest
                                                                (ShowNotificationActivity.this, data, ShowNotificationActivity.this);
@@ -308,8 +310,10 @@ public class ShowNotificationActivity extends AppCompatActivity
                             }
                         });
 
-                    } catch (JSONException e) {
+                    } catch (Exception e) {
                         e.printStackTrace();
+                        Toast.makeText(ShowNotificationActivity.this, "Try later", Toast.LENGTH_SHORT).show();
+                        finish();
                     }
 
 
