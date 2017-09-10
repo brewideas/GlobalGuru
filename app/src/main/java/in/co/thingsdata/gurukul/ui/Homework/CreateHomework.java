@@ -43,8 +43,11 @@ public class CreateHomework extends AppCompatActivity implements AdapterView.OnI
             // setSubject += "\n" + detail.getText().toString();
 
             int indexValue = classSpinner.getSelectedItemPosition();
+            String classRoomId = HomeWorkStaticData.mClassesInSchoolObj.get(indexValue).getClassRoomId();
             String classCode = HomeWorkStaticData.mClassesInSchoolObj.get(indexValue).getClassCode();
-            HomeWorkStaticData.setSelectedClassRoomId(classCode);
+
+            HomeWorkStaticData.setSelectedClassRoomId(classRoomId);
+
             selClassesList = null;
             selClassesList = new ArrayList<String>();
             selClassesList.add(0, classCode);

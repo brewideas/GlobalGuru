@@ -5,13 +5,11 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -19,7 +17,6 @@ import com.google.android.gms.ads.InterstitialAd;
 
 import java.util.ArrayList;
 
-import cn.pedant.SweetAlert.SweetAlertDialog;
 import in.co.thingsdata.gurukul.R;
 import in.co.thingsdata.gurukul.data.common.ClassData;
 import in.co.thingsdata.gurukul.data.common.CommonDetails;
@@ -98,32 +95,6 @@ public class MainActivity extends AppCompatActivity implements GetClassListReque
       }
   }
 
-  public void dashboard(View v) {
-        if (email.getText().length() == 0) {
-            email.setError("Please enter your email");
-        }
-        if (password.getText().length() == 0) {
-            password.setError("Please enter password");
-        } else {
-            SweetAlertDialog pDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
-            pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
-            pDialog.setTitleText("Loading");
-            pDialog.setCancelable(false);
-            pDialog.show();
-            handler = new Handler();
-
-            final Runnable r = new Runnable() {
-                public void run() {
-                    Intent it = new Intent(MainActivity.this, Dashboard.class);
-                    startActivity(it);
-
-                }
-            };
-
-            handler.postDelayed(r, 2000);
-
-        }
-    }
 
     @Override
     public void onGetClassListResponse(CommonRequest.ResponseCode res, ArrayList<ClassData> classes) {
@@ -133,11 +104,9 @@ public class MainActivity extends AppCompatActivity implements GetClassListReque
             }
         }
         else {
-            if (res == CommonRequest.ResponseCode.COMMON_RES_PROFILE_AUTHENTICATION_FAILED)
-                UserData.clearAll();
             isUserLoggedIn = false;
-
-
+            //if (res == CommonRequest.ResponseCode.COMMON_RES_PROFILE_AUTHENTICATION_FAILED)
+                UserData.clearAll();
             Toast.makeText(this, "Session expired, please login again", Toast.LENGTH_LONG).show();
         }
 //        handler = new Handler();

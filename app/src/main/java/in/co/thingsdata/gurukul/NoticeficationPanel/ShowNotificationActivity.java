@@ -185,6 +185,7 @@ public class ShowNotificationActivity extends AppCompatActivity
                             String contentMsg = notify.optString("contentMsg");
                             String contentData;
 
+                            //If this notification is for homework , do not show
                             boolean  isHomework = contentTitle.startsWith(NoticeBoardStatics.homeworkNotification);  // true
 
                             if(isHomework == true){
@@ -234,7 +235,7 @@ public class ShowNotificationActivity extends AppCompatActivity
                         }
 
 
-                        list = (ListView) findViewById(R.id.homeworklistView);
+                        list = (ListView) findViewById(R.id.notificationlistView);
                         Collections.reverse(notifcationlist);
                         NotificationAdapter adap= new NotificationAdapter(ShowNotificationActivity.this,notifcationlist);
                         list.setAdapter(adap);
