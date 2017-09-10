@@ -101,8 +101,9 @@ public class Dashboard extends AppCompatActivity {
 
     public void launchFees(View view) {
         Intent launchFeature;
-        if(UserData.getUserType() == CommonDetails.USER_TYPE_PRINCIPAL){
-            launchFeature = new Intent(this, FeesDetails.class);
+
+        if(UserData.getUserType().equals(CommonDetails.USER_TYPE_PRINCIPAL)){
+            launchFeature = new Intent(Dashboard.this, FeesDetails.class);
 
         }else{
             launchFeature = new Intent(Dashboard.this, FeesProfileNonEditable.class);

@@ -48,7 +48,7 @@ TextView hideclassName,hidetextView1;
             hidetextView1 = (TextView) findViewById(R.id.textView1);
             tvprofileClass = (TextView) findViewById(R.id.profileClass);
             tvprofileRolNum = (TextView) findViewById(R.id.profileRolNum);
-            if(UserData.getUserType() == CommonDetails.USER_TYPE_PRINCIPAL) {
+            if(UserData.getUserType().equals(CommonDetails.USER_TYPE_PRINCIPAL)) {
                 String userClass = Integer.toString(UserData.getClassId());
                 String userRolNum = Integer.toString(UserData.getRollNumber());
 

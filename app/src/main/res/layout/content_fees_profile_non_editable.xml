@@ -382,7 +382,7 @@
                    android:layout_height="50dp"
                    android:layout_margin="10dp"
                    android:gravity="center"
-                   android:onClick="feesProfile"
+                   android:onClick="feesProfilefinish"
                    android:background="@drawable/loginbutton"
                    android:textColor="@color/card"
                    android:text="Ok"

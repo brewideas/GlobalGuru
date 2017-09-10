@@ -95,7 +95,7 @@ public class FeesProfile extends AppCompatActivity implements GetStudentFeesProf
 
     void setViewGoneIfNotPrinciple(){
 
-        if(UserData.getUserType() == CommonDetails.USER_TYPE_PRINCIPAL) {
+        if(UserData.getUserType().equals(CommonDetails.USER_TYPE_PRINCIPAL)) {
             balanceRemaingEt.setVisibility(View.GONE);
             amluntPaidEt.setVisibility(View.GONE);
             monthSv.setVisibility(View.GONE);
@@ -147,7 +147,7 @@ public class FeesProfile extends AppCompatActivity implements GetStudentFeesProf
 
     void getDataInputWhileFeesUpdate(){
 
-        if(UserData.getUserType() == CommonDetails.USER_TYPE_PRINCIPAL) {
+        if(UserData.getUserType().equals(CommonDetails.USER_TYPE_PRINCIPAL)) {
             Calendar c = Calendar.getInstance();
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
             SimpleDateFormat df2 = new SimpleDateFormat("HH:mm:ss.SSS");

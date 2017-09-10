@@ -88,6 +88,11 @@
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
+            android:name=".ui.Fees.FeesProfileNonEditable"
+            android:label="@string/title_activity_fees_profile"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity
             android:name=".ui.Fees.FeesProfile"
             android:label="@string/title_activity_fees_profile"
             android:theme="@style/AppTheme.NoActionBar"

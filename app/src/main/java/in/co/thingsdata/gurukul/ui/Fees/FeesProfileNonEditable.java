@@ -16,9 +16,8 @@ import in.co.thingsdata.gurukul.data.common.FeesProfileData;
 import in.co.thingsdata.gurukul.data.common.UserData;
 import in.co.thingsdata.gurukul.services.helper.CommonRequest;
 import in.co.thingsdata.gurukul.services.request.GetStudentFeesProfileRequest;
-import in.co.thingsdata.gurukul.services.request.SubmitStudentFeesReq;
 
-public class FeesProfileNonEditable extends AppCompatActivity implements GetStudentFeesProfileRequest.GetFeesProfileCallback  , SubmitStudentFeesReq.SubmitStudenFeesCallback{
+public class FeesProfileNonEditable extends AppCompatActivity implements GetStudentFeesProfileRequest.GetFeesProfileCallback {
 
     TextView nameTV,
              classTV,
@@ -31,11 +30,14 @@ public class FeesProfileNonEditable extends AppCompatActivity implements GetStud
 
     int mposInList = 0;
     FeesListModel mSelectedStudent;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fees_profile);
+        setContentView(R.layout.fees_profile_non_editabe);
         FeesDetailsStaticData.showProgressBar(this);
+
+
         Intent intent = getIntent();
         mposInList = intent.getIntExtra(getResources().getString(R.string.intent_extra_Fees_studentposInList), 1);
 
@@ -89,11 +91,6 @@ public class FeesProfileNonEditable extends AppCompatActivity implements GetStud
 
     }
 
-    public void feesProfile(View view) {
-        executeResultQuery();
-
-    }
-
     void initRes(){
 
      nameTV = (TextView)findViewById(R.id.nameFees);
@@ -104,10 +101,6 @@ public class FeesProfileNonEditable extends AppCompatActivity implements GetStud
      lateFeesTv = (TextView)findViewById(R.id.lateFeesTv);
      otherChargeTv = (TextView)findViewById(R.id.otherChargesTv);
      totalTv = (TextView)findViewById(R.id.feesTotalTv);
-
-    }
-
-    public void executeResultQuery() {
 
     }
 
@@ -124,36 +117,25 @@ public class FeesProfileNonEditable extends AppCompatActivity implements GetStud
 
             if(CommonRequest.ResponseCode.COMMON_RES_SUCCESS == res){
                 mMonth = month ; mYear = year; mPaidFees = paidFees; mRemainingFees = remainingFees;
-
                 try {
                     totalTv.setText(Integer.toString(paidFees));
                     monthTv.setText(Integer.toString(month));
                     lateFeesTv.setText(Integer.toString(lateFees));
                     otherChargeTv.setText(Integer.toString(otherCharges));
                 }catch (NullPointerException e){
-                    Toast.makeText(FeesProfileNonEditable.this,"Error in getting all data",Toast.LENGTH_LONG);
+                    Toast.makeText(FeesProfileNonEditable.this,"Error in getting data . Try later",Toast.LENGTH_LONG);
+                    finish();
+
                 }
 
             }else{
                 Toast.makeText(FeesProfileNonEditable.this,"Error please try some other time",Toast.LENGTH_LONG);
-          //      finish();
+                finish();
             }
 
     }
 
-    @Override
-    public void onSubmitFeesResponse(CommonRequest.ResponseCode res, FeesProfileData data) {
-
-        FeesDetailsStaticData.dismissProgressBar();
-
-        if(CommonRequest.ResponseCode.COMMON_RES_SUCCESS == res) {
-            Toast.makeText(FeesProfileNonEditable.this, "Fees paid successfully",Toast.LENGTH_LONG);
-            finish();
-
-        }else{
-            Toast.makeText(FeesProfileNonEditable.this,"Error in submitting fees",Toast.LENGTH_LONG);
-            //      finish();
-        }
-
+    public void feesProfilefinish(View view) {
+        finish();
     }
 }
