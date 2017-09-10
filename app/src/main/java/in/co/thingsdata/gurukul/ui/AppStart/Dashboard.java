@@ -15,6 +15,7 @@ import in.co.thingsdata.gurukul.R;
 import in.co.thingsdata.gurukul.data.common.CommonDetails;
 import in.co.thingsdata.gurukul.data.common.UserData;
 import in.co.thingsdata.gurukul.ui.Fees.FeesDetails;
+import in.co.thingsdata.gurukul.ui.Fees.FeesProfileNonEditable;
 import in.co.thingsdata.gurukul.ui.Gallery.schoolGallery;
 import in.co.thingsdata.gurukul.ui.Homework.Showhomework;
 import in.co.thingsdata.gurukul.ui.ReportCardUi.ReportCardTeacherView;
@@ -36,7 +37,6 @@ public class Dashboard extends AppCompatActivity {
         rlayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
 
 
             }
@@ -100,22 +100,17 @@ public class Dashboard extends AppCompatActivity {
     }
 
     public void launchFees(View view) {
+        Intent launchFeature;
+        if(UserData.getUserType() == CommonDetails.USER_TYPE_PRINCIPAL){
+            launchFeature = new Intent(this, FeesDetails.class);
 
-        //if(UserData.getUserType() == CommonDetails.USER_TYPE_PRINCIPAL)
-        {
-            Intent launchFeature = new Intent(this, FeesDetails.class);
-            startActivity(launchFeature);
+        }else{
+            launchFeature = new Intent(Dashboard.this, FeesProfileNonEditable.class);
         }
-//        else
-//        {
-//            //Need to make request for profile
-//            Intent launchFeature = new Intent(this, FeesProfile.class);
-//            startActivity(launchFeature);
-//        }
+        startActivity(launchFeature);
     }
 
     public void LaunchHomeWork(View view) {
-
         Intent launchFeature = new Intent(this, Showhomework.class);
         startActivity(launchFeature);
     }

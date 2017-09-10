@@ -65,14 +65,16 @@ public class FeesDetails extends AppCompatActivity implements GetStudentListInCl
 
                 try {
                     Intent start;
-                    if((UserData.getUserType().equals(CommonDetails.USER_TYPE_STUDENT)) ||
-                            (UserData.getUserType().equals(CommonDetails.USER_TYPE_PARENT))){
-                        start = new Intent(FeesDetails.this, FeesProfileNonEditable.class);
-                    }else{
-                        start = new Intent(FeesDetails.this, FeesProfile.class);
-                    }
+
+                    start = new Intent(FeesDetails.this, FeesProfileNonEditable.class);
+
+//                    if((UserData.getUserType().equals(CommonDetails.USER_TYPE_STUDENT)) ||
+//                            (UserData.getUserType().equals(CommonDetails.USER_TYPE_PARENT))){
+//                        start = new Intent(FeesDetails.this, FeesProfileNonEditable.class);
+//                    }else{
+//                        start = new Intent(FeesDetails.this, FeesProfile.class);
+//                    }
                     start.putExtra(getResources().getString(R.string.intent_extra_Fees_studentposInList), position);
-                    //start.putExtra(getResources().getString(R.string.intent_extra_rolnum),ReportCardStaticData.mStudentList.);
                     startActivity(start);
                 } catch (Exception e) {
                     Toast.makeText(FeesDetails.this, "Error : Please restart Application", Toast.LENGTH_LONG).show();
